@@ -1,0 +1,26 @@
+---
+export async function getStaticPaths() {
+  return [
+    {
+      params: {},
+    },
+    {
+      params: {
+        slug: 'a/b/c',
+      }
+    },
+    {
+      params: {
+        slug: 'a',
+      }
+    },
+  ]
+}
+
+import BasePageLayout from '../layouts/BasePageLayout.astro'
+const { slug } = Astro.request.params
+---
+
+<BasePageLayout>
+  {slug}
+</BasePageLayout>
