@@ -1,26 +1,35 @@
 ---
+import { fetchPages } from '../datocms.mjs'
+import get from 'just-safe-get'
+
 export async function getStaticPaths() {
-  return [
-    {
-      params: {},
-    },
-    {
-      params: {
-        slug: 'a/b/c',
-      }
-    },
-    {
-      params: {
-        slug: 'a',
-      }
-    },
-  ]
+  const data = await fetchPages()
+  const pages = get(data, 'data.allPages', [])
+
+  return pages.map(page => {
+
+    const result = {
+      params: page.slug === 'home'
+        ? {}
+        : { slug: page.slug },
+      props: { page }
+    }
+    console.log(page.slug, result)
+
+    return result
+  })
 }
 
 import BasePageLayout from '../layouts/BasePageLayout.astro'
+import Seo from '../components/Seo.vue'
 const { slug } = Astro.request.params
+const { page } = Astro.props
 ---
 
 <BasePageLayout>
+  <Fragment slot="head">
+    {page._seoMetaTags.map(element => (<Seo seoTag={element} />))}
+  </Fragment>
   {slug}
+  <pre>{JSON.stringify(page, null, 2)}</pre>
 </BasePageLayout>
