@@ -10,6 +10,13 @@ const pagesQuery = `query PagesQuery {
         showScrollButton
         expandedMasthead
         content
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
         illustration {
           alt
           basename
@@ -124,6 +131,39 @@ const pagesQuery = `query PagesQuery {
             bgColor
             title
           }
+        }
+      }
+      ... on QuoteCarouselRecord {
+        id
+        illustrationSide
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        illustration {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          responsiveImage {
+            alt
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+        quotes {
+          id
+          author
+          quote
         }
       }
     }
