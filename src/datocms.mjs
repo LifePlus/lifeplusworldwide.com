@@ -175,7 +175,18 @@ const pagesQuery = `query PagesQuery {
   }
 }`
 
-export async function fetchPages () {
+const menuQuery = `query MenuQuery {
+  allMenuItems {
+    id
+    externalUrl
+    label
+    page {
+      slug
+    }
+  }
+}`
+
+const makeRequest = async query => {
   return await fetch('https://graphql.datocms.com', {
     method: 'post',
     headers: {
@@ -183,8 +194,16 @@ export async function fetchPages () {
       'Accept': 'application/json',
       'Authorization': `Bearer ${import.meta.env.DATOCMS_KEY}`,
     },
-    body: JSON.stringify({
-      query: pagesQuery
-    })
+    body: JSON.stringify({ query })
   }).then(res => res.json())
 }
+
+export function fetchPages () {
+  return makeRequest(pagesQuery)
+}
+
+export function fetchMenu () {
+  return makeRequest(menuQuery)
+}
+
+export function slugBuilder (slug) {}
