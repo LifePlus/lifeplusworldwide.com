@@ -4,6 +4,9 @@ import TopNav from '../components/TopNav.astro'
 ---
 
 <BaseLayout>
+  <Fragment slot="head">
+    <slot name="head" />
+  </Fragment>
   <TopNav />
   <slot />
 </BaseLayout>
