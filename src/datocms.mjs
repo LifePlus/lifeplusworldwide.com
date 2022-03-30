@@ -226,4 +226,6 @@ export function fetchMenu () {
   return makeRequest(menuQuery)
 }
 
-export function slugBuilder (slug) {}
+export function slugBuilder (slug) {
+  return '/' + (slug === 'home' ? '' : slug)
+}
