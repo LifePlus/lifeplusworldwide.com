@@ -180,10 +180,26 @@ const pagesQuery = `query PagesQuery {
 }`
 
 const menuQuery = `query MenuQuery {
-  allMenuItems {
+  allMenuItems(
+    filter: {
+      parent: {
+        exists: false
+      }
+    }
+    orderBy: position_ASC
+  ) {
     id
     externalUrl
     label
+    position
+    children {
+      id
+      label
+      position
+      page {
+        slug
+      }
+    }
     page {
       slug
     }
