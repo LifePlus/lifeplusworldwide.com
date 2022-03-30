@@ -6,6 +6,7 @@ const pagesQuery = `query PagesQuery {
     modularContent {
       ... on MastheadRecord {
         id
+        _modelApiKey
         title
         showScrollButton
         expandedMasthead
@@ -37,6 +38,7 @@ const pagesQuery = `query PagesQuery {
       }
       ... on CardBlockRecord {
         id
+        _modelApiKey
         title
         backgroundColor {
           alpha
@@ -105,6 +107,7 @@ const pagesQuery = `query PagesQuery {
       }
       ... on CenteredContentRecord {
         id
+        _modelApiKey
         actionUrl
         callToAction
         content
@@ -135,6 +138,7 @@ const pagesQuery = `query PagesQuery {
       }
       ... on QuoteCarouselRecord {
         id
+        _modelApiKey
         illustrationSide
         backgroundColor {
           alpha
