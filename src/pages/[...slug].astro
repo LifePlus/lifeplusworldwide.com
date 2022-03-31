@@ -1,23 +1,21 @@
 ---
 import { fetchPages } from '../datocms.mjs'
 import get from 'just-safe-get'
+import { ray } from 'node-ray'
 
 export async function getStaticPaths() {
   const data = await fetchPages()
   const pages = get(data, 'data.allPages', [])
 
-  return pages.map(page => {
-
-    const result = {
-      params: page.slug === 'home'
-        ? {}
-        : { slug: page.slug },
-      props: { page }
+  ray(data)
+  return pages.map(page => ({
+    params: page.slug === 'home'
+      ? {}
+      : { slug: page.slug },
+    props: {
+      page
     }
-    console.log(page.slug, result)
-
-    return result
-  })
+  }))
 }
 
 import BasePageLayout from '../layouts/BasePageLayout.astro'
