@@ -57,7 +57,7 @@
 }
 
 @font-face {
-  font-family: 'Graphik Arabic Web Bold';
+  font-family: 'Graphik Arabic Web';
   src: url('/fonts/GraphikArabic-Bold-Web.woff2') format('woff2'), url('/fonts/GraphikArabic-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
@@ -65,7 +65,7 @@
 }
 
 @font-face {
-  font-family: 'Graphik Arabic Web Regular';
+  font-family: 'Graphik Arabic Web';
   src: url('/fonts/GraphikArabic-Regular-Web.woff2') format('woff2'), url('/fonts/GraphikArabic-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
@@ -117,5 +117,37 @@
   src: url('/fonts/CanelaText-Regular-Web.woff2') format('woff2'), url('/fonts/CanelaText-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Lyon Arabic Text Web';
+  src: url('/fonts/LyonArabicText-Bold-Web.woff2') format('woff2'), url('/fonts/LyonArabicText-Bold-Web.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Lyon Arabic Text Web';
+  src: url('/fonts/LyonArabicText-Regular-Web.woff2') format('woff2'), url('/fonts/LyonArabicText-Regular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Lyon Arabic Text Web';
+  src: url('/fonts/LyonArabicSlantedText-Bold-Web.woff2') format('woff2'), url('/fonts/LyonArabicSlantedText-Bold-Web.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Lyon Arabic Text Web';
+  src: url('/fonts/LyonArabicSlantedText-Regular-Web.woff2') format('woff2'), url('/fonts/LyonArabicSlantedText-Regular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
   font-stretch: normal;
 }
