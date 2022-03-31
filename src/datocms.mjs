@@ -177,6 +177,12 @@ const pagesQuery = `query PagesQuery {
       tag
     }
   }
+  _site {
+    faviconMetaTags {
+      tag
+      attributes
+    }
+  }
 }`
 
 const menuQuery = `query MenuQuery {

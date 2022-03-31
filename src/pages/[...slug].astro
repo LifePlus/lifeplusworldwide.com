@@ -6,6 +6,7 @@ import { ray } from 'node-ray'
 export async function getStaticPaths() {
   const data = await fetchPages()
   const pages = get(data, 'data.allPages', [])
+  const faviconTags = get(data, 'data._site.faviconMetaTags')
 
   ray(data)
   return pages.map(page => ({
@@ -13,7 +14,8 @@ export async function getStaticPaths() {
       ? {}
       : { slug: page.slug },
     props: {
-      page
+      page,
+      faviconTags,
     }
   }))
 }
@@ -21,12 +23,13 @@ export async function getStaticPaths() {
 import BasePageLayout from '../layouts/BasePageLayout.astro'
 import Component from '../components/Component.vue'
 const { slug } = Astro.request.params
-const { page } = Astro.props
+const { page, faviconTags } = Astro.props
 ---
 
 <BasePageLayout>
   <Fragment slot="head">
-    {page._seoMetaTags.map(element => (<Component config={element} />))}
+    {faviconTags.map(element => <Component config={element} />)}
+    {page._seoMetaTags.map(element => <Component config={element} />)}
   </Fragment>
   {slug}
   <pre>{JSON.stringify(page, null, 2)}</pre>
