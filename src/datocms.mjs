@@ -222,8 +222,14 @@ export function fetchPages () {
   return makeRequest(pagesQuery)
 }
 
-export function fetchMenu () {
-  return makeRequest(menuQuery)
+let menuCache = null
+export async function fetchMenu () {
+  if (menuCache) {
+    return menuCache
+  }
+
+  menuCache = await makeRequest(menuQuery)
+  return menuCache
 }
 
 export function slugBuilder (slug) {
