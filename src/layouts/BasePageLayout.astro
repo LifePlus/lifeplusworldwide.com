@@ -1,12 +1,19 @@
 ---
 import BaseLayout from './BaseLayout.astro'
 import TopNav from '../components/TopNav.astro'
+import Footer from '../components/Footer.astro'
+const { pageId } = Astro.props
 ---
 
 <BaseLayout>
   <Fragment slot="head">
     <slot name="head" />
   </Fragment>
-  <TopNav />
-  <slot />
+  <div class="bg-white text-black font-sans min-h-screen flex flex-col justify-between">
+    <TopNav currentId={pageId} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </div>
 </BaseLayout>

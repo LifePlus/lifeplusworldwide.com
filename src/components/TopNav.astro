@@ -12,8 +12,8 @@ const { currentId } = Astro.props
 ---
 
 <nav class="shadow-md h-[50px] bg-white">
-  <Container class="flex justify-between h-full">
-    <ul class="hidden lg:flex divide-x divide-gray-300 border-x border-gray-300">
+  <Container class="flex justify-between h-full" padding={false}>
+    <ul class="hidden lg:flex -ml-[1px] divide-x divide-gray-300 border-x border-gray-300">
       {items.map(item => (
         <li class="group flex relative">
           <div class={`absolute transition-all w-full top-0 ${get(item, 'page.id') === currentId ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
