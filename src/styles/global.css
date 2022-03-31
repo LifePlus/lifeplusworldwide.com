@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "LifePlus Orleans Web";
+  src: url("/fonts/LifePlusOrleans-Roman-Web.woff2") format("woff2"), url("/fonts/LifePlusOrleans-Roman-Web.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LifePlus Orleans Web";
+  src: url("/fonts/LifePlusOrleans-Bold-Web.woff2") format("woff2"), url("/fonts/LifePlusOrleans-Bold-Web.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}

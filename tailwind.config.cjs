@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     './public/**/*.html',
@@ -23,6 +25,9 @@ module.exports = {
           700: '#666666',
           900: '#333333',
         }
+      },
+      fontFamily: {
+        orleans: ['"LifePlus Orleans Web"', ...defaultTheme.fontFamily.serif],
       }
     },
   },
