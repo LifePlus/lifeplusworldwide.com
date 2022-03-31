@@ -19,12 +19,12 @@ export async function getStaticPaths() {
   }))
 }
 
-console.log(`DatoCMS KEY: ${import.meta.env.DATOCMS_KEY}`)
 import BasePageLayout from '../layouts/BasePageLayout.astro'
 import Component from '../components/Component.vue'
 const { slug } = Astro.request.params
 const { page, faviconTags } = Astro.props
 
+console.log(`DatoCMS KEY: ${import.meta.env.DATOCMS_KEY}`)
 ray(page)
 ---
 
