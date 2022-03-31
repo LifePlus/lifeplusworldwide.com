@@ -219,7 +219,7 @@ const makeRequest = async query => {
     headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': `Bearer ${import.meta.env.DATOCMS_KEY}`,
+      'Authorization': `Bearer ${import.meta.env.DATOCMS_KEY || process.env.DATOCMS_KEY}`,
     },
     body: JSON.stringify({ query })
   }).then(res => res.json())

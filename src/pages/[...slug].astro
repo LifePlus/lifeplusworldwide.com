@@ -7,7 +7,6 @@ export async function getStaticPaths() {
   const data = await fetchPages()
   const pages = get(data, 'data.allPages', [])
   const faviconTags = get(data, 'data._site.faviconMetaTags')
-  console.log('called getStaticPaths', import.meta.env.DATOCMS_KEY)
 
   return pages.map(page => ({
     params: page.slug === 'home'
@@ -25,7 +24,6 @@ import Component from '../components/Component.vue'
 const { slug } = Astro.request.params
 const { page, faviconTags } = Astro.props
 
-console.log(`DatoCMS KEY: ${import.meta.env.DATOCMS_KEY}`)
 ray(page)
 ---
 
