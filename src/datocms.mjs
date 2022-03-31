@@ -207,6 +207,7 @@ const menuQuery = `query MenuQuery {
       }
     }
     page {
+      id
       slug
     }
   }
