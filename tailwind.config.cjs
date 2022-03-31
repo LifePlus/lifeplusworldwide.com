@@ -27,6 +27,8 @@ module.exports = {
         }
       },
       fontFamily: {
+        sans: ['"Graphik Web"', ...defaultTheme.fontFamily.sans],
+        arabic: ['"Graphik Arabic Web Regular"', ...defaultTheme.fontFamily.sans],
         orleans: ['"LifePlus Orleans Web"', ...defaultTheme.fontFamily.serif],
       }
     },
