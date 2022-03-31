@@ -8,7 +8,6 @@ export async function getStaticPaths() {
   const pages = get(data, 'data.allPages', [])
   const faviconTags = get(data, 'data._site.faviconMetaTags')
 
-  ray(data)
   return pages.map(page => ({
     params: page.slug === 'home'
       ? {}
@@ -24,13 +23,15 @@ import BasePageLayout from '../layouts/BasePageLayout.astro'
 import Component from '../components/Component.vue'
 const { slug } = Astro.request.params
 const { page, faviconTags } = Astro.props
+
+ray(page)
 ---
 
-<BasePageLayout>
+<BasePageLayout pageId={page.id}>
   <Fragment slot="head">
     {faviconTags.map(element => <Component config={element} />)}
     {page._seoMetaTags.map(element => <Component config={element} />)}
   </Fragment>
-  {slug}
-  <pre>{JSON.stringify(page, null, 2)}</pre>
+
+  {page.id}
 </BasePageLayout>
