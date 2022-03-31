@@ -7,6 +7,7 @@ export async function getStaticPaths() {
   const data = await fetchPages()
   const pages = get(data, 'data.allPages', [])
   const faviconTags = get(data, 'data._site.faviconMetaTags')
+  console.log(`config`, JSON.stringify(import.meta.env, null, 2))
 
   return pages.map(page => ({
     params: page.slug === 'home'
