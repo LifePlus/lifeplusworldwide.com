@@ -21,14 +21,14 @@ export async function getStaticPaths() {
 }
 
 import BasePageLayout from '../layouts/BasePageLayout.astro'
-import Seo from '../components/Seo.vue'
+import Component from '../components/Component.vue'
 const { slug } = Astro.request.params
 const { page } = Astro.props
 ---
 
 <BasePageLayout>
   <Fragment slot="head">
-    {page._seoMetaTags.map(element => (<Seo seoTag={element} />))}
+    {page._seoMetaTags.map(element => (<Component config={element} />))}
   </Fragment>
   {slug}
   <pre>{JSON.stringify(page, null, 2)}</pre>

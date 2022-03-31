@@ -1,9 +1,9 @@
 <template>
   <component
-    :is="seoTag.tag"
-    v-bind="seoTag.attributes || {}"
+    :is="config.tag"
+    v-bind="config.attributes || {}"
   >
-    {{ seoTag.content }}
+    {{ config.content }}
   </component>
 </template>
 
@@ -12,10 +12,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
-    seoTag: Object,
-  },
-  setup () {
-
+    config: Object,
   },
 })
 </script>
