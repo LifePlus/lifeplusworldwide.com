@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-size: 16px;
+  }
+}
+
 @font-face {
   font-family: "LifePlus Orleans Web";
   src: url("/fonts/LifePlusOrleans-Roman-Web.woff2") format("woff2"), url("/fonts/LifePlusOrleans-Roman-Web.woff") format("woff");
