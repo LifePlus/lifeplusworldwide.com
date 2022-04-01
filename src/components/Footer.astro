@@ -25,11 +25,11 @@ import ArrowUpIcon from './icons/ArrowUpIcon.vue'
           <img src="/assets/globe.png" alt="A globe shaped like an apple with a bite" />
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
-          <div class="px-4 pt-6 pb-10 space-y-1">
-            <CityTime>Atlanta</CityTime>
-            <CityTime>Beijing</CityTime>
-            <CityTime>Dubai</CityTime>
-            <CityTime>Johan'burg</CityTime>
+          <div class="px-4 pt-6 pb-10 space-y-2">
+            <CityTime client:visible class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
+            <CityTime client:visible class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
+            <CityTime client:visible class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
+            <CityTime client:visible timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
@@ -38,11 +38,11 @@ import ArrowUpIcon from './icons/ArrowUpIcon.vue'
               </button>
             </div>
           </div>
-          <div class="px-4 pt-6 pb-10 space-y-1">
-            <CityTime>London</CityTime>
-            <CityTime>Seattle</CityTime>
-            <CityTime>Sydney</CityTime>
-            <CityTime>Zurich</CityTime>
+          <div class="px-4 pt-6 pb-10 space-y-2">
+            <CityTime client:visible class="mb-1" timezone={'Europe/London'} label={'London'} />
+            <CityTime client:visible class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
+            <CityTime client:visible class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
+            <CityTime client:visible timezone={'Europe/Zurich'} label={'Zurich'} />
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Top</div>

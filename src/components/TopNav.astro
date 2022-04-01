@@ -30,9 +30,9 @@ const { currentId } = Astro.props
 
     <div>
       <ul class="hidden lg:flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
-        <li class="flex h-full items-center px-4"><CityTime>Atlanta</CityTime></li>
-        <li class="flex h-full items-center px-4"><CityTime>Beijing</CityTime></li>
-        <li class="flex h-full items-center px-4"><CityTime>Dubai</CityTime></li>
+        <li class="flex h-full items-center px-4"><CityTime client:load timezone={'America/New_York'} label={'Atlanta'} /></li>
+        <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
+        <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Dubai'} label={'Dubai'} /></li>
         <li class="flex h-full items-center px-4">ENG</li>
       </ul>
     </div>
