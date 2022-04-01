@@ -3,6 +3,7 @@ import Container from './Container.vue'
 import CityTime from './CityTime.vue'
 import ShareIcon from './icons/ShareIcon.vue'
 import ArrowUpIcon from './icons/ArrowUpIcon.vue'
+import RoundButton from './RoundButton.vue'
 ---
 
 <footer class="bg-brand-base">
@@ -26,42 +27,42 @@ import ArrowUpIcon from './icons/ArrowUpIcon.vue'
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
           <div class="px-4 pt-6 pb-10 space-y-2">
-            <CityTime client:visible class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
-            <CityTime client:visible class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
-            <CityTime client:visible class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
-            <CityTime client:visible timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
+            <CityTime client:load class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
+            <CityTime client:load class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
+            <CityTime client:load class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
+            <CityTime client:load timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
-              <button class="w-16 h-16 mx-auto flex items-center justify-center rounded-full border border-brand-primary bg-brand-base hover:bg-brand-primary hover:text-brand-base transition">
+              <RoundButton>
                 <ShareIcon class="w-6 h-6 fill-current" />
-              </button>
+              </RoundButton>
             </div>
           </div>
           <div class="px-4 pt-6 pb-10 space-y-2">
-            <CityTime client:visible class="mb-1" timezone={'Europe/London'} label={'London'} />
-            <CityTime client:visible class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
-            <CityTime client:visible class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
-            <CityTime client:visible timezone={'Europe/Zurich'} label={'Zurich'} />
+            <CityTime client:load class="mb-1" timezone={'Europe/London'} label={'London'} />
+            <CityTime client:load class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
+            <CityTime client:load class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
+            <CityTime client:load timezone={'Europe/Zurich'} label={'Zurich'} />
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Top</div>
-              <button class="w-16 h-16 mx-auto flex items-center justify-center rounded-full border border-brand-primary bg-brand-base hover:bg-brand-primary hover:text-brand-base transition">
+              <RoundButton>
                 <ArrowUpIcon class="w-6 h-6 fill-current" />
-              </button>
+              </RoundButton>
             </div>
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Share</div>
-            <button class="w-16 h-16 mx-auto flex items-center justify-center rounded-full border border-brand-primary bg-brand-base hover:bg-brand-primary hover:text-brand-base transition">
+            <RoundButton>
               <ShareIcon class="w-6 h-6 fill-current" />
-            </button>
+            </RoundButton>
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Top</div>
-            <button class="w-16 h-16 mx-auto flex items-center justify-center rounded-full border border-brand-primary bg-brand-base hover:bg-brand-primary hover:text-brand-base transition">
+            <RoundButton>
               <ArrowUpIcon class="w-6 h-6 fill-current" />
-            </button>
+            </RoundButton>
           </div>
         </div>
       </div>
