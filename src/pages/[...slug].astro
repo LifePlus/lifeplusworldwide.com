@@ -2,6 +2,9 @@
 import { fetchPages } from '../datocms.mjs'
 import get from 'just-safe-get'
 import { ray } from 'node-ray'
+import BasePageLayout from '../layouts/BasePageLayout.astro'
+import Component from '../components/Component.vue'
+import ModularContentItem from '../components/ModularContentItem.astro'
 
 export async function getStaticPaths() {
   const data = await fetchPages()
@@ -19,8 +22,6 @@ export async function getStaticPaths() {
   }))
 }
 
-import BasePageLayout from '../layouts/BasePageLayout.astro'
-import Component from '../components/Component.vue'
 const { page, faviconTags } = Astro.props
 
 ray(page)
@@ -32,5 +33,5 @@ ray(page)
     {page._seoMetaTags.map(element => <Component config={element} />)}
   </Fragment>
 
-  {page.id}
+  {get(page, 'modularContent', []).map(content => <ModularContentItem content={content} />)}
 </BasePageLayout>
