@@ -1,0 +1,10 @@
+---
+import get from 'just-safe-get'
+const { content } = Astro.props
+const bgColor = get(content, 'backgroundColor', '#fff')
+const alpha = get(content, 'backgroundColor.alpha', 255) / 255
+---
+
+<section class="py-8 relative z-0 shadow-md" style={`background-color: ${bgColor}`}>
+  <slot />
+</section>

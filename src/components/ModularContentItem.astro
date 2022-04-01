@@ -1,7 +1,7 @@
 ---
 import get from 'just-safe-get'
 import pascalCase from 'just-pascal-case'
-import Wrapper from './blocks/Wrapper.astro'
+import BlockWrapper from './blocks/BlockWrapper.astro'
 import Masthead from './blocks/Masthead.astro'
 import CardBlock from './blocks/CardBlock.astro'
 import QuoteCarousel from './blocks/QuoteCarousel.astro'
@@ -18,7 +18,7 @@ const component = pascalCase(content._modelApiKey || '')
 const Block = components[component] || 'Fragment'
 ---
 
-<Wrapper>
-  <pre>{JSON.stringify(content, null, 2)}</pre>
+<BlockWrapper content={content}>
   <Block content={content} />
-</Wrapper>
+  <pre>{JSON.stringify(content, null, 2)}</pre>
+</BlockWrapper>
