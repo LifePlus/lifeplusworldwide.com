@@ -1,5 +1,37 @@
 ---
+import Container from '../Container.vue'
+import RoundButton from '../RoundButton.vue'
+import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
 const { content } = Astro.props
 ---
 
-<pre>{JSON.stringify(content, null, 2)}</pre>
+<div class="min-h-[calc(100vh-50px)] max-h-[900px]">
+  <Container class="pt-8">
+    {content.expandedMasthead &&
+      <div class="border-y-2 p-2 border-brand-primary">
+        <img class="lg:w-60" src="/assets/lifeplus.svg" alt="LifePlus" />
+      </div>
+    }
+    {content.expandedMasthead &&
+      <div class="text-6xl font-orleans py-1 border-b-4 border-brand-primary divide-y-2 divide-brand-primary" set:html={content.title}></div>
+    }
+
+    <div class="font-serif text-2xl max-w-[350px] mt-[4.5rem]" set:html={content.content}></div>
+
+    {content.showScrollButton &&
+      <div class={`${content.expandedMasthead ? 'py-24' : '-mt-8'}`}>
+        <div class="inline-flex flex-col text-center text-brand-primary text-sm font-medium">
+          <div class="mb-2">Scroll</div>
+          <RoundButton solid={true}>
+            <ArrowDownIcon class="w-6 h-6 fill-current" />
+          </RoundButton>
+        </div>
+      </div>
+    }
+  </Container>
+
+  <div class="absolute z-10 bottom-0 right-0">
+    <img src={content.illustration.url} alt={content.illustration.alt} />
+  </div>
+<!-- <pre>{JSON.stringify(content, null, 2)}</pre> -->
+</div>
