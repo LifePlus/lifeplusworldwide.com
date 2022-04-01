@@ -9,8 +9,11 @@
 
 <script>
 import { ref, onBeforeUnmount } from 'vue'
-import dateFromTz from 'date-from-timezone'
-import leftPad from 'just-left-pad'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import tz from 'dayjs/plugin/timezone'
+dayjs.extend(utc)
+dayjs.extend(tz)
 
 export default {
   props: {
@@ -24,12 +27,8 @@ export default {
     }
   },
   setup ({ timezone }) {
-    const dateFn = dateFromTz(timezone)
-    const formatTime = date => {
-      return `${leftPad(date.getHours().toString(), 2, '0')}:${leftPad(date.getMinutes().toString(), 2, '0')}:${leftPad(date.getSeconds().toString(), 2, '0')}`
-    }
     const getFormattedTime = () => {
-      return formatTime(dateFn(Date.now()))
+      return dayjs().tz(timezone).format('HH:mm:ss')
     }
     const time = ref(getFormattedTime())
     let interval = setInterval(() => {
