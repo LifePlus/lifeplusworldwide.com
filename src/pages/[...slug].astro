@@ -21,7 +21,6 @@ export async function getStaticPaths() {
 
 import BasePageLayout from '../layouts/BasePageLayout.astro'
 import Component from '../components/Component.vue'
-const { slug } = Astro.request.params
 const { page, faviconTags } = Astro.props
 
 ray(page)
