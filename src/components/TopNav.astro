@@ -3,8 +3,8 @@ import { fetchMenu, slugBuilder } from '../datocms.mjs'
 import get from 'just-safe-get'
 import Container from './Container.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
-import MenuIcon from './icons/MenuIcon.vue'
 import CityTime from './CityTime.vue'
+import MobileMenu from './MobileMenu.vue'
 
 const data = await fetchMenu()
 const items = get(data, 'data.allMenuItems', [])
@@ -22,19 +22,21 @@ const { currentId } = Astro.props
             href={item.externalUrl || slugBuilder(get(item, 'page.slug'))}
           >
             <span>{item.label}</span>
-            {item.externalUrl && <ExternalLinkIcon class="h-3 w-3" />}
+            {item.externalUrl && <ExternalLinkIcon class="h-3 w-3 text-gray-500" />}
           </a>
         </li>
       ))}
     </ul>
+    <MobileMenu client:load items={items} currentId={currentId} />
 
-    <div>
-      <ul class="hidden lg:flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
+    <div class="hidden lg:block">
+      <ul class="flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
         <li class="flex h-full items-center px-4"><CityTime client:load timezone={'America/New_York'} label={'Atlanta'} /></li>
         <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
         <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Dubai'} label={'Dubai'} /></li>
         <li class="flex h-full items-center px-4">ENG</li>
       </ul>
     </div>
+    <div class="lg:hidden flex items-center px-4 text-gray-500">ENG</div>
   </Container>
 </nav>
