@@ -3,6 +3,7 @@ const pagesQuery = `query PagesQuery {
     id
     slug
     title
+    position
     modularContent {
       ... on MastheadRecord {
         id
@@ -11,6 +12,7 @@ const pagesQuery = `query PagesQuery {
         showScrollButton
         expandedMasthead
         content
+        addShadow
         backgroundColor {
           alpha
           hex
@@ -40,6 +42,7 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        addShadow
         backgroundColor {
           alpha
           hex
@@ -69,6 +72,11 @@ const pagesQuery = `query PagesQuery {
           subtitle
           content
           vacancyId
+          readMoreLink {
+            id
+            title
+            slug
+          }
           image {
             alt
             basename
@@ -111,6 +119,7 @@ const pagesQuery = `query PagesQuery {
         actionUrl
         callToAction
         content
+        addShadow
         backgroundColor {
           alpha
           hex
@@ -140,6 +149,7 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         illustrationSide
+        addShadow
         backgroundColor {
           alpha
           hex

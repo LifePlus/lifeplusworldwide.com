@@ -9,6 +9,6 @@ const rgba = {
 }
 ---
 
-<section class="relative shadow-md" style={`background-color: rgba(${rgba.red}, ${rgba.green}, ${rgba.blue}, ${rgba.alpha}); z-index: ${index}`}>
+<section class={`relative ${content.addShadow ? 'shadow-md' : ''}`} style={`background-color: rgba(${rgba.red}, ${rgba.green}, ${rgba.blue}, ${rgba.alpha}); z-index: ${index}`}>
   <slot />
 </section>

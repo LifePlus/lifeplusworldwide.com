@@ -6,7 +6,6 @@ import Masthead from './blocks/Masthead.astro'
 import CardBlock from './blocks/CardBlock.astro'
 import QuoteCarousel from './blocks/QuoteCarousel.astro'
 import CenteredContent from './blocks/CenteredContent.astro'
-import { ray } from 'node-ray'
 
 const components = {
   Masthead,
@@ -17,7 +16,6 @@ const components = {
 const { content, index } = Astro.props
 const component = pascalCase(content._modelApiKey || '')
 const Block = components[component] || 'Fragment'
-ray(content)
 ---
 
 <BlockWrapper content={content} index={index}>

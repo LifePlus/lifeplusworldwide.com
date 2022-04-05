@@ -1,0 +1,32 @@
+---
+import { slugBuilder } from '../datocms.mjs'
+import ArrowRightIcon from './icons/ArrowRightIcon.vue'
+const { content } = Astro.props
+---
+
+<div class="rounded shadow-lg relative bg-white overflow-hidden">
+  <figure class="aspect-video relative">
+    <img class="object-cover h-full" srcset={content.image.responsiveImage.srcset} src={content.image.responsiveImage.src} alt={content.image.alt}>
+  </figure>
+  <div class="py-5 px-5 relative">
+    <div class="border-y border-gray-300 py-1.5 text-3xl md:text-4xl">
+      {content.subtitle}
+    </div>
+    <div class="font-bold border-b border-gray-300 pt-1.5 pb-5 mb-5 text-3xl md:text-4xl">
+      {content.title}
+    </div>
+    <div set:html={content.content} class="text-xl lg:text-2xl pr-16 pb-8 font-serif"></div>
+  </div>
+
+  {content.readMoreLink &&
+    <div class="p-5 absolute right-0 bottom-0">
+      <a href={slugBuilder(content.readMoreLink.slug)} class="inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
+        <span>Read more...</span>
+
+        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
+          <ArrowRightIcon class="w-4 h-4" />
+        </div>
+      </a>
+    </div>
+  }
+</div>
