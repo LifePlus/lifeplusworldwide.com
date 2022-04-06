@@ -22,7 +22,7 @@
                 :key="item.label"
               >
                 <a
-                  href="#"
+                  :href="slugBuilder(item.externalUrl || item.page?.slug)"
                   class="border-l-8 px-4 py-2 flex items-center justify-start space-x-2"
                   :class="{
                     'border-black': item?.page?.id === currentId,
@@ -45,7 +45,6 @@
 import { ref } from 'vue'
 import MenuIcon from './icons/MenuIcon.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
-import { slugBuilder } from '../datocms.mjs'
 
 export default {
   components: {
@@ -58,6 +57,13 @@ export default {
   },
   setup() {
     const open = ref(false)
+    const slugBuilder = (slug) => {
+      if (slug.startsWith('http')) {
+        return slug
+      }
+
+      return '/' + (slug === 'home' ? '' : slug)
+    }
 
     return {
       open,
