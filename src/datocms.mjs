@@ -29,12 +29,16 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-            sizes
-            srcSet
-            src
-            webpSrcSet
-            bgColor
-            title
+              aspectRatio
+              base64
+              height
+              width
+              sizes
+              srcSet
+              src
+              webpSrcSet
+              bgColor
+              title
           }
         }
       }
@@ -59,12 +63,16 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-            sizes
-            srcSet
-            src
-            webpSrcSet
-            bgColor
-            title
+              aspectRatio
+              base64
+              height
+              width
+              sizes
+              srcSet
+              src
+              webpSrcSet
+              bgColor
+              title
           }
         }
         cards {
@@ -85,7 +93,10 @@ const pagesQuery = `query PagesQuery {
             title
             url
             responsiveImage {
-              alt
+              aspectRatio
+              base64
+              height
+              width
               sizes
               srcSet
               src
@@ -120,6 +131,8 @@ const pagesQuery = `query PagesQuery {
         callToAction
         content
         addShadow
+        title
+        contentTextSize
         backgroundColor {
           alpha
           hex
@@ -136,12 +149,16 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-            sizes
-            srcSet
-            src
-            webpSrcSet
-            bgColor
-            title
+              aspectRatio
+              base64
+              height
+              width
+              sizes
+              srcSet
+              src
+              webpSrcSet
+              bgColor
+              title
           }
         }
       }
@@ -166,12 +183,16 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-            sizes
-            srcSet
-            src
-            webpSrcSet
-            bgColor
-            title
+              aspectRatio
+              base64
+              height
+              width
+              sizes
+              srcSet
+              src
+              webpSrcSet
+              bgColor
+              title
           }
         }
         quotes {
