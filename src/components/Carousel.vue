@@ -9,8 +9,7 @@
       <template #default="{}">
         <Slide
           v-for="(quote, index) in quotesComputed"
-          :key="quote.id"
-          :index="index"
+          :key="index"
         >
           <div class="max-w-[34rem] px-16 md:px-0">
             <div
