@@ -5,8 +5,11 @@ import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
 const { content } = Astro.props
 ---
 
-<div class="min-h-[calc(100vh-50px)] md:max-h-[900px]">
+<div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)] md:max-h-[900px]' : ''}`}>
   <Container class="pt-8 relative">
+    {!content.expandedMasthead &&
+      <h1 class="font-bold mt-12 text-5xl lg:text-7xl lg:mt-20 lg:w-3/5">{content.title}</h1>
+    }
     {content.expandedMasthead &&
       <div class="border-y-2 p-2 border-brand-primary">
         <img class="w-32 md:w-48 lg:w-60" src="/assets/lifeplus.svg" alt="LifePlus" />
@@ -23,7 +26,7 @@ const { content } = Astro.props
     <div class="font-serif text-lg lg:text-2xl max-w-sm md:max-w-[280px] lg:max-w-[350px] pt-8 pb-16 md:py-0 md:mt-[4.5rem]" set:html={content.content}></div>
 
     {content.showScrollButton &&
-      <div class={`${content.expandedMasthead ? 'hidden md:block py-24' : '-mt-8'}`}>
+      <div class={`hidden md:block ${content.expandedMasthead ? 'py-24' : 'relative top-8 lg:mt-10'}`}>
         <div class="inline-flex flex-col text-center text-brand-primary text-sm font-medium">
           <div class="mb-2">Scroll</div>
           <RoundButton solid={true} id="scroll-button">
@@ -32,9 +35,8 @@ const { content } = Astro.props
         </div>
       </div>
     }
-    <div class="hidden md:flex w-3/4 absolute z-10 top-0 lg:top-auto lg:bottom-0 right-0 justify-end items-start">
+    <div class={`hidden md:flex ${content.expandedMasthead ? 'w-3/4 lg:bottom-0 top-0 lg:top-auto' : 'w-1/2 bottom-0'} absolute z-10 right-0 justify-end items-start`}>
       <img class="w-full" src={content.illustration.url} alt={content.illustration.alt} />
     </div>
   </Container>
-<!-- <pre>{JSON.stringify(content, null, 2)}</pre> -->
 </div>
