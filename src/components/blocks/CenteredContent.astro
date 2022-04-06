@@ -1,5 +1,27 @@
 ---
+import Container from '../Container.vue'
+import ExternalLinkIcon from '../icons/ExternalLinkIcon.vue'
 const { content } = Astro.props
+const textSize = {
+  small: 'text-lg lg:text-xl',
+  medium: 'text-xl lg:text-2xl',
+  large: 'text-2xl lg:text-4xl',
+}
 ---
 
-{content._modelApiKey}
+<div class="py-12">
+  <Container>
+    <h2 class="text-sm font-medium pb-8">{content.title}</h2>
+    <div class="max-w-[34rem] mx-auto py-12">
+      <div set:html={content.content} class={`${textSize[content.contentTextSize]} mb-12`}></div>
+      {content.callToAction &&
+        <a class={`inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
+          <span>{content.callToAction}</span>
+          <div class="flex-1 h-12 w-12 lg:w-16 lg:h-16 mx-auto flex items-center justify-center rounded-full bg-white text-brand-primary transition">
+            <ExternalLinkIcon class="w-5 h-5 fill-current" />
+          </div>
+        </a>
+      }
+    </div>
+  </Container>
+</div>
