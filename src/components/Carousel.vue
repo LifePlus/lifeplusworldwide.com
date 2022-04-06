@@ -78,8 +78,7 @@ export default {
     const settings = {
       wrapAround: true,
       itemsToShow: 1,
-      snapAlign: 'center'
-      autoplay: true,
+      snapAlign: 'center',
     }
     const breakpoints = {
       768: {
