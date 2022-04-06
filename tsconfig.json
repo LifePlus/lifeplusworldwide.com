@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@vue-datocms": ["node_modules/vue-datocms/dist/index.esm.js"]
-    }
+    "moduleResolution": "node"
   }
 }
