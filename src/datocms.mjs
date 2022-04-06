@@ -234,6 +234,7 @@ const menuQuery = `query MenuQuery {
       label
       position
       page {
+        id
         slug
       }
     }

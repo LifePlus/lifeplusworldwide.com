@@ -9,6 +9,10 @@ import MobileMenu from './MobileMenu.vue'
 const data = await fetchMenu()
 const items = get(data, 'data.allMenuItems', [])
 const { currentId } = Astro.props
+const isActive = (item) => {
+  return get(item, 'page.id') === currentId ||
+    item.children.some(c => get(c, 'page.id') === currentId)
+}
 ---
 
 <nav class="shadow-md h-[50px] bg-white relative z-10">
@@ -16,7 +20,7 @@ const { currentId } = Astro.props
     <ul class="hidden lg:flex -ml-[1px] divide-x divide-gray-300 border-x border-gray-300">
       {items.map(item => (
         <li class="group flex relative">
-          <div class={`absolute transition-all w-full top-0 ${get(item, 'page.id') === currentId ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
+          <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
           <a
             class="text-sm font-medium flex items-center space-x-2 pl-4 pr-8"
             href={item.externalUrl || slugBuilder(get(item, 'page.slug'))}
