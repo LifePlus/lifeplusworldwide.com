@@ -31,5 +31,5 @@ const blocks = get(page, 'modularContent', [])
     {page._seoMetaTags.map(element => <Component config={element} />)}
   </Fragment>
 
-  {blocks.map((content, index) => <ModularContentItem content={content} index={blocks.length - index} />)}
+  {blocks.map((content, index) => <ModularContentItem content={content} index={blocks.length - index} section={index + 1} />)}
 </BasePageLayout>

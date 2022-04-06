@@ -2,13 +2,33 @@
 import '../styles/global.css'
 ---
 
-<html lang="en" class="bg-brand-base">
+<html lang="en" class="bg-brand-base scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <slot name="head" />
+  <script>
+    function scrollTo(top) {
+      window.scroll({
+        behavior: 'smooth',
+        left: 0,
+        top: top
+      });
+    }
+  </script>
 </head>
 <body>
   <slot />
+
+  <script>
+    document.getElementById('scroll-button').addEventListener('click', function () {
+      scrollTo(document.getElementById('section-2').offsetTop + 50)
+    })
+    document.querySelectorAll('.scroll-top').forEach((element) => {
+      element.addEventListener('click', function () {
+        scrollTo(0)
+      })
+    })
+  </script>
 </body>
 </html>

@@ -1,8 +1,7 @@
 ---
 import get from 'just-safe-get'
-import { Image } from 'vue-datocms'
 
-const { content, index } = Astro.props
+const { content, index, section } = Astro.props
 const rgba = {
   red: get(content, 'backgroundColor.red', 255),
   green: get(content, 'backgroundColor.green', 255),
@@ -14,7 +13,7 @@ const bgImage = content.backgroundImage
   : ''
 ---
 
-<section class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover`} style={`z-index: ${index}; ${bgImage}`}>
+<section id={`section-${section}`} class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover`} style={`z-index: ${index}; ${bgImage}`}>
   <div class="absolute inset-0 z-[1]" style={`background-color: rgba(${rgba.red}, ${rgba.green}, ${rgba.blue}, ${rgba.alpha})`}></div>
   <div class="relative z-10">
     <slot />

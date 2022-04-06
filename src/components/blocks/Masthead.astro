@@ -26,7 +26,7 @@ const { content } = Astro.props
       <div class={`${content.expandedMasthead ? 'hidden md:block py-24' : '-mt-8'}`}>
         <div class="inline-flex flex-col text-center text-brand-primary text-sm font-medium">
           <div class="mb-2">Scroll</div>
-          <RoundButton solid={true}>
+          <RoundButton solid={true} id="scroll-button">
             <ArrowDownIcon class="w-6 h-6 fill-current" />
           </RoundButton>
         </div>

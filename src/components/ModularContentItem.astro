@@ -13,11 +13,11 @@ const components = {
   QuoteCarousel,
   CenteredContent,
 }
-const { content, index } = Astro.props
-const component = pascalCase(content._modelApiKey || '')
+const props = Astro.props
+const component = pascalCase(props.content._modelApiKey || '')
 const Block = components[component] || 'Fragment'
 ---
 
-<BlockWrapper content={content} index={index}>
-  <Block content={content} />
+<BlockWrapper {...props}>
+  <Block content={props.content} />
 </BlockWrapper>
