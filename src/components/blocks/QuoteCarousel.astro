@@ -3,6 +3,6 @@ import Carousel from '../Carousel.vue'
 const { content } = Astro.props
 ---
 
-<div class="py-12">
+<div class="py-12 md:py-20">
   <Carousel client:load quotes={content.quotes} illustration={content.illustration} />
 </div>
