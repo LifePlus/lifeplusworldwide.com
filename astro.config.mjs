@@ -1,12 +1,12 @@
 import { defineConfig } from 'astro/config'
 import vue from '@astrojs/vue'
+import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-  buildOptions: {
-    site: 'https://www.lifeplusworldwide.com',
-    sitemap: true,
-  },
+  site: 'https://www.lifeplusworldwide.com',
+  trailingSlash: 'ignore',
   integrations: [
     vue(),
+    sitemap(),
   ],
 })
