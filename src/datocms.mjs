@@ -29,16 +29,12 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-              aspectRatio
-              base64
-              height
-              width
-              sizes
-              srcSet
-              src
-              webpSrcSet
-              bgColor
-              title
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
           }
         }
       }
@@ -63,16 +59,12 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-              aspectRatio
-              base64
-              height
-              width
-              sizes
-              srcSet
-              src
-              webpSrcSet
-              bgColor
-              title
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
           }
         }
         cards {
@@ -93,6 +85,7 @@ const pagesQuery = `query PagesQuery {
             title
             url
             responsiveImage {
+              alt
               aspectRatio
               base64
               height
@@ -149,16 +142,12 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-              aspectRatio
-              base64
-              height
-              width
-              sizes
-              srcSet
-              src
-              webpSrcSet
-              bgColor
-              title
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
           }
         }
       }
@@ -183,16 +172,12 @@ const pagesQuery = `query PagesQuery {
           url
           responsiveImage {
             alt
-              aspectRatio
-              base64
-              height
-              width
-              sizes
-              srcSet
-              src
-              webpSrcSet
-              bgColor
-              title
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
           }
         }
         quotes {
@@ -207,6 +192,59 @@ const pagesQuery = `query PagesQuery {
         title
         content
         addShadow
+      }
+      ... on MultiColumnContentRecord {
+        id
+        _modelApiKey
+        title
+        addShadow
+        columns {
+          id
+          title
+          content
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+      }
+      ... on StatsBlockRecord {
+        id
+        _modelApiKey
+        title
+        addShadow
+        stats {
+          id
+          title
+          value
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        illustration {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          responsiveImage {
+            alt
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
       }
     }
     _seoMetaTags {
