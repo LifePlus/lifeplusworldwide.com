@@ -13,7 +13,7 @@ const bgImage = content.backgroundImage
   : ''
 ---
 
-<section id={`section-${section}`} class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover`} style={`z-index: ${index}; ${bgImage}`}>
+<section id={`section-${section}`} class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover bg-center`} style={`z-index: ${index}; ${bgImage}`}>
   <div class="absolute inset-0 z-[1]" style={`background-color: rgba(${rgba.red}, ${rgba.green}, ${rgba.blue}, ${rgba.alpha})`}></div>
   <div class="relative z-10">
     <slot />
