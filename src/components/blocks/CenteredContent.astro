@@ -12,7 +12,7 @@ const textSize = {
 
 <div class="py-12">
   <Container>
-    <h2 class="text-sm font-medium pb-8">{content.title}</h2>
+    {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
     <div class="max-w-[34rem] mx-auto py-12 lg:py-20">
       <div set:html={content.content} class={`${textSize[content.contentTextSize]} mb-12`}></div>
       {content.callToAction &&
