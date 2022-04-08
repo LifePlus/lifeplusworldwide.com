@@ -1,0 +1,22 @@
+---
+import Container from '../Container.vue'
+const { content } = Astro.props
+---
+
+<style>
+.ccc {
+  column-rule: 1px solid theme('colors.gray.300');
+  column-gap: theme('spacing.10');
+}
+
+.ccc img {
+  width: 100%;
+}
+</style>
+
+<div class="py-12">
+  <Container>
+    <h2 class="text-sm font-medium pb-8">{content.title}</h2>
+    <div set:html={content.content} class="ccc font-serif sm:columns-2 md:columns-3 lg:columns-4 space-y-5"></div>
+  </Container>
+</div>

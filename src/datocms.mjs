@@ -201,6 +201,13 @@ const pagesQuery = `query PagesQuery {
           quote
         }
       }
+      ... on ColumnContentRecord {
+        id
+        _modelApiKey
+        title
+        content
+        addShadow
+      }
     }
     _seoMetaTags {
       attributes

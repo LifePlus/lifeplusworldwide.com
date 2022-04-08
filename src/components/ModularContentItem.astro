@@ -6,12 +6,14 @@ import Masthead from './blocks/Masthead.astro'
 import CardBlock from './blocks/CardBlock.astro'
 import QuoteCarousel from './blocks/QuoteCarousel.astro'
 import CenteredContent from './blocks/CenteredContent.astro'
+import ColumnContent from './blocks/ColumnContent.astro'
 
 const components = {
   Masthead,
   CardBlock,
   QuoteCarousel,
   CenteredContent,
+  ColumnContent,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')
