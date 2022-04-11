@@ -1,0 +1,42 @@
+---
+import get from 'just-safe-get'
+import Container from '../Container.vue'
+const { content } = Astro.props
+const getColor = stat => {
+  const rgb = {
+    red: get(stat, 'textColor.red', 255),
+    green: get(stat, 'textColor.green', 255),
+    blue: get(stat, 'textColor.blue', 255),
+  }
+
+  return `color: rgb(${rgb.red}, ${rgb.green}, ${rgb.blue});`
+}
+---
+
+<div class="py-12 lg:py-20">
+  <Container>
+    {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {content.stats.map(stat => (
+        <div
+          class="border-b border-gray-300 pb-8"
+          style={getColor(stat)}
+        >
+          <div class="py-1 border-y border-gray-300 text-4xl">{stat.title}</div>
+          <div class="text-4xl font-bold">{stat.value}</div>
+        </div>
+      ))}
+    </div>
+    {content.illustration &&
+      <div class="flex justify-end">
+        <img
+          class="-mb-8 -mt-16"
+          width={content.illustration.width}
+          srcset={content.illustration.responsiveImage.webpSrcSet}
+          src={content.illustration.url}
+          alt={content.illustration.alt}
+        />
+      </div>
+    }
+  </Container>
+</div>

@@ -10,11 +10,17 @@ const textSize = {
 // w-1/2
 ---
 
+<style>
+.centered-content img {
+  margin-bottom: theme('spacing.4');
+}
+</style>
+
 <div class="py-12">
   <Container>
     {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
     <div class="max-w-[34rem] mx-auto py-12 lg:py-20">
-      <div set:html={content.content} class={`${textSize[content.contentTextSize]} mb-12`}></div>
+      <div set:html={content.content} class={`${textSize[content.contentTextSize]} centered-content mb-12`}></div>
       {content.callToAction &&
         <a href={content.actionUrl} class={`inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
           <span>{content.callToAction}</span>

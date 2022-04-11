@@ -7,6 +7,7 @@ import QuoteCarousel from './blocks/QuoteCarousel.astro'
 import CenteredContent from './blocks/CenteredContent.astro'
 import ColumnContent from './blocks/ColumnContent.astro'
 import MultiColumnContent from './blocks/MultiColumnContent.astro'
+import StatsBlock from './blocks/StatsBlock.astro'
 
 const components = {
   Masthead,
@@ -15,6 +16,7 @@ const components = {
   CenteredContent,
   ColumnContent,
   MultiColumnContent,
+  StatsBlock,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')

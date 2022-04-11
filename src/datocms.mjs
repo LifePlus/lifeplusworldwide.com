@@ -84,6 +84,8 @@ const pagesQuery = `query PagesQuery {
             blurhash
             title
             url
+            width
+          	height
             responsiveImage {
               alt
               aspectRatio
@@ -140,6 +142,8 @@ const pagesQuery = `query PagesQuery {
           blurhash
           title
           url
+          width
+          height
           responsiveImage {
             alt
             sizes
@@ -170,6 +174,8 @@ const pagesQuery = `query PagesQuery {
           blurhash
           title
           url
+          width
+          height
           responsiveImage {
             alt
             sizes
@@ -220,6 +226,12 @@ const pagesQuery = `query PagesQuery {
           id
           title
           value
+          textColor {
+            red
+            blue
+            green
+            alpha
+          }
         }
         backgroundColor {
           alpha
@@ -235,6 +247,8 @@ const pagesQuery = `query PagesQuery {
           blurhash
           title
           url
+          width
+          height
           responsiveImage {
             alt
             sizes
