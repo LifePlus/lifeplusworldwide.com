@@ -20,10 +20,10 @@ const isActive = (item) => {
     <Container class="flex justify-between h-full" padding={false}>
       <ul class="hidden lg:flex -ml-[1px] divide-x divide-gray-300 border-x border-gray-300">
         {items.map(item => (
-          <li class="group flex relative">
+          <li class="group flex relative w-24">
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
             <a
-              class="text-sm font-medium flex items-center space-x-2 pl-4 pr-8"
+              class="text-sm font-medium flex items-center space-x-1.5 pl-4"
               href={item.externalUrl || slugBuilder(get(item, 'page.slug'))}
             >
               <span>{item.label}</span>
