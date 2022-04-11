@@ -16,7 +16,7 @@ const textSize = {
     <div class="max-w-[34rem] mx-auto py-12 lg:py-20">
       <div set:html={content.content} class={`${textSize[content.contentTextSize]} mb-12`}></div>
       {content.callToAction &&
-        <a class={`inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
+        <a href={content.actionUrl} class={`inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
           <span>{content.callToAction}</span>
           <div class="flex-1 h-12 w-12 lg:w-16 lg:h-16 mx-auto flex items-center justify-center rounded-full bg-white text-brand-primary transition">
             <ExternalLinkIcon class="w-5 h-5 fill-current" />
