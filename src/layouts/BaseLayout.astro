@@ -8,7 +8,7 @@ import '../styles/global.css'
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <slot name="head" />
   <script>
-    function scrollTo(top) {
+    window.lifePlusScroll = function (top) {
       window.scroll({
         behavior: 'smooth',
         left: 0,
@@ -22,11 +22,11 @@ import '../styles/global.css'
 
   <script>
     document.getElementById('scroll-button').addEventListener('click', function () {
-      scrollTo(document.getElementById('section-2').offsetTop + 50)
+      window.lifePlusScroll(document.getElementById('section-2').offsetTop + 50)
     })
     document.querySelectorAll('.scroll-top').forEach((element) => {
       element.addEventListener('click', function () {
-        scrollTo(0)
+        window.lifePlusScroll(0)
       })
     })
   </script>
