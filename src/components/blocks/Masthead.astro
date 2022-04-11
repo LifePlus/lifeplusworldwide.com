@@ -5,7 +5,7 @@ import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
 const { content } = Astro.props
 ---
 
-<div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)] md:max-h-[900px]' : ''}`}>
+<div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)] md:max-h-[900px]' : 'md:mb-8'}`}>
   <Container class="pt-8 relative">
     {!content.expandedMasthead &&
       <h1 class="font-bold mt-12 text-5xl lg:text-7xl lg:mt-20 md:w-3/5">{content.title}</h1>
