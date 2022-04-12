@@ -13,13 +13,39 @@ const getColor = stat => {
 }
 ---
 
+<style>
+.stat:nth-child(n+2) {
+  margin-top: calc(0px - theme('spacing.8') - 1px);
+}
+
+@media screen(md) {
+  .stat:nth-child(n+2) {
+    margin-top: 0;
+  }
+
+  .stat:nth-child(n+3) {
+    margin-top: calc(0px - theme('spacing.8') - 1px);
+  }
+}
+
+@media screen(lg) {
+  .stat:nth-child(n+2) {
+    margin-top: 0;
+  }
+
+  .stat:nth-child(n+4) {
+    margin-top: calc(0px - theme('spacing.8') - 1px);
+  }
+}
+</style>
+
 <div class="py-12 lg:py-20">
   <Container>
     {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {content.stats.map(stat => (
         <div
-          class="border-b border-gray-300 pb-8"
+          class="stat border-b border-gray-300 pb-8"
           style={getColor(stat)}
         >
           <div class="py-1 border-y border-gray-300 text-4xl">{stat.title}</div>
