@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import * as pkg from 'vue-datocms'
+import { Image } from 'vue-datocms'
 
 export default {
   components: {
-    Image: pkg.Image,
+    Image,
   },
   props: {
     data: Object,
