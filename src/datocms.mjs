@@ -304,6 +304,34 @@ const menuQuery = `query MenuQuery {
   }
 }`
 
+const itemsQuery = `query AllMenuQuery {
+  allMenuItems {
+    id
+    externalUrl
+    label
+    position
+    page {
+      id
+      slug
+    }
+    parent {
+      id
+      page {
+        id
+      }
+    }
+    children {
+      id
+      label
+      position
+      page {
+        id
+        slug
+      }
+    }
+  }
+}`
+
 const makeRequest = async query => {
   return await fetch('https://graphql.datocms.com', {
     method: 'post',
@@ -328,6 +356,16 @@ export async function fetchMenu () {
 
   menuCache = await makeRequest(menuQuery)
   return menuCache
+}
+
+let menuItemsCache = null
+export async function fetchMenuItems () {
+  if (menuItemsCache) {
+    return menuItemsCache
+  }
+
+  menuItemsCache = await makeRequest(itemsQuery)
+  return menuItemsCache
 }
 
 export function slugBuilder (slug) {
