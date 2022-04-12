@@ -18,10 +18,10 @@ const isActive = (item) => {
 const currentItem = allMenuItems.find(i => i?.page?.id === currentId)
 const parentIndex = currentItem?.parent
   ? items.findIndex(i => i.id === currentItem.parent.id)
-  : items.findIndex(i => i.id === currentItem.id)
+  : items.findIndex(i => i.id === currentItem?.id)
 const children = currentItem?.parent
   ? items.find(i => i.id === currentItem.parent.id).children
-  : currentItem.children
+  : (currentItem?.children || [])
 const childOffset = 6 * parentIndex
 ---
 
