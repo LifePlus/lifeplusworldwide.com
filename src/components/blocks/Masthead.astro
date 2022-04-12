@@ -20,7 +20,7 @@ const { content } = Astro.props
     }
 
     <div class="block md:hidden py-4">
-      <img class="w-full" src={content.illustration.url} alt={content.illustration.alt} />
+      <img class="w-full" srcset={content.illustration.responsiveImage.webpSrcSet} src={content.illustration.url} alt={content.illustration.alt} />
     </div>
 
     <div class="font-serif text-lg lg:text-2xl max-w-sm md:max-w-[280px] lg:max-w-[350px] pt-8 pb-16 md:py-0 md:mt-[4.5rem]" set:html={content.content}></div>
@@ -36,7 +36,7 @@ const { content } = Astro.props
       </div>
     }
     <div class={`hidden md:flex ${content.expandedMasthead ? 'w-3/4 lg:bottom-0 top-0 lg:top-auto' : 'w-1/2 bottom-0'} absolute z-10 right-0 justify-end items-start`}>
-      <img class="w-full" src={content.illustration.url} alt={content.illustration.alt} />
+      <img class="w-full" srcset={content.illustration.responsiveImage.webpSrcSet} src={content.illustration.url} alt={content.illustration.alt} />
     </div>
   </Container>
 </div>
