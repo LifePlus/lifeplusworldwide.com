@@ -33,7 +33,7 @@ const childOffset = 6 * parentIndex
           <li class="group flex relative w-24">
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
             <a
-              class="text-sm font-medium flex items-center space-x-1.5 pl-4"
+              class={`text-sm font-medium flex items-center space-x-1.5 pl-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : 'text-black'}`}
               href={item.externalUrl || slugBuilder(get(item, 'page.slug'))}
             >
               <span>{item.label}</span>
