@@ -21,9 +21,15 @@ import '../styles/global.css'
   <slot />
 
   <script>
-    document.getElementById('scroll-button').addEventListener('click', function () {
-      window.lifePlusScroll(document.getElementById('section-2').offsetTop + 50)
-    })
+    const scrollButton = document.getElementById('scroll-button')
+
+    if (scrollButton) {
+      document.getElementById('scroll-button').addEventListener('click', function () {
+        const offset = parseFloat(document.getElementById('top-nav').getAttribute('data-offset'))
+        window.lifePlusScroll(document.getElementById('section-2').offsetTop + offset)
+      })
+    }
+
     document.querySelectorAll('.scroll-top').forEach((element) => {
       element.addEventListener('click', function () {
         window.lifePlusScroll(0)
