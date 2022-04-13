@@ -98,8 +98,8 @@ const pagesQuery = `query PagesQuery {
               imgixParams: {
                 fit: crop
                 crop: focalpoint
-                h: 315
-                w: 560
+                h: 414
+                w: 736
               }
             ) {
               alt
