@@ -191,8 +191,14 @@ const pagesQuery = `query PagesQuery {
           url
           width
           height
-          responsiveImage {
+          responsiveImage (imgixParams: {
+            w: 220
+          }) {
             alt
+            aspectRatio
+            base64
+            height
+            width
             sizes
             srcSet
             src
