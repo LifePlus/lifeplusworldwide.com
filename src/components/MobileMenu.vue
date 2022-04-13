@@ -16,6 +16,9 @@
       >
         <div v-if="open" class="fixed lg:hidden z-50 inset-0 w-full p-3 bg-transparent" @click="open = false">
           <div class="rounded bg-white shadow-lg overflow-hidden">
+            <div class="px-4 mb-1">
+              <button @click="open = false" class="text-gray-500 font-medium text-sm">Close menu</button>
+            </div>
             <ul class="border-b border-gray-300 divide-y divide-gray-300">
               <li
                 v-for="item in items"
@@ -26,12 +29,32 @@
                   class="border-l-8 px-4 py-2 flex items-center justify-start space-x-2"
                   :class="{
                     'border-black': item?.page?.id === currentId,
-                    'border-transparent': item?.page?.id !== currentId,
+                    'border-transparent': item?.page?.id !== currentId && !(item?.children && item.children.some(i => i?.page?.id === currentId)),
+                    'border-gray-300': item?.children && item.children.some(i => i?.page?.id === currentId),
                   }"
                 >
                   <span>{{ item.label }}</span>
                   <ExternalLinkIcon v-if="item.externalUrl" class="h-3 w-3 text-gray-500" />
                 </a>
+
+                <ul v-if="item.children.length > 0" class="border-t border-gray-300 divide-y divide-gray-300">
+                  <li
+                    v-for="child in item.children"
+                    :key="child.label"
+                  >
+                    <a
+                      :href="slugBuilder(child.externalUrl || child.page?.slug)"
+                      class="border-l-8 pl-8 pr-4 py-2 flex items-center justify-start space-x-2"
+                      :class="{
+                        'border-black': child?.page?.id === currentId,
+                        'border-transparent': child?.page?.id !== currentId,
+                      }"
+                    >
+                      <span>{{ child.label }}</span>
+                      <ExternalLinkIcon v-if="child.externalUrl" class="h-3 w-3 text-gray-500" />
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </div>
