@@ -27,8 +27,16 @@ const pagesQuery = `query PagesQuery {
           blurhash
           title
           url
-          responsiveImage {
+          responsiveImage (
+            imgixParams: {
+              fm: png
+            }
+          ) {
             alt
+            aspectRatio
+            base64
+            height
+            width
             sizes
             srcSet
             src
@@ -85,8 +93,15 @@ const pagesQuery = `query PagesQuery {
             title
             url
             width
-          	height
-            responsiveImage {
+            height
+            responsiveImage (
+              imgixParams: {
+                fit: crop
+                crop: focalpoint
+                h: 315
+                w: 560
+              }
+            ) {
               alt
               aspectRatio
               base64
@@ -257,6 +272,54 @@ const pagesQuery = `query PagesQuery {
             webpSrcSet
             bgColor
             title
+          }
+        }
+      }
+      ... on PeopleBlockRecord {
+        id
+        _modelApiKey
+        title
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        people {
+          id
+          name
+          email
+          title
+          image {
+            alt
+            basename
+            blurUpThumb
+            blurhash
+            title
+            url
+            width
+            height
+            responsiveImage (
+              imgixParams: {
+                fit: crop
+                crop: focalpoint
+                h: 230
+                w: 263
+              }
+            ) {
+              alt
+              aspectRatio
+              base64
+              height
+              width
+              sizes
+              srcSet
+              src
+              webpSrcSet
+              bgColor
+              title
+            }
           }
         }
       }

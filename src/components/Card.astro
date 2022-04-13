@@ -1,14 +1,13 @@
 ---
 import { slugBuilder } from '../datocms.mjs'
 import ArrowRightIcon from './icons/ArrowRightIcon.vue'
-// import Image from './Image.vue'
-// <Image client:load data={content.image.responsiveImage} />
+import Image from './Image.vue'
 const { content } = Astro.props
 ---
 
 <div class="rounded shadow-lg relative bg-white overflow-hidden">
   <figure class="aspect-video relative">
-    <img class="object-cover h-full" srcset={content.image.responsiveImage.webpSrcSet} src={content.image.url} alt={content.image.alt} />
+    <Image client:load data={content.image.responsiveImage} />
   </figure>
   <div class="py-5 px-5 relative">
     <div class="border-y border-gray-300 py-1.5 text-3xl md:text-4xl">

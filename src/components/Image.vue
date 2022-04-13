@@ -1,9 +1,9 @@
 <template>
-  <Image :data="data" :explicit-width="false" />
+  <Image :data="data" />
 </template>
 
 <script>
-import { Image } from 'vue-datocms'
+import { Image } from './DatocmsImage'
 
 export default {
   components: {
