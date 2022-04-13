@@ -1,0 +1,21 @@
+---
+import Image from './Image.vue'
+// <Image client:load data={content.image.responsiveImage} />
+const { content } = Astro.props
+---
+
+<div>
+  <Image client:load data={content.image.responsiveImage} class="w-full mb-5" />
+
+  <div class="relative">
+    <h5 class="text-lg font-bold font-serif">
+      {content.name}
+    </h5>
+    <p class="text-lg leading-4">
+      {content.title}
+    </p>
+    <div class="text-sm font-medium text-brand-primary mt-4">
+      {content.email}
+    </div>
+  </div>
+</div>

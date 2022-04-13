@@ -1,0 +1,47 @@
+---
+import split from 'just-split'
+import Container from '../Container.vue'
+import PersonCard from '../PersonCard.astro'
+const { content } = Astro.props
+---
+
+<style>
+@media screen(sm) {
+  .p:nth-child(2) {
+    border-right-width: 0;
+  }
+}
+
+@media screen(md) {
+  .p:nth-child(2) {
+    border-right-width: 1px;
+  }
+
+  .p:nth-child(3) {
+    border-right-width: 0;
+  }
+}
+
+@media screen(lg) {
+  .p:nth-child(3) {
+    border-right-width: 1px;
+  }
+
+  .p:nth-child(4) {
+    border-right-width: 0;
+  }
+}
+</style>
+
+<div class="pt-12 pb-20">
+  <Container>
+    {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden -mx-4">
+      {content.people.map(content => (
+        <div class="p px-4 mb-10 sm:border-r border-gray-300">
+          <PersonCard content={content} />
+        </div>
+      ))}
+    </div>
+  </Container>
+</div>

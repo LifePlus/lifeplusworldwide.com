@@ -8,6 +8,7 @@ import CenteredContent from './blocks/CenteredContent.astro'
 import ColumnContent from './blocks/ColumnContent.astro'
 import MultiColumnContent from './blocks/MultiColumnContent.astro'
 import StatsBlock from './blocks/StatsBlock.astro'
+import PeopleBlock from './blocks/PeopleBlock.astro'
 
 const components = {
   Masthead,
@@ -17,6 +18,7 @@ const components = {
   ColumnContent,
   MultiColumnContent,
   StatsBlock,
+  PeopleBlock,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')
