@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-6xl mx-auto" :class="{ 'px-4': padding }">
+  <div class="max-w-6xl w-full mx-auto" :class="{ 'px-4': padding }">
     <slot />
   </div>
 </template>
