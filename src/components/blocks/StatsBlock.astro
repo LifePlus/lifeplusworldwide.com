@@ -56,11 +56,10 @@ const getColor = stat => {
     {content.illustration &&
       <div class="flex justify-end">
         <img
-          class="-mb-8 -mt-16"
-          width={content.illustration.width}
+          class="-mb-8 -mt-16 h-64 w-auto"
           srcset={content.illustration.responsiveImage.webpSrcSet}
-          src={content.illustration.url}
-          alt={content.illustration.alt}
+          src={content.illustration.responsiveImage.src}
+          alt={content.illustration.responsiveImage.alt}
         />
       </div>
     }
