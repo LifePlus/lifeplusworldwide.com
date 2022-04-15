@@ -32,8 +32,31 @@ module.exports = {
         orleans: ['"LifePlus Orleans Web"', ...defaultTheme.fontFamily.serif],
         'arabic-sans': ['"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
         'arabic-serif': ['"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
-      }
+      },
+      typography: theme => ({
+        DEFAULT: {
+          css: {
+            '--tw-prose-bullets': theme('colors.gray.500'),
+            color: theme('colors.black'),
+            fontFamily: theme('fontFamily.serif').join(','),
+            a: {
+              'transition-property': 'color, text-decoration-color',
+              'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
+              'transition-duration': '150ms',
+              color: theme('colors.brand.primary'),
+              textDecoration: 'underline',
+              lineHeight: '1.6875rem',
+              '&:hover': {
+                color: theme('colors.black'),
+                textDecoration: 'none',
+              },
+            },
+          }
+        }
+      })
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

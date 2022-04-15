@@ -350,6 +350,86 @@ const pagesQuery = `query PagesQuery {
           }
         }
       }
+      ... on FreeformColumnRecord {
+        id
+        _modelApiKey
+        title
+        titleColor {
+          hex
+        }
+        addShadow
+        backgroundImage {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          width
+          height
+          responsiveImage {
+            alt
+            aspectRatio
+            base64
+            height
+            width
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        content
+      }
+      ... on ContactFormRecord {
+        id
+        _modelApiKey
+        title
+        titleColor {
+          hex
+        }
+        addShadow
+        backgroundImage {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          width
+          height
+          responsiveImage {
+            alt
+            aspectRatio
+            base64
+            height
+            width
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        content
+      }
     }
     _seoMetaTags {
       attributes

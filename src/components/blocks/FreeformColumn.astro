@@ -1,0 +1,12 @@
+---
+import Container from '../Container.vue'
+import BlockTitle from '../BlockTitle.astro'
+const { content } = Astro.props
+---
+
+<div class="py-12">
+  <Container>
+    <BlockTitle content={content} />
+    <div set:html={content.content} class={`prose lg:prose-lg mx-auto`}></div>
+  </Container>
+</div>

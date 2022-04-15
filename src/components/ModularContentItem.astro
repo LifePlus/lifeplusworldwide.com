@@ -9,6 +9,7 @@ import ColumnContent from './blocks/ColumnContent.astro'
 import MultiColumnContent from './blocks/MultiColumnContent.astro'
 import StatsBlock from './blocks/StatsBlock.astro'
 import PeopleBlock from './blocks/PeopleBlock.astro'
+import FreeformColumn from './blocks/FreeformColumn.astro'
 
 const components = {
   Masthead,
@@ -19,6 +20,7 @@ const components = {
   MultiColumnContent,
   StatsBlock,
   PeopleBlock,
+  FreeformColumn,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')
