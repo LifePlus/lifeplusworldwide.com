@@ -3,12 +3,15 @@ import Container from '../Container.vue'
 import Card from '../Card.astro'
 import BlockTitle from '../BlockTitle.astro'
 const { content } = Astro.props
+// lg:grid-cols-2
+// lg:grid-cols-3
+// lg:grid-cols-4
 ---
 
 <div class="pt-12 pb-20">
   <Container>
     <BlockTitle content={content} />
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${content.maxColumns} gap-8`}>
       {content.cards.map(content => <Card content={content} />)}
     </div>
   </Container>

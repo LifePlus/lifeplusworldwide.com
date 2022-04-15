@@ -54,6 +54,7 @@ const pagesQuery = `query PagesQuery {
           hex
         }
         addShadow
+        maxColumns
         backgroundColor {
           alpha
           hex
@@ -228,6 +229,7 @@ const pagesQuery = `query PagesQuery {
         }
         content
         addShadow
+        maxColumns
       }
       ... on MultiColumnContentRecord {
         id
