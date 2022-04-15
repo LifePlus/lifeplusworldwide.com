@@ -56,9 +56,9 @@
     </div>
 
     <div>
-      <button class="inline-flex items-center space-x-4 text-lg lg:text-2xl font-bold">
+      <button class="inline-flex items-center space-x-4 group text-lg lg:text-2xl font-bold">
         <span>Send enquiry...</span>
-        <div class="flex-1 h-12 w-12 mx-auto flex items-center justify-center rounded-full bg-brand-primary text-white transition">
+        <div class="flex-1 h-12 w-12 mx-auto flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2">
           <ArrowRightIcon class="w-5 h-5 fill-current" />
         </div>
       </button>
