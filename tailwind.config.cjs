@@ -55,6 +55,7 @@ module.exports = {
         },
         lg: {
           css: {
+            fontFamily: theme('fontFamily.serif').join(','),
             lineHeight: '1.7rem',
           }
         },
