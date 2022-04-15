@@ -54,7 +54,13 @@ module.exports = {
             },
             strong: {
               fontWeight: theme('fontWeight.bold'),
-            }
+            },
+            h3: {
+              fontWeight: theme('fontWeight.bold'),
+            },
+            h4: {
+              fontWeight: theme('fontWeight.bold'),
+            },
           }
         },
         lg: {
