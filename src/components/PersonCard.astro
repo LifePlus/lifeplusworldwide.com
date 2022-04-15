@@ -8,10 +8,10 @@ const { content } = Astro.props
   <Image client:load data={content.image.responsiveImage} class="w-full mb-4" />
 
   <div class="relative">
-    <h5 class="text-lg font-bold font-serif">
+    <h5 class="text-lg font-bold font-serif leading-6">
       {content.name}
     </h5>
-    <p class="text-lg leading-4">
+    <p class="text-lg font-serif leading-6">
       {content.title}
     </p>
     <div class="text-sm font-medium text-brand-primary mt-4">
