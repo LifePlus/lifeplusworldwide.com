@@ -12,13 +12,17 @@ const { content } = Astro.props
     </figure>
   }
   <div class="py-5 px-5 relative">
-    <div class="border-y border-gray-300 py-1.5 text-3xl md:text-4xl">
-      {content.subtitle}
-    </div>
-    <div class="font-bold border-b border-gray-300 pt-1.5 pb-5 mb-5 text-3xl md:text-4xl">
-      {content.title}
-    </div>
-    <div set:html={content.content} class="prose prose-xl lg:prose-2xl leading-7 pr-16 pb-8 font-serif"></div>
+    {content.subtitle &&
+      <div class={`${content.title ? 'border-t' : 'border-y'} border-gray-300 py-1.5 text-3xl md:text-4xl`}>
+        {content.subtitle}
+      </div>
+    }
+    {content.title &&
+      <div class="font-bold border-y border-gray-300 pt-1.5 pb-5 text-3xl md:text-4xl">
+        {content.title}
+      </div>
+    }
+    <div set:html={content.content} class="mt-5 prose prose-xl lg:prose-2xl leading-7 pr-16 pb-8 font-serif"></div>
   </div>
 
   {content.readMoreLink &&
