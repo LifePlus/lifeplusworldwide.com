@@ -18,7 +18,7 @@ const { content } = Astro.props
     <div class="font-bold border-b border-gray-300 pt-1.5 pb-5 mb-5 text-3xl md:text-4xl">
       {content.title}
     </div>
-    <div set:html={content.content} class="text-xl lg:text-2xl pr-16 pb-8 font-serif"></div>
+    <div set:html={content.content} class="prose prose-xl lg:prose-2xl leading-7 pr-16 pb-8 font-serif"></div>
   </div>
 
   {content.readMoreLink &&

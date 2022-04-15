@@ -39,20 +39,35 @@ module.exports = {
             '--tw-prose-bullets': theme('colors.gray.500'),
             color: theme('colors.black'),
             fontFamily: theme('fontFamily.serif').join(','),
+            lineHeight: '1.6875rem',
             a: {
               'transition-property': 'color, text-decoration-color',
               'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
               'transition-duration': '150ms',
               color: theme('colors.brand.primary'),
               textDecoration: 'underline',
-              lineHeight: '1.6875rem',
               '&:hover': {
                 color: theme('colors.black'),
                 textDecoration: 'none',
               },
             },
           }
-        }
+        },
+        lg: {
+          css: {
+            lineHeight: '1.7rem',
+          }
+        },
+        xl: {
+          css: {
+            lineHeight: '1.75rem',
+          }
+        },
+        '2xl': {
+          css: {
+            lineHeight: '1.875rem',
+          }
+        },
       })
     },
   },

@@ -20,6 +20,6 @@ const { content } = Astro.props
 <div class="py-12">
   <Container>
     <BlockTitle content={content} />
-    <div set:html={content.content} class={`ccc prose sm:columns-2 md:columns-3 lg:columns-${content.maxColumns} space-y-5`}></div>
+    <div set:html={content.content} class={`ccc prose max-w-none sm:columns-2 md:columns-3 lg:columns-${content.maxColumns} space-y-5`}></div>
   </Container>
 </div>
