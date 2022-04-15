@@ -36,7 +36,7 @@ module.exports = {
       typography: theme => ({
         DEFAULT: {
           css: {
-            '--tw-prose-bullets': theme('colors.gray.500'),
+            '--tw-prose-bullets': theme('colors.brand.primary'),
             color: theme('colors.black'),
             fontFamily: theme('fontFamily.serif').join(','),
             lineHeight: '1.6875rem',
@@ -46,11 +46,15 @@ module.exports = {
               'transition-duration': '150ms',
               color: theme('colors.brand.primary'),
               textDecoration: 'underline',
+              fontFamily: theme('fontFamily.sans').join(','),
               '&:hover': {
                 color: theme('colors.black'),
                 textDecoration: 'none',
               },
             },
+            strong: {
+              fontWeight: theme('fontWeight.bold'),
+            }
           }
         },
         lg: {
