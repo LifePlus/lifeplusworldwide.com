@@ -1,0 +1,5 @@
+---
+const { content } = Astro.props
+---
+
+{content.title && <h2 class="text-sm font-medium pb-10" style={content.titleColor ? `color:${content.titleColor.hex};` : ''}>{content.title}</h2>}

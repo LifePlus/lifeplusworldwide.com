@@ -50,6 +50,9 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        titleColor {
+          hex
+        }
         addShadow
         backgroundColor {
           alpha
@@ -142,6 +145,9 @@ const pagesQuery = `query PagesQuery {
         content
         addShadow
         title
+        titleColor {
+          hex
+        }
         contentTextSize
         backgroundColor {
           alpha
@@ -217,6 +223,9 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        titleColor {
+          hex
+        }
         content
         addShadow
       }
@@ -224,6 +233,9 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        titleColor {
+          hex
+        }
         addShadow
         columns {
           id
@@ -289,6 +301,9 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        titleColor {
+          hex
+        }
         backgroundColor {
           alpha
           hex

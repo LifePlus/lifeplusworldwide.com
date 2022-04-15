@@ -1,12 +1,13 @@
 ---
 import Container from '../Container.vue'
+import BlockTitle from '../BlockTitle.astro'
 const { content } = Astro.props
 const { columns } = content
 ---
 
 <div class="py-12">
   <Container>
-    <h2 class="text-sm font-medium pb-10">{content.title}</h2>
+    <BlockTitle content={content} />
     <!-- <div class="flex flex-wrap -mx-4 divide-x divide-gray-300"> -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 -mx-4 divide-x divide-gray-300">
       {columns.map((column) => (

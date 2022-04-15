@@ -1,7 +1,7 @@
 ---
-import split from 'just-split'
 import Container from '../Container.vue'
 import PersonCard from '../PersonCard.astro'
+import BlockTitle from '../BlockTitle.astro'
 const { content } = Astro.props
 ---
 
@@ -35,7 +35,7 @@ const { content } = Astro.props
 
 <div class="pt-12 pb-20">
   <Container>
-    {content.title && <h2 class="text-sm font-medium pb-10">{content.title}</h2>}
+    <BlockTitle content={content} />
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 overflow-hidden -mx-4">
       {content.people.map(content => (
         <div class="p px-4 mb-10 sm:border-r border-gray-300">
