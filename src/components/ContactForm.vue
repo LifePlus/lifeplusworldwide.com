@@ -8,30 +8,30 @@
       <p>If you have submitted an employment application, then we will contact you directly if you have been selected for the next stage of the application process.</p>
     </div>
     <div>
-      <p class="font-medium mb-2">Who can best help you with your question? <span class="text-red-600">*</span></p>
+      <p class="font-medium mb-2">What would you like to contact us about? <span class="text-red-600">*</span></p>
       <div class="text-gray-700 space-y-2 mb-6">
         <div class="flex items-center">
-          <input v-model="data.question" value="Employment Inquiries" id="enquiries" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
+          <input v-model="data.question" value="Career opportunities" id="enquiries" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
           <label for="enquiries" class="ml-3 block text-black">
-            Employment Inquiries
+            Career opportunities
           </label>
         </div>
         <div class="flex items-center">
-          <input v-model="data.question" value="Donor Opportunities" id="opps" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
+          <input v-model="data.question" value="Making a donation" id="opps" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
           <label for="opps" class="ml-3 block text-black">
-            Donor Opportunities
+            Making a donation
           </label>
         </div>
-        <div class="flex items-center">
+        <!-- <div class="flex items-center">
           <input v-model="data.question" value="US Employment" id="us-emp" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
           <label for="us-emp" class="ml-3 block text-black">
             US Employment
           </label>
-        </div>
+        </div> -->
         <div class="flex items-center">
-          <input v-model="data.question" value="Other Details Needed" id="other-details" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
+          <input v-model="data.question" value="Partner with LifePlus" id="other-details" name="question" type="radio" class="focus:ring-brand-purple h-4 w-4 text-brand-purple border-gray-300" />
           <label for="other-details" class="ml-3 block text-black">
-            Other Details Needed
+            Partner with LifePlus
           </label>
         </div>
       </div>
@@ -39,7 +39,7 @@
 
     <div>
       <div class="mb-1">
-        <label class="font-medium" for="name">What's your name? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="name">Your name? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <AppInput v-model="data.name" id="name" placeholder="Jane Smith" required />
@@ -47,7 +47,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label class="font-medium" for="email">What's your email? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="email">Your email? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <AppInput v-model="data.email" type="email" id="email" placeholder="jane@gmail.com" required />
@@ -55,7 +55,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label class="font-medium" for="phone">What's your phone number?</label>
+        <label class="font-medium" for="phone">Your phone number (including country code)</label>
       </div>
       <div>
         <AppInput v-model="data.phone" type="tel" id="phone" placeholder="########" />
