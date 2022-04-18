@@ -14,7 +14,7 @@
           <div class="max-w-[34rem] px-16 md:px-0">
             <div
               v-html="quote.quote"
-              class="pt-3 pb-6 border-t text-2xl md:text-4xl text-left transition"
+              class="pt-3 pb-6 border-t text-2xl md:text-4xl leading-8 md:leading-[48px] text-left transition"
               :class="{
                 'border-brand-primary text-black': index === currentSlide,
                 'border-transparent text-gray-300': index !== currentSlide,
