@@ -1,7 +1,7 @@
 ---
 import Container from './Container.vue'
 import CityTime from './CityTime.vue'
-import ShareIcon from './icons/ShareIcon.vue'
+import ShareButton from './ShareButton.vue'
 import ArrowUpIcon from './icons/ArrowUpIcon.vue'
 import RoundButton from './RoundButton.vue'
 ---
@@ -33,9 +33,7 @@ import RoundButton from './RoundButton.vue'
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
-              <RoundButton>
-                <ShareIcon class="w-6 h-6 fill-current" />
-              </RoundButton>
+              <ShareButton client:idle url={Astro.request.url} />
             </div>
           </div>
           <div class="px-4 pt-6 pb-10 space-y-2">
@@ -53,9 +51,7 @@ import RoundButton from './RoundButton.vue'
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Share</div>
-            <RoundButton>
-              <ShareIcon class="w-6 h-6 fill-current" />
-            </RoundButton>
+            <ShareButton client:idle url={Astro.request.url} />
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Top</div>

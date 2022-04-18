@@ -10,7 +10,7 @@ const { pageId } = Astro.props
   <Fragment slot="head">
     <slot name="head" />
   </Fragment>
-  <div class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
+  <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
     <TopNav currentId={pageId} />
     <main class="flex-1 relative z-0">
       <slot />
