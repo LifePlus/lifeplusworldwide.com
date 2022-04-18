@@ -14,7 +14,7 @@
     "@astrojs/vue": "^0.0.2",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.2",
-    "astro": "^1.0.0-beta.5",
+    "astro": "^1.0.0-beta.12",
     "axios": "^0.26.1",
     "dayjs": "^1.11.0",
     "hyphenate-style-name": "^1.0.4",
