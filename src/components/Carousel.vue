@@ -96,6 +96,7 @@ export default {
 
     onMounted(() => {
       nextTick(() => {
+        carousel.value.prev()
         // currentSlide.value = carousel.value?.data?.middleSlide.value + 1
       })
     })
