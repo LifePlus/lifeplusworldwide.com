@@ -89,6 +89,7 @@ const pagesQuery = `query PagesQuery {
           subtitle
           content
           vacancyId
+          contentSize
           readMoreLink {
             id
             title

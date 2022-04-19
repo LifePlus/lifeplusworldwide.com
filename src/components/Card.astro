@@ -3,7 +3,12 @@ import { slugBuilder } from '../datocms.mjs'
 import ArrowRightIcon from './icons/ArrowRightIcon.vue'
 import Image from './Image.vue'
 import Vacancies from './Vacancies.vue'
-const { content } = Astro.props
+const { content, pad } = Astro.props
+const sizes = {
+  small: 'prose-sm',
+  normal: 'prose lg:prose-lg',
+  large: 'prose-xl lg:prose-2xl leading-7',
+}
 ---
 
 <div class="rounded shadow-lg relative bg-white overflow-hidden">
@@ -23,7 +28,7 @@ const { content } = Astro.props
         {content.title}
       </div>
     }
-    {content.content && <div set:html={content.content} class="mt-5 prose prose-xl lg:prose-2xl leading-7 pr-16 pb-8 font-serif"></div>}
+    {content.content && <div set:html={content.content} class={`mt-5 prose pb-8 font-serif ${sizes[content.contentSize] || sizes.large} ${pad ? 'pr-16 rtl:pl-16' : ''}`}></div>}
     {content.vacancyId && <Vacancies client:idle id={content.vacancyId} />}
   </div>
 
