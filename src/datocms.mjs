@@ -13,6 +13,10 @@ const pagesQuery = `query PagesQuery {
         expandedMasthead
         content
         addShadow
+        illustrationWidth
+        illustrationTopPosition
+        illustrationBottomPosition
+        illustrationRightPosition
         backgroundColor {
           alpha
           hex
@@ -30,6 +34,7 @@ const pagesQuery = `query PagesQuery {
           responsiveImage (
             imgixParams: {
               fm: png
+              w: 600
             }
           ) {
             alt

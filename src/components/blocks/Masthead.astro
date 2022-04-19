@@ -2,7 +2,14 @@
 import Container from '../Container.vue'
 import RoundButton from '../RoundButton.vue'
 import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
+import Image from '../Image.vue'
 const { content } = Astro.props
+const top = content.illustrationTopPosition ? `${content.illustrationTopPosition}px` : 'auto'
+const bottom = content.illustrationTopPosition ? 'auto' : `${content.illustrationBottomPosition || '0'}px`
+const right = content.illustrationRightPosition ? `${content.illustrationRightPosition}px` : '0'
+const width = content.illustrationWidth
+  ? `${content.illustrationWidth}%`
+  : `${content.expandedMasthead ? '75' : '50'}%`
 ---
 
 <div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)] md:max-h-[900px]' : 'md:mb-8'}`}>
@@ -20,7 +27,7 @@ const { content } = Astro.props
     }
 
     <div class="block md:hidden py-4">
-      <img class="w-full" srcset={content.illustration.responsiveImage.webpSrcSet} src={content.illustration.url} alt={content.illustration.alt} />
+      <Image client:load data={content.illustration.responsiveImage} lazyLoad={false} />
     </div>
 
     {content.content &&
@@ -37,8 +44,11 @@ const { content } = Astro.props
         </div>
       </div>
     }
-    <div class={`hidden md:flex ${content.expandedMasthead ? 'w-3/4 lg:bottom-0 top-0 lg:top-auto' : 'w-1/2 bottom-0'} absolute z-10 right-0 justify-end items-start`}>
-      <img class="w-full" srcset={content.illustration.responsiveImage.webpSrcSet} src={content.illustration.url} alt={content.illustration.alt} />
+    <div
+      class={`illustration hidden md:flex ${content.expandedMasthead ? 'w-3/4 lg:bottom-0 top-0 lg:top-auto' : 'w-1/2 bottom-0'} absolute z-10 right-0 justify-end items-start`}
+      style={`top:${top}; bottom:${bottom}; right:${right}; width:${width};`}
+    >
+      <img class="w-full" srcset={content.illustration.responsiveImage.webpSrcSet} src={content.illustration.responsiveImage.url} alt={content.illustration.responsiveImage.alt} />
     </div>
   </Container>
 </div>
