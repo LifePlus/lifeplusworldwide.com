@@ -303,6 +303,7 @@ const pagesQuery = `query PagesQuery {
         id
         _modelApiKey
         title
+        addShadow
         titleColor {
           hex
         }
