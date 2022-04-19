@@ -7,27 +7,27 @@ const { content } = Astro.props
 
 <style>
 @media screen(sm) {
-  .p:nth-child(2) {
+  .p:nth-child(2n) {
     border-right-width: 0;
   }
 }
 
 @media screen(md) {
-  .p:nth-child(2) {
+  .p:nth-child(2n) {
     border-right-width: 1px;
   }
 
-  .p:nth-child(3) {
+  .p:nth-child(3n) {
     border-right-width: 0;
   }
 }
 
 @media screen(lg) {
-  .p:nth-child(3) {
+  .p:nth-child(3n) {
     border-right-width: 1px;
   }
 
-  .p:nth-child(4) {
+  .p:nth-child(4n) {
     border-right-width: 0;
   }
 }
