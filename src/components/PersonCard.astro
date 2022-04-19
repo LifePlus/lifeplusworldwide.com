@@ -14,8 +14,10 @@ const { content } = Astro.props
     <p class="text-lg font-serif leading-6">
       {content.title}
     </p>
-    <div class="text-sm font-medium text-brand-primary mt-4">
-      {content.email}
-    </div>
+    {content.email &&
+      <div class="text-sm font-medium text-brand-primary mt-4">
+        {content.email}
+      </div>
+    }
   </div>
 </div>
