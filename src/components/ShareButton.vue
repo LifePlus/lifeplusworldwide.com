@@ -47,6 +47,10 @@ const platforms = [
     label: 'Reddit',
     url: 'https://reddit.com/submit?url={url}'
   },
+  {
+    label: 'Email',
+    url: 'mailto:?subject=Check%20out%20LifePlus!&body=Read%20about%20LifePlus%20-%20{url}'
+  },
 ]
 
 export default {
