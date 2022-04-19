@@ -81,7 +81,7 @@ export default {
   setup() {
     const open = ref(false)
     const slugBuilder = (slug) => {
-      if (slug.startsWith('http')) {
+      if (slug?.startsWith('http')) {
         return slug
       }
 
