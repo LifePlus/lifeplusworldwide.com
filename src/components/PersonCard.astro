@@ -19,9 +19,11 @@ const mailto = `mailto:${content.email}`
       {content.title}
     </p>
     {content.email &&
-      <a href={`mailto:${content.email}`} class="text-sm font-medium text-brand-primary hover:underline mt-4">
-        {content.email}
-      </a>
+      <Fragment set:html={
+        `<a href="${mailto}" class="text-sm font-medium text-brand-primary hover:underline mt-4">
+          ${content.email}
+        </a>`
+      } />
     }
   </div>
 </div>
