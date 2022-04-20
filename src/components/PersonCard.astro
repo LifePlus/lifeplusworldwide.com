@@ -2,6 +2,10 @@
 import Image from './Image.vue'
 // <Image client:load data={content.image.responsiveImage} />
 const { content } = Astro.props
+const mailto = `mailto:${content.email}`
+  .split('')
+  .map(c => `&#${c.charCodeAt(0)};`)
+  .join('')
 ---
 
 <div>
