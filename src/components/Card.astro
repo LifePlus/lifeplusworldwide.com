@@ -1,6 +1,7 @@
 ---
 import { slugBuilder } from '../datocms.mjs'
 import ArrowRightIcon from './icons/ArrowRightIcon.vue'
+import ArrowLeftIcon from './icons/ArrowLeftIcon.vue'
 import Image from './Image.vue'
 import Vacancies from './Vacancies.vue'
 const { content, pad } = Astro.props
@@ -34,11 +35,12 @@ const sizes = {
 
   {content.readMoreLink &&
     <div class="p-5 absolute right-0 bottom-0">
-      <a href={slugBuilder(content.readMoreLink.slug)} class="inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
+      <a href={slugBuilder(content.readMoreLink.slug)} class="group inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
         <span>Read more...</span>
 
-        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
-          <ArrowRightIcon class="w-4 h-4" />
+        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2">
+          <ArrowRightIcon class="w-4 h-4 rtl:hidden" />
+          <ArrowLeftIcon class="w-4 h-4 hidden rtl:block" />
         </div>
       </a>
     </div>

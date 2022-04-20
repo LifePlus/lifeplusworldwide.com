@@ -38,7 +38,7 @@ const width = content.illustrationWidth
       <div class={`hidden md:block ${content.expandedMasthead ? 'py-24' : 'relative top-8 lg:mt-10'}`}>
         <div class="inline-flex flex-col text-center text-brand-primary text-sm font-medium">
           <div class="mb-2">Scroll</div>
-          <RoundButton solid={true} id="scroll-button">
+          <RoundButton solid={true} id="scroll-button" class="transition-transform duration-200 hover:translate-y-2">
             <ArrowDownIcon class="w-6 h-6 fill-current" />
           </RoundButton>
         </div>
