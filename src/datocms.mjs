@@ -465,9 +465,11 @@ const menuQuery = `query MenuQuery {
     externalUrl
     label
     position
+    inactive
     children {
       id
       label
+      inactive
       position
       page {
         id
@@ -487,6 +489,7 @@ const itemsQuery = `query AllMenuQuery {
     externalUrl
     label
     position
+    inactive
     page {
       id
       slug
@@ -501,6 +504,7 @@ const itemsQuery = `query AllMenuQuery {
       id
       label
       position
+      inactive
       page {
         id
         slug
