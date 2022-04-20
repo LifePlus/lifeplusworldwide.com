@@ -15,9 +15,9 @@ const { content } = Astro.props
       {content.title}
     </p>
     {content.email &&
-      <div class="text-sm font-medium text-brand-primary mt-4">
+      <a href={`mailto:${content.email}`} class="text-sm font-medium text-brand-primary hover:underline mt-4">
         {content.email}
-      </div>
+      </a>
     }
   </div>
 </div>
