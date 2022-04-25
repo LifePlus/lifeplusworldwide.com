@@ -28,7 +28,7 @@ const childOffset = 6 * parentIndex
 <nav id="top-nav" data-offset={children.length > 0 ? '100' : '50'}>
   <div class="shadow-md h-[50px] bg-white relative z-10">
     <Container class="flex justify-between h-full" padding={false}>
-      <ul class="hidden lg:flex -ml-[1px] divide-x divide-gray-300 border-x border-gray-300">
+      <ul class="hidden lg:flex divide-x divide-gray-300 border-x border-gray-300">
         {items.map(item => (
           <li class="group flex relative w-24">
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
@@ -59,9 +59,9 @@ const childOffset = 6 * parentIndex
   {children.length > 0 &&
     <div class="hidden lg:block shadow-md h-[50px] bg-white relative z-[5]">
       <Container class="flex justify-between h-full" padding={false}>
-        <ul class="flex h-full divide-x divide-gray-300 border-x border-gray-300" style={`margin-left: ${childOffset}rem`}>
+        <ul class="flex h-full border-r border-gray-300" style={`margin-left: ${childOffset}rem`}>
           {children.map(item => (
-            <li class="group flex relative -mr-[1px] w-48">
+            <li class="group flex ml-[1px] -mr-[1px] border-l border-gray-300 relative w-48">
               <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
               <a
                 class={`text-sm font-medium whitespace-nowrap flex w-full items-center space-x-2 pl-4 rtl:pr-4 pr-8 rtl:pl-8 ${item.inactive ? 'text-gray-500' : 'text-black'}`}
