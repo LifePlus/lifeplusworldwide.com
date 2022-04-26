@@ -10,7 +10,7 @@ import Container from './Container.vue'
         <img class="h-6 w-auto" src="/assets/lifeplus.svg" alt="LifePlus" />
       </div>
       <div class="flex-1 w-full">
-        <div id="progress-bar" class="h-full border-t border-b-[5px] transition-[width] duration-300 ease-in-out border-brand-primary"></div>
+        <div id="progress-bar" class="h-full border-t border-b-[5px] transition-[width] duration-150 ease-in-out border-brand-primary"></div>
       </div>
     </div>
     <div class="flex items-center pl-4 text-gray-500">ENG</div>
@@ -25,7 +25,7 @@ let rectangle = masthead.getBoundingClientRect()
 const topOffset = rectangle.top + window.scrollY
 const classes = ['-translate-y-full', 'opacity-0']
 
-const handleScroll = throttle(() => {
+const setProgress = () => {
   const rectangle = masthead.getBoundingClientRect()
   let width = '0%'
 
@@ -45,7 +45,8 @@ const handleScroll = throttle(() => {
   }
 
   progressBar.style.width = width
-}, 100, { leading: true, trailing: true })
+}
+const handleScroll = throttle(setProgress, 50, { leading: true, trailing: true })
 
 handleScroll()
 document.addEventListener('scroll', handleScroll)
