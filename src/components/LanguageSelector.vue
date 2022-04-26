@@ -9,9 +9,6 @@
         <ul class="divide-y divide-gray-300 language-list"></ul>
       </div>
     </transition>
-    <teleport to="#wrapper">
-      <div v-if="show" class="fixed h-screen w-screen inset-0 z-10 bg-transparent" @click="show = false"></div>
-    </teleport>
     <button @click.prevent="show = !show">
       <span class="current-lang"></span>
     </button>
