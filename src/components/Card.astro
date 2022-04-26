@@ -31,7 +31,7 @@ const sizes = {
             {content.title}
           </div>
         }
-        {content.content && <div set:html={content.content} class={`mt-5 prose pb-8 font-serif ${sizes[content.contentSize] || sizes.large} ${pad ? 'pr-16 rtl:pl-16' : ''}`}></div>}
+        {content.content && <div set:html={content.content} class={`mt-5 prose pb-8 font-serif ${sizes[content.contentSize] || sizes.large} ${pad ? 'pe-16' : ''}`}></div>}
         {content.vacancyId && <Vacancies client:idle id={content.vacancyId} />}
       </div>
 

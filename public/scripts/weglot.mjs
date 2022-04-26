@@ -1,7 +1,11 @@
 const setCurrentLanguage = () => {
   const currentLang = Weglot.getCurrentLang().toUpperCase()
+  const dir = currentLang === 'AR' ? 'rtl' : 'ltr'
 
-  document.documentElement.setAttribute('dir', currentLang === 'AR' ? 'rtl' : 'ltr')
+  document.documentElement.setAttribute('dir', dir)
+  // Array.from(document.getElementsByClassName('carousel')).forEach(element => {
+  //   element.setAttribute('dir', dir)
+  // })
   Array.from(document.getElementsByClassName('current-lang')).forEach(element => {
     element.innerHTML = currentLang
   })

@@ -45,7 +45,7 @@
                   >
                     <a
                       :href="slugBuilder(child)"
-                      class="border-l-8 pl-8 pr-4 py-2 flex items-center justify-start space-x-2"
+                      class="ltr:border-l-8 rtl:border-r-8 ps-8 pe-4 py-2 flex items-center justify-start space-x-2"
                       :class="{
                         'border-black': child?.page?.id === currentId,
                         'border-transparent': child?.page?.id !== currentId,

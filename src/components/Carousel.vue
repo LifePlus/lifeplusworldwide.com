@@ -14,14 +14,14 @@
           <div class="max-w-[34rem] px-16 md:px-0">
             <div
               v-html="quote.quote"
-              class="pt-3 pb-6 border-t text-2xl md:text-4xl leading-8 md:leading-[48px] text-left transition"
+              class="pt-3 pb-6 border-t text-2xl md:text-4xl leading-8 md:leading-[48px] text-start transition"
               :class="{
                 'border-brand-primary text-black': index === currentSlide,
                 'border-transparent text-gray-300': index !== currentSlide,
               }"
             />
             <div
-              class="text-xl md:text-2xl py-3 border-y text-left transition"
+              class="text-xl md:text-2xl py-3 border-y text-start transition"
               :class="{
                 'border-brand-primary text-black': index === currentSlide,
                 'border-transparent text-gray-300': index !== currentSlide,
