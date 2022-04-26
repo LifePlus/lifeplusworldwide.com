@@ -25,12 +25,13 @@
                 :key="item.label"
               >
                 <a
-                  :href="slugBuilder(item.externalUrl || item.page?.slug)"
+                  :href="slugBuilder(item)"
                   class="border-l-8 px-4 py-2 flex items-center justify-start space-x-2"
                   :class="{
                     'border-black': item?.page?.id === currentId,
                     'border-transparent': item?.page?.id !== currentId && !(item?.children && item.children.some(i => i?.page?.id === currentId)),
                     'border-gray-300': item?.children && item.children.some(i => i?.page?.id === currentId),
+                    'text-gray-500': item.inactive,
                   }"
                 >
                   <span>{{ item.label }}</span>
@@ -43,11 +44,12 @@
                     :key="child.label"
                   >
                     <a
-                      :href="slugBuilder(child.externalUrl || child.page?.slug)"
+                      :href="slugBuilder(child)"
                       class="border-l-8 pl-8 pr-4 py-2 flex items-center justify-start space-x-2"
                       :class="{
                         'border-black': child?.page?.id === currentId,
                         'border-transparent': child?.page?.id !== currentId,
+                        'text-gray-500': item.inactive,
                       }"
                     >
                       <span>{{ child.label }}</span>
@@ -80,7 +82,12 @@ export default {
   },
   setup() {
     const open = ref(false)
-    const slugBuilder = (slug) => {
+    const slugBuilder = (item) => {
+      if (item.inactive) {
+        return '#'
+      }
+
+      const slug = item.externalUrl || item.page?.slug
       if (slug?.startsWith('http')) {
         return slug
       }

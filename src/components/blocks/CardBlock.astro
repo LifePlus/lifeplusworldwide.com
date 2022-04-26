@@ -12,7 +12,7 @@ const { content } = Astro.props
   <Container>
     <BlockTitle content={content} />
     <div class={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-${content.maxColumns} gap-8`}>
-      {content.cards.map(content => <Card content={content} />)}
+      {content.cards.map(card => <Card content={card} pad={content.maxColumns <= 2} />)}
     </div>
   </Container>
 </div>

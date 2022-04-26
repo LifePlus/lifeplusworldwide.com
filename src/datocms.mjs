@@ -89,6 +89,7 @@ const pagesQuery = `query PagesQuery {
           subtitle
           content
           vacancyId
+          contentSize
           readMoreLink {
             id
             title
@@ -131,8 +132,16 @@ const pagesQuery = `query PagesQuery {
             blurhash
             title
             url
-            responsiveImage {
+            responsiveImage (
+              imgixParams: {
+                w: 300
+              }
+            ) {
               alt
+              aspectRatio
+              base64
+              height
+              width
               sizes
               srcSet
               src
@@ -464,9 +473,11 @@ const menuQuery = `query MenuQuery {
     externalUrl
     label
     position
+    inactive
     children {
       id
       label
+      inactive
       position
       page {
         id
@@ -486,6 +497,7 @@ const itemsQuery = `query AllMenuQuery {
     externalUrl
     label
     position
+    inactive
     page {
       id
       slug
@@ -500,6 +512,7 @@ const itemsQuery = `query AllMenuQuery {
       id
       label
       position
+      inactive
       page {
         id
         slug

@@ -37,6 +37,7 @@ module.exports = {
         DEFAULT: {
           css: {
             '--tw-prose-bullets': theme('colors.brand.primary'),
+            '--tw-prose-counters': theme('colors.brand.primary'),
             color: theme('colors.black'),
             fontFamily: theme('fontFamily.serif').join(','),
             lineHeight: '1.6875rem',

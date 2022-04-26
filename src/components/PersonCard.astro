@@ -2,6 +2,10 @@
 import Image from './Image.vue'
 // <Image client:load data={content.image.responsiveImage} />
 const { content } = Astro.props
+const mailto = `mailto:${content.email}`
+  .split('')
+  .map(c => `&#${c.charCodeAt(0)};`)
+  .join('')
 ---
 
 <div>
@@ -15,9 +19,11 @@ const { content } = Astro.props
       {content.title}
     </p>
     {content.email &&
-      <div class="text-sm font-medium text-brand-primary mt-4">
-        {content.email}
-      </div>
+      <Fragment set:html={
+        `<a href="${mailto}" class="text-sm font-medium text-brand-primary hover:underline mt-4">
+          ${content.email}
+        </a>`
+      } />
     }
   </div>
 </div>

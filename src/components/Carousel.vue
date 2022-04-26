@@ -34,10 +34,10 @@
       <template #addons>
         <div class="absolute max-w-[42rem] px-4 md:px-0 w-full mx-auto flex justify-between items-center inset-0">
           <img v-if="illustration" class="hidden lg:block absolute left -translate-x-full w-[220px]" :srcset="illustration.responsiveImage.webpSrcSet" :src="illustration.responsiveImage.src" :alt="illustration.alt" />
-          <button @click="carousel.prev()" class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
+          <button @click="carousel.prev()" class="transition-transform hover:-translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
             <ArrowLeftIcon class="w-4 h-4" />
           </button>
-          <button @click="carousel.next()" class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
+          <button @click="carousel.next()" class="transition-transform hover:translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
             <ArrowRightIcon class="w-4 h-4" />
           </button>
         </div>
@@ -97,7 +97,6 @@ export default {
     onMounted(() => {
       nextTick(() => {
         carousel.value.prev()
-        // currentSlide.value = carousel.value?.data?.middleSlide.value + 1
       })
     })
 
