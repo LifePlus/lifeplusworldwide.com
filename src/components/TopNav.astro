@@ -5,6 +5,7 @@ import Container from './Container.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
 import CityTime from './CityTime.vue'
 import MobileMenu from './MobileMenu.vue'
+import LanguageSelector from './LanguageSelector.vue'
 
 const data = await fetchMenu()
 const menuItemData = await fetchMenuItems()
@@ -28,9 +29,9 @@ const childOffset = 6 * parentIndex
 <nav id="top-nav" data-offset={children.length > 0 ? '100' : '50'}>
   <div class="shadow-md h-[50px] bg-white relative z-10">
     <Container class="flex justify-between h-full" padding={false}>
-      <ul class="hidden lg:flex divide-x divide-gray-300 border-x border-gray-300">
+      <ul class="hidden lg:flex border-s border-gray-300">
         {items.map(item => (
-          <li class="group flex relative w-24">
+          <li class="group flex relative border-e border-gray-300 w-24">
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
             <a
               class={`text-sm font-medium flex w-full items-center space-x-1.5 pl-4 rtl:pr-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : (item.inactive ? 'text-gray-500' : 'text-black')}`}
@@ -45,26 +46,30 @@ const childOffset = 6 * parentIndex
       <MobileMenu client:load items={items} currentId={currentId} />
 
       <div class="hidden lg:block">
-        <ul class="flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'America/New_York'} label={'Atlanta'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Dubai'} label={'Dubai'} /></li>
-          <li class="flex h-full items-center px-4">ENG</li>
+        <ul class="flex items-center h-full text-gray-500 border-e border-gray-300">
+          <li class="flex h-full items-center px-4 border-s border-gray-300"><CityTime client:load timezone={'America/New_York'} label={'Atlanta'} /></li>
+          <li class="flex h-full items-center px-4 border-s border-gray-300"><CityTime client:load timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
+          <li class="flex h-full items-center px-4 border-s border-gray-300"><CityTime client:load timezone={'Asia/Dubai'} label={'Dubai'} /></li>
+          <li class="flex h-full items-center px-4 border-s border-gray-300">
+            <LanguageSelector client:load />
+          </li>
         </ul>
       </div>
-      <div class="lg:hidden flex items-center px-4 text-gray-500">ENG</div>
+      <div class="lg:hidden flex items-center px-4 text-gray-500">
+        <LanguageSelector client:load />
+      </div>
     </Container>
   </div>
 
   {children.length > 0 &&
     <div class="hidden lg:block shadow-md h-[50px] bg-white relative z-[5]">
       <Container class="flex justify-between h-full" padding={false}>
-        <ul class="flex h-full border-r border-gray-300" style={`margin-left: ${childOffset}rem`}>
+        <ul class="flex h-full border-s border-gray-300 child-menu" style={`margin-left: ${childOffset}rem`}>
           {children.map(item => (
-            <li class="group flex ml-[1px] -mr-[1px] border-l border-gray-300 relative w-48">
+            <li class="group flex border-e border-gray-300 relative w-48">
               <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
               <a
-                class={`text-sm font-medium whitespace-nowrap flex w-full items-center space-x-2 pl-4 rtl:pr-4 pr-8 rtl:pl-8 ${item.inactive ? 'text-gray-500' : 'text-black'}`}
+                class={`text-sm font-medium whitespace-nowrap flex w-full items-center space-x-2 ps-4 ${item.inactive ? 'text-gray-500' : 'text-black'}`}
                 href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')))}
               >
                 <span>{item.label}</span>

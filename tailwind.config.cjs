@@ -27,8 +27,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['"Graphik Web"', ...defaultTheme.fontFamily.sans],
-        serif: ['"Canela Text Web"', ...defaultTheme.fontFamily.serif],
+        sans: ['"Graphik Web"', '"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
+        serif: ['"Canela Text Web"', '"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
         orleans: ['"LifePlus Orleans Web"', ...defaultTheme.fontFamily.serif],
         'arabic-sans': ['"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
         'arabic-serif': ['"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
@@ -86,5 +86,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
+    require('tailwindcss-rtl'),
   ],
 }
