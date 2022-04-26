@@ -132,8 +132,16 @@ const pagesQuery = `query PagesQuery {
             blurhash
             title
             url
-            responsiveImage {
+            responsiveImage (
+              imgixParams: {
+                w: 300
+              }
+            ) {
               alt
+              aspectRatio
+              base64
+              height
+              width
               sizes
               srcSet
               src
