@@ -36,7 +36,7 @@ const sizes = {
       </div>
 
       {content.illustration &&
-        <div class="flex justify-end">
+        <div class="absolute z-0 bottom-0 ltr:right-0 rtl:left-0 rtl:-scale-x-100 py-5 px-5 flex justify-end">
           <div class="w-72">
             <Image client:load data={content.illustration.responsiveImage} />
           </div>

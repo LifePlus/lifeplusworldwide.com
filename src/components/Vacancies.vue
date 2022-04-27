@@ -1,5 +1,5 @@
 <template>
-  <ul class="divide-y divide-gray-300">
+  <ul class="relative z-10 bg-white divide-y divide-gray-300">
     <li v-for="vacancy in vacancies" :key="vacancy.id" class="py-5">
       <div class="text-sm">{{ vacancy.category }}</div>
       <div>
