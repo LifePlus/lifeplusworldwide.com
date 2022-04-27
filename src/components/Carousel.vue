@@ -5,6 +5,7 @@
       :breakpoints="breakpoints"
       ref="carousel"
       @update:modelValue="value => currentSlide = value"
+      :dir="dir"
     >
       <template #default="{}">
         <Slide
@@ -67,6 +68,7 @@ export default {
 
   setup (props) {
     const carousel = ref()
+    const dir = ref('ltr')
     const quotesComputed = computed(() => {
       return [
         ...props.quotes,
@@ -95,7 +97,12 @@ export default {
     }
 
     onMounted(() => {
+
       nextTick(() => {
+        if (!import.meta.env.SSR) {
+          dir.value = document.documentElement.getAttribute('dir')
+        }
+
         carousel.value.prev()
       })
     })
@@ -106,6 +113,7 @@ export default {
       quotesComputed,
       settings,
       breakpoints,
+      dir,
     }
   },
 }

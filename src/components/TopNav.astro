@@ -34,11 +34,11 @@ const childOffset = 6 * parentIndex
           <li class="group flex relative border-e border-gray-300 w-24">
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
             <a
-              class={`text-sm font-medium flex w-full items-center space-x-1.5 ps-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : (item.inactive ? 'text-gray-500' : 'text-black')}`}
+              class={`text-sm font-medium flex w-full items-center ps-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : (item.inactive ? 'text-gray-500' : 'text-black')}`}
               href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')))}
             >
               <span>{item.label}</span>
-              {item.externalUrl && <ExternalLinkIcon class="h-3 w-3 text-gray-500" />}
+              {item.externalUrl && <ExternalLinkIcon class="h-3 w-3 text-gray-500 ltr:ml-1.5 rtl:mr-1.5 rtl:-scale-x-100" />}
             </a>
           </li>
         ))}

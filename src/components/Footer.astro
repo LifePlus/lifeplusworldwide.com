@@ -26,8 +26,8 @@ import RoundButton from './RoundButton.vue'
           <p class="text-center text-xxs w-32 mb-2">LifePlus is currently accredited as International Schools Consortium</p>
           <img class="w-16 mx-auto" src="/assets/cognia.png" alt="Cognia logo" />
         </div>
-        <div class="flex border-x border-gray-500 divide-x divide-gray-500">
-          <div class="px-4 pt-6 pb-10 space-y-2">
+        <div class="flex border-s border-gray-500">
+          <div class="px-4 pt-6 pb-10 space-y-2 border-e border-gray-500">
             <CityTime client:load class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
             <CityTime client:load class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
             <CityTime client:load class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
@@ -38,7 +38,7 @@ import RoundButton from './RoundButton.vue'
               <ShareButton client:idle url={Astro.request.url} />
             </div>
           </div>
-          <div class="px-4 pt-6 pb-10 space-y-2">
+          <div class="px-4 pt-6 pb-10 space-y-2 border-e border-gray-500">
             <CityTime client:load class="mb-1" timezone={'Europe/London'} label={'London'} />
             <CityTime client:load class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
             <CityTime client:load class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
@@ -51,7 +51,7 @@ import RoundButton from './RoundButton.vue'
               </RoundButton>
             </div>
           </div>
-          <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
+          <div class="hidden lg:block px-4 pt-6 pb-10 border-e border-gray-500 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Share</div>
             <ShareButton client:idle url={Astro.request.url} />
           </div>

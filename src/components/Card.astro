@@ -45,10 +45,10 @@ const sizes = {
 
       {content.readMoreLink &&
         <div class="text-right">
-          <a href={slugBuilder(content.readMoreLink.slug)} class="group inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
+          <a href={slugBuilder(content.readMoreLink.slug)} class="group inline-flex items-center text-sm font-medium text-brand-primary">
             <span>Learn more...</span>
 
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform ms-2 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
               <ArrowRightIcon class="w-4 h-4 rtl:hidden" />
               <ArrowLeftIcon class="w-4 h-4 hidden rtl:block" />
             </div>
