@@ -26,7 +26,8 @@ const topOffset = rectangle.top + window.scrollY
 const classes = ['-translate-y-full', 'opacity-0']
 
 const setProgress = () => {
-  const rectangle = masthead.getBoundingClientRect()
+  const rectangle = document.getElementById('section-1')
+    .getBoundingClientRect()
   let width = '0%'
 
   // Bar is visible
