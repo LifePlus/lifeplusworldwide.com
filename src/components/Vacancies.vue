@@ -1,9 +1,9 @@
 <template>
-  <ul class="divide-y divide-gray-300">
+  <ul class="relative z-10 bg-white divide-y divide-gray-300">
     <li v-for="vacancy in vacancies" :key="vacancy.id" class="py-5">
       <div class="text-sm">{{ vacancy.category }}</div>
       <div>
-        <a class="text-2xl font-bold text-brand-primary hover:underline" :href="`https://careers.lifeplusworldwide.com/jobs/${vacancy.id}`" target="_blank">{{ vacancy.name.replace(' -', ',') }}</a>
+        <a class="text-2xl font-bold text-brand-primary hover:underline" :href="`https://careers.lifeplusworldwide.com/jobs/${vacancy.id}?utm_source=lifeplus&utm_content=vacancy+list`" target="_blank">{{ vacancy.name.replace(' -', ',') }}</a>
       </div>
       <div class="text-sm">Added on {{ vacancy.published_at }}</div>
     </li>

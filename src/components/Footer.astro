@@ -9,20 +9,22 @@ import RoundButton from './RoundButton.vue'
 <footer id="footer" class="bg-brand-base">
   <Container>
     <div class="flex justify-between">
-      <div class="text-sm pt-6 pb-10 pe-4 flex flex-col justify-between">
-        <div>
+      <div class="pt-6 pb-10 pr-4 flex flex-col justify-between">
+        <div class="text-sm">
           <p class="mb-2">LifePlus is a trading name of LDi &copy; 2022 All rights reserved.</p>
           <div class="space-y-2 md:space-y-0 md:flex md:space-x-4 font-medium">
             <div><a href="/privacy" class="hover:underline">Privacy and cookies</a></div>
           </div>
         </div>
-        <div class="md:hidden">
-          <img src="/assets/globe.png" alt="A globe shaped like an apple with a bite" />
+        <div class="flex flex-col items-start md:hidden">
+          <img class="w-16 mb-2" src="/assets/cognia.png" alt="Cognia logo" />
+          <p class="text-xxs w-32">LifePlus is currently accredited as International Schools Consortium</p>
         </div>
       </div>
       <div class="flex relative">
-        <div class="hidden md:flex pt-6 pb-10 pe-8 items-start">
-          <img src="/assets/globe.png" alt="A globe shaped like an apple with a bite" />
+        <div class="hidden md:flex md:flex-col pt-6 pb-10 pr-8 items-start">
+          <p class="text-center text-xxs w-32 mb-2">LifePlus is currently accredited as International Schools Consortium</p>
+          <img class="w-16 mx-auto" src="/assets/cognia.png" alt="Cognia logo" />
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
           <div class="px-4 pt-6 pb-10 space-y-2">

@@ -24,18 +24,18 @@ const masthead = document.getElementById('section-1')
 const progress = document.getElementById('progress')
 const progressBar = document.getElementById('progress-bar')
 let rectangle = masthead.getBoundingClientRect()
-const topOffset = rectangle.top + window.scrollY
 const classes = ['-translate-y-full', 'opacity-0']
 
 const setProgress = () => {
-  const rectangle = masthead.getBoundingClientRect()
+  const rectangle = document.getElementById('section-1')
+    .getBoundingClientRect()
   let width = '0%'
 
   // Bar is visible
   if (rectangle.height + rectangle.top < 0) {
     progress.classList.remove(...classes)
 
-    const offset = rectangle.height + topOffset
+    const offset = rectangle.height + rectangle.top + window.scrollY
     const winScroll = (document.body.scrollTop || document.documentElement.scrollTop) - offset
     const height = (document.documentElement.scrollHeight - offset) - (document.documentElement.clientHeight)
 

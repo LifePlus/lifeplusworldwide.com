@@ -12,7 +12,7 @@ const width = content.illustrationWidth
   : `${content.expandedMasthead ? '75' : '50'}%`
 ---
 
-<div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)] md:max-h-[900px]' : 'md:mb-8'}`}>
+<div class={`${content.expandedMasthead ? 'min-h-[calc(100vh-50px)]' : 'min-h-[50vh] md:mb-8'} md:max-h-[900px]`}>
   <Container class={`${content.expandedMasthead ? 'pt-28' : 'pt-8'} ${content.showScrollButton ? '' : 'pb-24'} relative`}>
     {!content.expandedMasthead &&
       <h1 class="font-bold mt-12 text-5xl lg:text-7xl lg:mt-20 md:w-3/5">{content.title}</h1>

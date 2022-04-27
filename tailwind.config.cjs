@@ -33,6 +33,9 @@ module.exports = {
         'arabic-sans': ['"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
         'arabic-serif': ['"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
       },
+      fontSize: {
+        xxs: '0.5rem',
+      },
       typography: theme => ({
         DEFAULT: {
           css: {
