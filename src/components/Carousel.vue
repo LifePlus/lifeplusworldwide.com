@@ -34,11 +34,11 @@
 
       <template #addons>
         <div class="absolute max-w-[42rem] px-4 md:px-0 w-full mx-auto flex justify-between items-center inset-0">
-          <img v-if="illustration" class="hidden lg:block absolute left -translate-x-full w-[220px]" :srcset="illustration.responsiveImage.webpSrcSet" :src="illustration.responsiveImage.src" :alt="illustration.alt" />
-          <button @click="carousel.prev()" class="transition-transform hover:-translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
+          <img v-if="illustration" class="hidden lg:block absolute ltr:left-0 rtl:right-0 ltr:-translate-x-full rtl:translate-x-full rtl:-scale-x-100 w-[220px]" :srcset="illustration.responsiveImage.webpSrcSet" :src="illustration.responsiveImage.src" :alt="illustration.alt" />
+          <button @click="carousel.prev()" class="rtl:-scale-x-100 transition-transform ltr:hover:-translate-x-2 rtl:hover:translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
             <ArrowLeftIcon class="w-4 h-4" />
           </button>
-          <button @click="carousel.next()" class="transition-transform hover:translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
+          <button @click="carousel.next()" class="rtl:-scale-x-100 transition-transform ltr:hover:translate-x-2 rtl:hover:-translate-x-2 duration-200 w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white">
             <ArrowRightIcon class="w-4 h-4" />
           </button>
         </div>
@@ -97,10 +97,13 @@ export default {
     }
 
     onMounted(() => {
-
       nextTick(() => {
         if (!import.meta.env.SSR) {
           dir.value = document.documentElement.getAttribute('dir')
+
+          Weglot.on('languageChanged', () => {
+            dir.value = document.documentElement.getAttribute('dir')
+          })
         }
 
         carousel.value.prev()
