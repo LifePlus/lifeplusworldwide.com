@@ -7,6 +7,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   integrations: [
     vue(),
-    sitemap(),
+    sitemap({
+      filter: page => !page.includes('academy-raising-boys')
+    }),
   ],
 })
