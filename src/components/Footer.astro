@@ -28,21 +28,20 @@ import RoundButton from './RoundButton.vue'
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
           <div class="px-4 pt-6 pb-10 space-y-2">
+            <CityTime client:load class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
             <CityTime client:load class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
-            <CityTime client:load class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
-            <CityTime client:load class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
-            <CityTime client:load timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
-
+            <CityTime client:load class="mb-1" timezone={'Europe/London'} label={'London'} />
+            <CityTime client:load timezone={'Europe/Zurich'} label={'Zurich'} />
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
               <ShareButton client:idle url={Astro.request.url} />
             </div>
           </div>
           <div class="px-4 pt-6 pb-10 space-y-2">
-            <CityTime client:load class="mb-1" timezone={'Europe/London'} label={'London'} />
-            <CityTime client:load class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
+            <CityTime client:load timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
+            <CityTime client:load class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
+            <CityTime client:load class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
             <CityTime client:load class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
-            <CityTime client:load timezone={'Europe/Zurich'} label={'Zurich'} />
 
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Top</div>
