@@ -56,6 +56,14 @@ module.exports = {
                 textDecoration: 'none',
               },
             },
+            p: {
+              marginTop: 0,
+              marginBottom: '1.6875rem',
+            },
+            img: {
+              marginTop: 0,
+              marginBottom: '1.7rem',
+            },
             strong: {
               fontWeight: theme('fontWeight.bold'),
             },
@@ -71,6 +79,14 @@ module.exports = {
           css: {
             fontFamily: theme('fontFamily.serif').join(','),
             lineHeight: '1.7rem',
+            p: {
+              marginTop: 0,
+              marginBottom: '1.7rem',
+            },
+            img: {
+              marginTop: 0,
+              marginBottom: 0,
+            },
           }
         },
         xl: {
