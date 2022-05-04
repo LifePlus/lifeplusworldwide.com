@@ -25,7 +25,7 @@ const children = currentItem?.parent
 const childOffset = 6 * parentIndex
 ---
 
-<nav id="top-nav" data-offset={children.length > 0 ? '100' : '50'}>
+<nav id="top-nav" data-offset={children.length > 0 ? '100' : '50'} class="top-0 z-50 transition duration-200">
   <div class="shadow-md h-[50px] bg-white relative z-10">
     <Container class="flex justify-between h-full" padding={false}>
       <ul class="hidden lg:flex divide-x divide-gray-300 border-x border-gray-300">

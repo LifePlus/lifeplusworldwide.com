@@ -3,7 +3,7 @@ import Container from './Container.vue'
 
 ---
 
-<div id="progress" class="fixed top-0 w-full flex bg-white h-[42px] transition-all ease-in-out shadow-md">
+<div id="progress" class="fixed z-40 top-0 w-full flex bg-white h-[42px] transition-all ease-in-out shadow-md">
   <Container class="flex justify-between h-full">
     <div class="flex flex-1">
       <div class="flex h-full items-center border-t border-b-[5px] border-brand-primary">
@@ -18,13 +18,20 @@ import Container from './Container.vue'
 </div>
 
 <script>
-const masthead = document.getElementById('section-1')
+const topNav = document.getElementById('top-nav')
 const progress = document.getElementById('progress')
 const progressBar = document.getElementById('progress-bar')
-let rectangle = masthead.getBoundingClientRect()
+const setScrollStatus = () => {
+  const temp = window.pageYOffset || document.documentElement.scrollTop
+  scrollingUp = temp < lastScrollTop
+  lastScrollTop = temp > 0 ? temp : 0
+}
+let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop
+let scrollingUp = false
 const classes = ['-translate-y-full', 'opacity-0']
 
 const setProgress = () => {
+  setScrollStatus()
   const rectangle = document.getElementById('section-1')
     .getBoundingClientRect()
   let width = '0%'
@@ -40,8 +47,13 @@ const setProgress = () => {
     const scrolled = ((winScroll / height) * 100).toPrecision(5)
 
     width = `${scrolled}%`
+
+    const action = scrollingUp ? 'remove' : 'add'
+    topNav.classList[action](...classes)
+    topNav.classList.add('sticky')
   } else { // Bar is hidden
     progress.classList.add(...classes)
+    topNav.classList.remove(...classes, 'sticky')
   }
 
   progressBar.style.width = width
