@@ -53,7 +53,6 @@ exports.handler = (event, context, callback) => {
   const addressses = {
     'Career opportunities': 'justin.flint@ldius.org',
     'Partner with LifePlus': 'brittany.west@ldius.org',
-    // 'US Employment': 'justin.flint@ldius.org',
     'Making a donation': 'giving@ldius.org'
   }
 
