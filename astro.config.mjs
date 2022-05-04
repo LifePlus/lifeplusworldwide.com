@@ -3,7 +3,7 @@ import vue from '@astrojs/vue'
 import sitemap from '@astrojs/sitemap'
 
 export default defineConfig({
-  site: 'https://www.lifeplusworldwide.com',
+  site: 'https://lifeplusworldwide.com',
   trailingSlash: 'ignore',
   integrations: [
     vue(),
