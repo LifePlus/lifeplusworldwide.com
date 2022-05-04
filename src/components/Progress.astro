@@ -50,7 +50,10 @@ const setProgress = () => {
 
     const action = scrollingUp ? 'remove' : 'add'
     topNav.classList[action](...classes)
-    topNav.classList.add('sticky')
+
+    setTimeout(() => {
+      topNav.classList.add('sticky')
+    }, 400)
   } else { // Bar is hidden
     progress.classList.add(...classes)
     topNav.classList.remove(...classes, 'sticky')
