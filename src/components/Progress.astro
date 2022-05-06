@@ -28,6 +28,7 @@ const setScrollStatus = () => {
 }
 let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop
 let scrollingUp = false
+let shouldBeVisible = true
 const classes = ['-translate-y-full', 'opacity-0']
 
 const setProgress = () => {
@@ -35,9 +36,11 @@ const setProgress = () => {
   const rectangle = document.getElementById('section-1')
     .getBoundingClientRect()
   let width = '0%'
+  let timeout = null
+  shouldBeVisible = rectangle.height + rectangle.top < 0
 
   // Bar is visible
-  if (rectangle.height + rectangle.top < 0) {
+  if (shouldBeVisible) {
     progress.classList.remove(...classes)
 
     const offset = rectangle.height + rectangle.top + window.scrollY
@@ -51,8 +54,10 @@ const setProgress = () => {
     const action = scrollingUp ? 'remove' : 'add'
     topNav.classList[action](...classes)
 
-    setTimeout(() => {
-      topNav.classList.add('sticky')
+    timeout = setTimeout(() => {
+      if (shouldBeVisible) {
+        topNav.classList.add('sticky')
+      }
     }, 400)
   } else { // Bar is hidden
     progress.classList.add(...classes)
