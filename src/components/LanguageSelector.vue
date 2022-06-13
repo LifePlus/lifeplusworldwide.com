@@ -9,7 +9,7 @@
         <ul class="divide-y divide-gray-300 language-list">
           <li v-for="lang in languages" :key="lang.code">
             <button @click.prevent="changeLang(lang.code)" class="flex w-full px-4 py-1 ltr:border-l-4 rtl:border-r-4 transition border-white hover:border-black hover:text-brand-primary">
-              {{ lang.label }}
+              <LanguageIcon class="w-6 h-6 text-gray-500" />
             </button>
           </li>
         </ul>
@@ -24,9 +24,13 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
+import LanguageIcon from './icons/LanguageIcon.vue'
 
 export default {
+  components: {
+    LanguageIcon,
+  },
   props: {
     url: String,
   },
@@ -38,31 +42,6 @@ export default {
     const changeLang = (code) => {
       show.value = false
       currentLang.value = code
-
-      if (!import.meta.env.SSR) {
-        Weglot.switchTo(code)
-      }
-    }
-
-    if (!import.meta.env.SSR) {
-      onMounted(() => {
-        const interval = setInterval(() => {
-          if (!Weglot.options.languages) {
-            return
-          }
-
-          clearInterval(interval)
-          currentLang.value = Weglot.getCurrentLang()
-          languages.value = Weglot.options.languages
-            .map(lang => lang.language_to)
-            .concat(Weglot.options.language_from)
-            .sort()
-            .map(code => ({
-              code,
-              label: Weglot.getLanguageName(code),
-            }))
-        }, 100)
-      })
     }
 
     return {

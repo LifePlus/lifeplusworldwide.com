@@ -8,39 +8,6 @@ import '../styles/global.css'
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#FFFCE5">
   <slot name="head" />
-  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-  <script>
-    const setHtmlDir = () => {
-        const dir = Weglot.getCurrentLang() === 'ar'
-          ? 'rtl'
-          : 'ltr'
-
-        document.documentElement.setAttribute('dir', dir)
-      }
-
-      Weglot.on('initialized', function () {
-        setHtmlDir()
-      })
-
-      Weglot.on('languageChanged', () => {
-        setHtmlDir()
-      })
-
-      Weglot.initialize({
-        api_key: 'wg_4d02ce0db1d55a95c986f226bff984019',
-        hide_switcher: true,
-        cache: true,
-      })
-
-
-    window.lifePlusScroll = function (top) {
-      window.scroll({
-        behavior: 'smooth',
-        left: 0,
-        top: top
-      });
-    }
-  </script>
   <script src="https://intuitive-pleasant.lifeplusworldwide.com/script.js" data-site="LCNUPIGY" defer></script>
 </head>
 <body>
