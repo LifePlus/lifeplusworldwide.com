@@ -34,7 +34,7 @@ import RoundButton from './RoundButton.vue'
             <CityTime client:load timezone={'Europe/Zurich'} label={'Zurich'} />
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
-              <ShareButton client:idle url={`${Astro.request.url}?utm_content=footer+share`} />
+              <ShareButton client:idle url={`${Astro.request.url}?utm_content=footer+share&utm_medium=mobile`} />
             </div>
           </div>
           <div class="px-4 pt-6 pb-10 space-y-2">
@@ -52,7 +52,7 @@ import RoundButton from './RoundButton.vue'
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Share</div>
-            <ShareButton client:idle url={Astro.request.url} />
+            <ShareButton client:idle url={`${Astro.request.url}?utm_content=footer+share&utm_medium=desktop`} />
           </div>
           <div class="hidden lg:block px-4 pt-6 pb-10 text-brand-primary text-sm font-medium text-center">
             <div class="mb-2">Top</div>
