@@ -68,7 +68,7 @@ export default {
     return {
       platforms: platforms.map(platform => ({
         ...platform,
-        url: platform.url.replace('{url}', encodeURIComponent(props.url))
+        url: platform.url.replace('{url}', encodeURIComponent(props.url)) + `&utm_source=${platform.label}`
       })),
       show,
     }
