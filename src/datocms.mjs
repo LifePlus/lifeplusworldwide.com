@@ -445,6 +445,66 @@ const pagesQuery = `query PagesQuery {
         }
         content
       }
+      ... on MapRecord {
+        id
+        _modelApiKey
+        title
+        showTitle
+        titleColor {
+          hex
+        }
+        addShadow
+        backgroundImage {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          width
+          height
+          responsiveImage {
+            alt
+            aspectRatio
+            base64
+            height
+            width
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        center{
+          latitude
+          longitude
+        }
+        latitudeDelta
+        longitudeDelta
+        pins {
+          title
+          showTitle
+          pinColor {
+            hex
+          }
+          ... on LocationRecord {
+            title
+            coordinates {
+              longitude
+              latitude
+            }
+          }
+        }
+      }
     }
     _seoMetaTags {
       attributes

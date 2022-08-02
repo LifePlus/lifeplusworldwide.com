@@ -1,0 +1,44 @@
+---
+import Container from '../Container.vue'
+import BlockTitle from '../BlockTitle.astro'
+const key = import.meta.env.PUBLIC_APPLE_JWT
+console.log(key)
+const { content } = Astro.props
+---
+
+{content.showTitle &&
+  <div class="pt-10 absolute inset-x-0 top-0 z-10">
+    <Container>
+      <BlockTitle content={content} />
+    </Container>
+  </div>
+}
+<div class="w-full h-[24rem] md:h-[36rem] bg-brand-green" id="map-container">
+</div>
+
+<script is:inline src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+<script is:inline define:vars={{ key, content }}>
+console.log(content)
+mapkit.init({
+  authorizationCallback: function(done) {
+    done(key);
+  },
+  // language: '{{ site:short_locale }}'
+})
+
+const map = new mapkit.Map('map-container', {
+  region: new mapkit.CoordinateRegion(
+    new mapkit.Coordinate(content.center.latitude, content.center.longitude),
+    new mapkit.CoordinateSpan(content.latitudeDelta, content.longitudeDelta)
+  ),
+  annotations: content.pins.map(pin => {
+    return new mapkit.MarkerAnnotation(
+      new mapkit.Coordinate(pin.coordinates.latitude, pin.coordinates.longitude),
+      {
+        color: pin.pinColor ? pin.pinColor.hex : '#E30613',
+        title: pin.showTitle ? pin.title : ''
+      }
+    )
+  })
+})
+</script>
