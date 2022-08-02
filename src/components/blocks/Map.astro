@@ -29,7 +29,7 @@ mapkit.init({
 const map = new mapkit.Map('map-container', {
   region: new mapkit.CoordinateRegion(
     new mapkit.Coordinate(content.center.latitude, content.center.longitude),
-    new mapkit.CoordinateSpan(content.latitudeDelta, content.longitudeDelta)
+    new mapkit.CoordinateSpan(content.latitudeDelta || 4.5, content.longitudeDelta || 4.5)
   ),
   annotations: content.pins.map(pin => {
     return new mapkit.MarkerAnnotation(
