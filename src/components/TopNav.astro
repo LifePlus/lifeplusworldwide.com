@@ -35,6 +35,7 @@ const childOffset = 6 * parentIndex
             <a
               class={`text-sm font-medium flex w-full items-center space-x-1.5 pl-4 rtl:pr-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : (item.inactive ? 'text-gray-500' : 'text-black')}`}
               href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')))}
+              target={item.externalUrl ? '_blank' : '_self'}
             >
               <span>{item.label}</span>
               {item.externalUrl && <ExternalLinkIcon class="h-3 w-3 text-gray-500" />}
