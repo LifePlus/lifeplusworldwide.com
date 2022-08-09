@@ -18,12 +18,12 @@ const width = content.illustrationWidth
       <h1 class="font-bold mt-12 text-5xl lg:text-7xl lg:mt-20 md:w-3/5">{content.title}</h1>
     }
     {content.expandedMasthead &&
-      <div class="mt-2 border-y-2 py-2 border-brand-primary">
+      <div class="mt-2 border-y-2 py-2 pl-1 border-brand-primary">
         <img class="w-32 md:w-48 lg:w-60" src="/assets/lifeplus.svg" alt="LifePlus" />
       </div>
     }
     {content.expandedMasthead &&
-      <div class="text-3xl md:text-5xl lg:text-6xl font-orleans py-1 border-b-8 border-brand-primary divide-y-2 divide-brand-primary" set:html={content.title}></div>
+      <div class="text-3xl md:text-5xl lg:text-6xl tracking-tight font-orleans py-1 border-b-8 border-brand-primary divide-y-2 divide-brand-primary" set:html={content.title}></div>
     }
 
     <div class="block md:hidden py-4">
