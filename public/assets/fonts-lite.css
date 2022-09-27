@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Graphik Web';
+  src: url('https://lifeplusworldwide.com/fonts/Graphik-Medium-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Medium-Web.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Web';
+  src: url('https://lifeplusworldwide.com/fonts/Graphik-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Bold-Web.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Web';
+  src: url('https://lifeplusworldwide.com/fonts/Graphik-RegularItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-RegularItalic-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Graphik Web';
+  src: url('https://lifeplusworldwide.com/fonts/Graphik-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Regular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Canela Text Web';
+  src: url('https://lifeplusworldwide.com/fonts/CanelaText-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-Bold-Web.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Canela Text Web';
+  src: url('https://lifeplusworldwide.com/fonts/CanelaText-RegularItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-RegularItalic-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: 'Canela Text Web';
+  src: url('https://lifeplusworldwide.com/fonts/CanelaText-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-Regular-Web.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
