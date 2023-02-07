@@ -14,6 +14,7 @@ exports.handler = (event, context, callback) => {
 
   try {
     body = JSON.parse(event.body)
+    console.log(body)
 
     // Create reusable transporter object using the default SMTP transport
     transporter = nodemailer.createTransport({

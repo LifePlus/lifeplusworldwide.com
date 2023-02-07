@@ -445,6 +445,46 @@ const pagesQuery = `query PagesQuery {
         }
         content
       }
+      ... on ReferralFormRecord {
+        id
+        _modelApiKey
+        title
+        titleColor {
+          hex
+        }
+        addShadow
+        backgroundImage {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          width
+          height
+          responsiveImage {
+            alt
+            aspectRatio
+            base64
+            height
+            width
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+        backgroundColor {
+          alpha
+          hex
+          red
+          green
+          blue
+        }
+        content
+      }
       ... on MapRecord {
         id
         _modelApiKey

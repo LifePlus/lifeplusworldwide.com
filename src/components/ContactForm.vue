@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="send" class="text-lg lg:text-2xl space-y-6 lg:space-y-8">
-    <p v-show="error" class="text-brand-primary">{
+    <p v-show="error" class="text-brand-primary">
       An error occurred. Please try your request again.
     </p>
     <div v-show="success" class="text-green-600 space-y-4">
@@ -106,7 +106,7 @@ export default {
     const send = async () => {
       error.value = false
       success.value = false
-      loading.true = false
+      loading.value = true
 
       try {
         await axios.post(`/.netlify/functions/submit-contact`, data)

@@ -1,0 +1,16 @@
+---
+import Container from '../Container.vue'
+import BlockTitle from '../BlockTitle.astro'
+import ReferralForm from '../ReferralForm.vue'
+const { content } = Astro.props
+---
+
+<div class="py-12">
+  <Container>
+    <BlockTitle content={content} />
+    <div set:html={content.content} class={`prose lg:prose-lg mx-auto max-w-none md:w-3/4`}></div>
+    <div class="mx-auto md:w-3/4 lg:w-1/2">
+      <ReferralForm client:visible />
+    </div>
+  </Container>
+</div>
