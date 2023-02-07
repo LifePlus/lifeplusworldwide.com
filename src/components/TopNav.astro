@@ -43,13 +43,13 @@ const childOffset = 6 * parentIndex
           </li>
         ))}
       </ul>
-      <MobileMenu client:load items={items} currentId={currentId} />
+      <MobileMenu client:only items={items} currentId={currentId} />
 
       <div class="hidden lg:block">
         <ul class="flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'America/New_York'} label={'Atlanta'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Dubai'} label={'Dubai'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:load timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
+          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'America/New_York'} label={'Atlanta'} /></li>
+          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'Asia/Dubai'} label={'Dubai'} /></li>
+          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
           <li class="flex h-full items-center px-4">ENG</li>
         </ul>
       </div>

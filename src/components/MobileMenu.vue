@@ -21,11 +21,11 @@
             </div>
             <ul class="border-b border-gray-300 divide-y divide-gray-300">
               <li
-                v-for="item in items"
+                v-for="item in mappedItems"
                 :key="item.label"
               >
                 <a
-                  :href="slugBuilder(item)"
+                  :href="item.href"
                   class="border-l-8 px-4 py-2 flex items-center justify-start space-x-2"
                   :class="{
                     'border-black': item?.page?.id === currentId,
@@ -44,7 +44,7 @@
                     :key="child.label"
                   >
                     <a
-                      :href="slugBuilder(child)"
+                      :href="child.href"
                       class="border-l-8 pl-8 pr-4 py-2 flex items-center justify-start space-x-2"
                       :class="{
                         'border-black': child?.page?.id === currentId,
@@ -80,7 +80,7 @@ export default {
     items: Array,
     currentId: String,
   },
-  setup() {
+  setup (props) {
     const open = ref(false)
     const slugBuilder = (item) => {
       if (item.inactive) {
@@ -94,10 +94,18 @@ export default {
 
       return '/' + (slug === 'home' ? '' : slug)
     }
+    const mappedItems = props.items.map(item => ({
+      ...item,
+      href: slugBuilder(item),
+      children: item.children.map(child => ({
+        ...child,
+        href: slugBuilder(child),
+      }))
+    }))
 
     return {
       open,
-      slugBuilder,
+      mappedItems,
     }
   },
 }
