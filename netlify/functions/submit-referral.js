@@ -63,6 +63,15 @@ exports.handler = (event, context, callback) => {
       }),
       transporter.sendMail({
         from: process.env.EMAIL_FROM,
+        to: 'brittany.west@lifeplusworldwide.com',
+        subject: `[Employee Referral] Referral Form Submission`,
+        html: `<p><strong>Employee Name:</strong><br>${body.emp_name}</p>
+          <p><strong>Employee Email:</strong><br>${body.emp_email}</p>
+          <p><strong>Applicant Name:</strong><br>${body.ref_name}</p>
+          <p><strong>Applicant Email:</strong><br>${body.ref_email || 'None provided'}</p>`
+      }),
+      transporter.sendMail({
+        from: process.env.EMAIL_FROM,
         to: body.emp_email,
         subject: `Thanks for your referral`,
         html: createEmail(body)
