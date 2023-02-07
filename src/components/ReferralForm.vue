@@ -25,7 +25,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label class="font-medium" for="ref_name">Referred applicant's name? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="ref_name">Referred applicant’s name? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <AppInput v-model="data.ref_name" id="ref_name" placeholder="Mike Jones" required />
@@ -33,7 +33,7 @@
     </div>
     <div>
       <div class="mb-1">
-        <label class="font-medium" for="ref_email">Referred applicant's email? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="ref_email">Referred applicant’s email? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <AppInput v-model="data.ref_email" id="ref_email" type="email" placeholder="mike@email.com" required />
