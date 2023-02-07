@@ -2,7 +2,6 @@
 import Container from '../Container.vue'
 import BlockTitle from '../BlockTitle.astro'
 const key = import.meta.env.PUBLIC_APPLE_JWT
-console.log(key)
 const { content } = Astro.props
 ---
 
@@ -18,7 +17,6 @@ const { content } = Astro.props
 
 <script is:inline src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
 <script is:inline define:vars={{ key, content }}>
-console.log(content)
 mapkit.init({
   authorizationCallback: function(done) {
     done(key);
