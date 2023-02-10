@@ -1,77 +1,63 @@
-/* /404 404
-
 # Academy
 http://academy.lifeplusworldwide.com/* https://lifeplusonline.com/:splat 301!
 https://academy.lifeplusworldwide.com/* https://lifeplusonline.com/:splat 301!
-http://lifeplusworldwide.com/academy https://lifeplusonline.com/ 301!
-https://lifeplusworldwide.com/academy https://lifeplusonline.com/ 301!
+/academy https://lifeplusonline.com/ 301!
 
 # ISQ
 http://isq.lifeplusworldwide.com/* https://isqchina.com/:splat 301!
 https://isq.lifeplusworldwide.com/* https://isqchina.com/:splat 301!
 http://qingdao.lifeplusworldwide.com/* https://isqchina.com/:splat 301!
 https://qingdao.lifeplusworldwide.com/* https://isqchina.com/:splat 301!
-http://lifeplusworldwide.com/isq https://isqchina.com/ 301!
-https://lifeplusworldwide.com/isq https://isqchina.com/ 301!
-http://lifeplusworldwide.com/qingdao https://isqchina.com/ 301!
-https://lifeplusworldwide.com/qingdao https://isqchina.com/ 301!
+/isq https://isqchina.com/ 301!
+/qingdao https://isqchina.com/ 301!
 
 # WYIS
 http://wyis.lifeplusworldwide.com/* https://wyischina.com/:splat 301!
 https://wyis.lifeplusworldwide.com/* https://wyischina.com/:splat 301!
 http://wuhan.lifeplusworldwide.com/* https://wyischina.com/:splat 301!
 https://wuhan.lifeplusworldwide.com/* https://wyischina.com/:splat 301!
-http://lifeplusworldwide.com/wyis https://wyischina.com/ 301!
-https://lifeplusworldwide.com/wyis https://wyischina.com/ 301!
-http://lifeplusworldwide.com/wuhan https://wyischina.com/ 301!
-https://lifeplusworldwide.com/wuhan https://wyischina.com/ 301!
+/wyis https://wyischina.com/ 301!
+/wuhan https://wyischina.com/ 301!
 
 # YHIS
 http://yhis.lifeplusworldwide.com/* https://yhischina.com/:splat 301!
 https://yhis.lifeplusworldwide.com/* https://yhischina.com/:splat 301!
 http://yantai.lifeplusworldwide.com/* https://yhischina.com/:splat 301!
 https://yantai.lifeplusworldwide.com/* https://yhischina.com/:splat 301!
-http://lifeplusworldwide.com/yhis https://yhischina.com/ 301!
-https://lifeplusworldwide.com/yhis https://yhischina.com/ 301!
-http://lifeplusworldwide.com/yantai https://yhischina.com/ 301!
-https://lifeplusworldwide.com/yantai https://yhischina.com/ 301!
+/yhis https://yhischina.com/ 301!
+/yantai https://yhischina.com/ 301!
 
 # ISW
 http://isw.lifeplusworldwide.com/* https://iswuxi.com/:splat 301!
 https://isw.lifeplusworldwide.com/* https://iswuxi.com/:splat 301!
 http://wuxi.lifeplusworldwide.com/* https://iswuxi.com/:splat 301!
 https://wuxi.lifeplusworldwide.com/* https://iswuxi.com/:splat 301!
-http://lifeplusworldwide.com/isw https://iswuxi.com/ 301!
-https://lifeplusworldwide.com/isw https://iswuxi.com/ 301!
-http://lifeplusworldwide.com/wuxi https://iswuxi.com/ 301!
-https://lifeplusworldwide.com/wuxi https://iswuxi.com/ 301!
+/isw https://iswuxi.com/ 301!
+/wuxi https://iswuxi.com/ 301!
 
 # TIS
 http://tis.lifeplusworldwide.com/* https://tiseagles.com/:splat 301!
 https://tis.lifeplusworldwide.com/* https://tiseagles.com/:splat 301!
 http://tianjin.lifeplusworldwide.com/* https://tiseagles.com/:splat 301!
 https://tianjin.lifeplusworldwide.com/* https://tiseagles.com/:splat 301!
-http://lifeplusworldwide.com/tis https://tiseagles.com/ 301!
-https://lifeplusworldwide.com/tis https://tiseagles.com/ 301!
-http://lifeplusworldwide.com/tianjin https://tiseagles.com/ 301!
-https://lifeplusworldwide.com/tianjin https://tiseagles.com/ 301!
+/tis https://tiseagles.com/ 301!
+/tianjin https://tiseagles.com/ 301!
 
 # CDIS
 http://cdis.lifeplusworldwide.com/* https://cdischina.com/:splat 301!
 https://cdis.lifeplusworldwide.com/* https://cdischina.com/:splat 301!
 http://chengdu.lifeplusworldwide.com/* https://cdischina.com/:splat 301!
 https://chengdu.lifeplusworldwide.com/* https://cdischina.com/:splat 301!
-http://lifeplusworldwide.com/cdis https://cdischina.com/ 301!
-https://lifeplusworldwide.com/cdis https://cdischina.com/ 301!
-http://lifeplusworldwide.com/chengdu https://cdischina.com/ 301!
-https://lifeplusworldwide.com/chengdu https://cdischina.com/ 301!
+/cdis https://cdischina.com/ 301!
+/chengdu https://cdischina.com/ 301!
 
 # TWS
 http://tws.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 https://tws.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 http://wellspring.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 https://wellspring.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
-http://lifeplusworldwide.com/tws https://tws-rak.org/ 301!
-https://lifeplusworldwide.com/tws https://tws-rak.org/ 301!
-http://lifeplusworldwide.com/wellspring https://tws-rak.org/ 301!
-https://lifeplusworldwide.com/wellspring https://tws-rak.org/ 301!
+/tws https://tws-rak.org/ 301!
+/wellspring https://tws-rak.org/ 301!
+
+# Last catch anything else
+/* /404 404
