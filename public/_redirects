@@ -1,7 +1,7 @@
 # Academy
 http://academy.lifeplusworldwide.com/* https://lifeplusonline.com/:splat 301!
 https://academy.lifeplusworldwide.com/* https://lifeplusonline.com/:splat 301!
-# /academy https://lifeplusonline.com/ 301!
+/academy https://lifeplusonline.com/ 301!
 
 # ISQ
 http://isq.lifeplusworldwide.com/* https://isqchina.com/:splat 301!
@@ -57,7 +57,7 @@ https://tws.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 http://wellspring.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 https://wellspring.lifeplusworldwide.com/* https://tws-rak.org/:splat 301!
 /tws https://tws-rak.org/ 301!
-# /wellspring https://tws-rak.org/ 301!
+/wellspring https://tws-rak.org/ 301!
 
 # Last catch anything else
 /* /404 404
