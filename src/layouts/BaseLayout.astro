@@ -1,19 +1,16 @@
 ---
 import '../styles/global.css'
+const { locale } = Astro.props
+const dir = locale === 'ar' ? 'rtl' : 'ltr'
 ---
 
-<html lang="en" dir="ltr" class="bg-brand-base scroll-smooth">
+<html lang={locale} dir={dir} class="bg-brand-base scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#FFFCE5">
   <slot name="head" />
-  <!-- <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script> -->
   <script>
-    // Weglot.initialize({
-    //   api_key: 'wg_4d02ce0db1d55a95c986f226bff984019'
-    // });
-
     window.lifePlusScroll = function (top) {
       window.scroll({
         behavior: 'smooth',

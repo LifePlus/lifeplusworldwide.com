@@ -42,7 +42,7 @@ const { page, faviconTags, locale } = Astro.props
 const blocks = get(page, 'modularContent', [])
 ---
 
-<BasePageLayout pageId={page.id} locales={locales}>
+<BasePageLayout pageId={page.id} locales={locales} locale={locale}>
   <Fragment slot="head">
     {faviconTags.map(element => <Component config={element} />)}
     {page._seoMetaTags.map(element => <Component config={element} />)}
