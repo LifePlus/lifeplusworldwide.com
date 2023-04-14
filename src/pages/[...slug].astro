@@ -1,35 +1,56 @@
 ---
-import { fetchPages } from '../datocms.mjs'
+import { fetchPages, fetchLocales, setCurrentLocale, slugBuilder } from '../datocms.mjs'
 import get from 'just-safe-get'
 import BasePageLayout from '../layouts/BasePageLayout.astro'
 import Component from '../components/Component.vue'
 import ModularContentItem from '../components/ModularContentItem.astro'
 
-export async function getStaticPaths() {
-  const data = await fetchPages()
-  const pages = get(data, 'data.allPages', [])
-  const faviconTags = get(data, 'data._site.faviconMetaTags')
+const locales = await fetchLocales()
 
-  return pages.map(page => ({
-    params: page.slug === 'home'
-      ? { slug: undefined }
-      : { slug: page.slug },
-    props: {
-      page,
-      faviconTags,
-    }
-  }))
+export async function getStaticPaths() {
+  const locales = await fetchLocales()
+  let allPages = []
+
+  for (const locale of locales) {
+    const data = await fetchPages(locale)
+    const faviconTags = get(data, 'data._site.faviconMetaTags')
+    const pages = get(data, 'data.allPages', [])
+
+    allPages = allPages.concat(pages.map(page => {
+      const slug = slugBuilder(page.slug, locale)
+      console.log(slug, page.id)
+
+      return {
+        params: {
+          slug,
+          locale,
+        },
+        props: {
+          page,
+          faviconTags,
+          locale,
+        },
+      }
+    }))
+  }
+
+  return allPages
 }
 
-const { page, faviconTags } = Astro.props
+const { page, faviconTags, locale } = Astro.props
 const blocks = get(page, 'modularContent', [])
 ---
 
-<BasePageLayout pageId={page.id}>
+<BasePageLayout pageId={page.id} locales={locales}>
   <Fragment slot="head">
     {faviconTags.map(element => <Component config={element} />)}
     {page._seoMetaTags.map(element => <Component config={element} />)}
   </Fragment>
 
-  {blocks.map((content, index) => <ModularContentItem content={content} index={blocks.length - index} section={index + 1} />)}
+  {blocks.map((content, index) => <ModularContentItem
+    content={content}
+    index={blocks.length - index}
+    section={index + 1}
+    locale={locale}
+  />)}
 </BasePageLayout>

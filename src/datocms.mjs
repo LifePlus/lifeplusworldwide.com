@@ -1,5 +1,5 @@
-const pagesQuery = `query PagesQuery {
-  allPages {
+const pagesQuery = locale => `query PagesQuery {
+  allPages(locale: ${locale}, fallbackLocales: [en]) {
     id
     slug
     title
@@ -633,8 +633,9 @@ const makeRequest = async query => {
   }).then(res => res.json())
 }
 
-export function fetchPages () {
-  return makeRequest(pagesQuery)
+export function fetchPages (locale = 'en') {
+  console.log(locale)
+  return makeRequest(pagesQuery(locale))
 }
 
 let menuCache = null
@@ -657,6 +658,33 @@ export async function fetchMenuItems () {
   return menuItemsCache
 }
 
-export function slugBuilder (slug) {
-  return '/' + (slug === 'home' ? '' : slug)
+let locales = []
+export async function fetchLocales () {
+  if (locales.length) {
+    return locales
+  }
+
+  const { data: { _site } } = await makeRequest(`query {
+    _site {
+      locales # -> ["en", "it", "fr"]
+    }
+  }`)
+  locales = _site.locales
+  return locales
+}
+
+let currentLocale = null
+export function setCurrentLocale (locale) {
+  currentLocale = locale
+}
+
+export function slugBuilder (slug, locale) {
+  const prefix = locale === 'en' ? '' : `/${locale}`
+  const path = prefix + '/' + (slug === 'home' ? '' : slug)
+
+  if (path === '/') {
+    return undefined
+  }
+
+  return path
 }

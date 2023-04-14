@@ -11,6 +11,7 @@ const rgba = {
 const bgImage = content.backgroundImage
   ? `background-image: url("${content.backgroundImage.url}");`
   : ''
+const { locale } = Astro.params
 ---
 
 <section id={`section-${section}`} class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover bg-center`} style={`z-index: ${index}; ${bgImage}`}>
