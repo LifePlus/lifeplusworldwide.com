@@ -17,13 +17,14 @@ export async function getStaticPaths() {
     const pages = get(data, 'data.allPages', [])
 
     allPages = allPages.concat(pages.map(page => {
-      const slug = slugBuilder(page.slug, locale)
+      const slug = slugBuilder(page.slug, locale)?.slice(1)
       console.log(slug, page.id)
 
       return {
         params: {
-          slug,
-          locale,
+          slug: slug?.endsWith('/')
+            ? slug.slice(0, -1)
+            : slug,
         },
         props: {
           page,
