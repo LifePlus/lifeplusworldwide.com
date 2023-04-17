@@ -634,7 +634,6 @@ const makeRequest = async query => {
 }
 
 export function fetchPages (locale = 'en') {
-  console.log(locale)
   return makeRequest(pagesQuery(locale))
 }
 
@@ -658,7 +657,7 @@ export async function fetchMenuItems () {
   return menuItemsCache
 }
 
-let locales = []
+export let locales = []
 export async function fetchLocales () {
   if (locales.length) {
     return locales
@@ -673,12 +672,13 @@ export async function fetchLocales () {
   return locales
 }
 
-let currentLocale = null
+export let currentLocale = null
 export function setCurrentLocale (locale) {
   currentLocale = locale
 }
 
 export function slugBuilder (slug, locale) {
+  locale = locale ?? currentLocale
   const prefix = locale === 'en' ? '' : `/${locale}`
   const path = prefix + '/' + (slug === 'home' ? '' : slug)
 
