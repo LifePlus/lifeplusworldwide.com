@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xs">
+  <div class="text-xs" :class="classes">
     <div class="font-bold">
       {{ label }}
     </div>
@@ -24,6 +24,9 @@ export default {
     label: {
       type: String,
       required: true,
+    },
+    classes: {
+      type: String,
     }
   },
   setup ({ timezone }) {

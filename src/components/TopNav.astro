@@ -1,5 +1,5 @@
 ---
-import { fetchMenu, fetchMenuItems, slugBuilder, currentLocale, locales } from '../datocms.mjs'
+import { fetchMenu, fetchMenuItems, slugBuilder, currentLocale, locales, timezones } from '../datocms.mjs'
 import get from 'just-safe-get'
 import Container from './Container.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
@@ -25,6 +25,11 @@ const children = currentItem?.parent
   ? items.find(i => i.id === currentItem.parent.id).children
   : (currentItem?.children || [])
 const childOffset = 6 * parentIndex
+const timezoneList = [
+  'America/New_York',
+  'Asia/Dubai',
+  'Asia/Shanghai',
+]
 ---
 
 <nav id="top-nav" data-offset={children.length > 0 ? '100' : '50'} class="top-0 relative z-40 transition duration-200">
@@ -49,9 +54,9 @@ const childOffset = 6 * parentIndex
 
       <div class="hidden lg:block">
         <ul class="flex items-center h-full text-gray-500 divide-x divide-gray-300 border-x border-gray-300">
-          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'America/New_York'} label={'Atlanta'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'Asia/Dubai'} label={'Dubai'} /></li>
-          <li class="flex h-full items-center px-4"><CityTime client:only timezone={'Asia/Shanghai'} label={'Beijing'} /></li>
+          {timezoneList.map(tz => (
+            <li class="flex h-full items-center px-4"><CityTime client:only timezone={tz} label={timezones[tz][currentLocale]} /></li>
+          ))}
           <li class="flex h-full items-center px-4">
             <LocaleDropdown client:only locales={locales} currentLocale={currentLocale} />
           </li>

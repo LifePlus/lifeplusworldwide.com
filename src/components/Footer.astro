@@ -4,6 +4,21 @@ import CityTime from './CityTime.vue'
 import ShareButton from './ShareButton.vue'
 import ArrowUpIcon from './icons/ArrowUpIcon.vue'
 import RoundButton from './RoundButton.vue'
+import { currentLocale, timezones } from '../datocms.mjs'
+
+const column1 = [
+  'America/Los_Angeles',
+  'America/New_York',
+  'Europe/London',
+  'Europe/Zurich',
+]
+const column2 = [
+  'Africa/Johannesburg',
+  'Asia/Dubai',
+  'Asia/Shanghai',
+  'Australia/Sydney',
+]
+const year = (new Date()).getFullYear()
 ---
 
 <footer id="footer" class="bg-brand-base">
@@ -11,7 +26,7 @@ import RoundButton from './RoundButton.vue'
     <div class="flex justify-between">
       <div class="pt-6 pb-10 pr-4 flex flex-col justify-between">
         <div class="text-sm">
-          <p class="mb-2">LifePlus is a registered trademark and trading name of Management Technologies International &copy; 2022. All rights reserved.</p>
+          <p class="mb-2">LifePlus is a registered trademark and trading name of Management Technologies International &copy; {year}. All rights reserved.</p>
           <div class="space-y-2 md:space-y-0 md:flex md:space-x-4 font-medium">
             <div><a href="/privacy" class="text-brand-primary hover:underline">Privacy and cookies</a></div>
           </div>
@@ -27,22 +42,19 @@ import RoundButton from './RoundButton.vue'
           <img class="w-16 mx-auto" src="/assets/cognia.png" alt="Cognia logo" />
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
-          <div class="px-4 pt-6 pb-10 space-y-2">
-            <CityTime client:only class="mb-1" timezone={'America/Los_Angeles'} label={'Seattle'} />
-            <CityTime client:only class="mb-1" timezone={'America/New_York'} label={'Atlanta'} />
-            <CityTime client:only class="mb-1" timezone={'Europe/London'} label={'London'} />
-            <CityTime client:only timezone={'Europe/Zurich'} label={'Zurich'} />
+          <div class="px-4 pt-6 pb-10 space-y-2 w-[6rem]">
+            {column1.map((tz) => (
+              <CityTime client:only classes="mb-1" timezone={tz} label={timezones[tz][currentLocale]} />
+            ))}
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Share</div>
               <ShareButton client:idle url={`${Astro.request.url}?utm_content=footer+share&utm_medium=mobile`} />
             </div>
           </div>
-          <div class="px-4 pt-6 pb-10 space-y-2">
-            <CityTime client:only timezone={'Africa/Johannesburg'} label={"Johan'burg"} />
-            <CityTime client:only class="mb-1" timezone={'Asia/Dubai'} label={'Dubai'} />
-            <CityTime client:only class="mb-1" timezone={'Asia/Shanghai'} label={'Beijing'} />
-            <CityTime client:only class="mb-1" timezone={'Australia/Sydney'} label={'Sydney'} />
-
+          <div class="px-4 pt-6 pb-10 space-y-2 w-[6rem]">
+            {column2.map((tz) => (
+              <CityTime client:only classes="mb-1" timezone={tz} label={timezones[tz][currentLocale]} />
+            ))}
             <div class="pt-8 lg:hidden text-brand-primary text-sm font-medium text-center">
               <div class="mb-2">Top</div>
               <RoundButton class={`scroll-top`}>

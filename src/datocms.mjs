@@ -691,3 +691,46 @@ export function slugBuilder (slug, locale) {
 
   return path
 }
+
+export const timezones = {
+  'America/Los_Angeles': {
+    en: 'Seattle',
+    zh: '西雅图',
+    ko: '시애틀',
+  },
+  'America/New_York': {
+    en: 'Atlanta',
+    zh: '亚特兰大',
+    ko: '애틀랜타',
+  },
+  'Europe/London': {
+    en: 'London',
+    zh: '伦敦',
+    ko: '런던',
+  },
+  'Europe/Zurich': {
+    en: 'Zurich',
+    zh: '苏黎世',
+    ko: '취리히',
+  },
+  'Africa/Johannesburg': {
+    en: "Johan'burg",
+    zh: '约翰内斯堡',
+    ko: '요하네스버그',
+  },
+  'Asia/Dubai': {
+    en: 'Dubai',
+    zh: '迪拜',
+    ko: '두바이',
+  },
+  'Asia/Shanghai': {
+    en: 'Beijing',
+    zh: '北京',
+    ko: '베이징',
+  },
+  'Australia/Sydney': {
+    en: 'Sydney',
+    zh: '悉尼',
+    ko: '시드니',
+  },
+}
