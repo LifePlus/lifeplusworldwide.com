@@ -560,7 +560,7 @@ const pagesQuery = locale => `query PagesQuery {
   }
 }`
 
-const menuQuery = `query MenuQuery {
+const menuQuery = locale => `query MenuQuery {
   allMenuItems(
     filter: {
       parent: {
@@ -568,6 +568,8 @@ const menuQuery = `query MenuQuery {
       }
     }
     orderBy: position_ASC
+    locale: ${locale}
+    fallbackLocales: [en]
   ) {
     id
     externalUrl
@@ -591,8 +593,11 @@ const menuQuery = `query MenuQuery {
   }
 }`
 
-const itemsQuery = `query AllMenuQuery {
-  allMenuItems {
+const itemsQuery = locale => `query AllMenuQuery {
+  allMenuItems(
+    locale: ${locale}
+    fallbackLocales: [en]
+  ) {
     id
     externalUrl
     label
@@ -637,24 +642,22 @@ export function fetchPages (locale = 'en') {
   return makeRequest(pagesQuery(locale))
 }
 
-let menuCache = null
-export async function fetchMenu () {
-  if (menuCache) {
-    return menuCache
+let menuCache = {}
+export async function fetchMenu (locale) {
+  if (menuCache[locale]) {
+    return menuCache[locale]
   }
 
-  menuCache = await makeRequest(menuQuery)
-  return menuCache
+  return menuCache[locale] = await makeRequest(menuQuery(locale))
 }
 
-let menuItemsCache = null
-export async function fetchMenuItems () {
-  if (menuItemsCache) {
-    return menuItemsCache
+let menuItemsCache = {}
+export async function fetchMenuItems (locale) {
+  if (menuItemsCache[locale]) {
+    return menuItemsCache[locale]
   }
 
-  menuItemsCache = await makeRequest(itemsQuery)
-  return menuItemsCache
+  return menuItemsCache[locale] = await makeRequest(itemsQuery(locale))
 }
 
 export let locales = []

@@ -7,8 +7,9 @@ import CityTime from './CityTime.vue'
 import MobileMenu from './MobileMenu.vue'
 import LocaleDropdown from './LocaleDropdown.vue'
 
-const data = await fetchMenu()
-const menuItemData = await fetchMenuItems()
+const { locale } = Astro.props
+const data = await fetchMenu(locale)
+const menuItemData = await fetchMenuItems(locale)
 const items = get(data, 'data.allMenuItems', [])
 const allMenuItems = get(menuItemData, 'data.allMenuItems', [])
 const { currentId } = Astro.props
