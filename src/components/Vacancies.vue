@@ -21,7 +21,7 @@ export default {
 
   setup (props) {
     const vacancies = ref([])
-    axios.get(`https://apply.ldi.global/api/vacancies?entities[0]=${props.id}&only[0]=name&only[1]=id&only[2]=published_at&only[3]=category`).then(res => {
+    axios.get(`https://apply.lifeplusworldwide.com/api/vacancies?entities[0]=${props.id}&only[0]=name&only[1]=id&only[2]=published_at&only[3]=category`).then(res => {
       vacancies.value = res.data
     })
 
