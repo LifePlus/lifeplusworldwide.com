@@ -666,9 +666,10 @@ export async function fetchLocales () {
     return locales
   }
 
+  return locales = ['en', 'ko']
   const { data: { _site } } = await makeRequest(`query {
     _site {
-      locales # -> ["en", "it", "fr"]
+      locales
     }
   }`)
   locales = _site.locales
