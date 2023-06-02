@@ -17,7 +17,7 @@ const { content } = Astro.props
 
 <script is:inline src='https://www.bing.com/api/maps/mapcontrol?callback=mapIt' async defer></script>
 <script is:inline define:vars={{ key, content }}>
-function mapIt() {
+window.mapIt = () => {
   console.log('bing maps loaded')
   const map = new Microsoft.Maps.Map('#map-container', {
     credentials: key,
@@ -29,7 +29,7 @@ function mapIt() {
     showDashboard: false,
   });
 
-  content.pins.each(pin => {
+  content.pins.forEach(pin => {
     map.entities.push(new Microsoft.Maps.Pushpin(
       new Microsoft.Maps.Location(pin.coordinates.latitude, pin.coordinates.longitude),
       {
