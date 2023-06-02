@@ -15,28 +15,28 @@ const { content } = Astro.props
 <div class="w-full h-[24rem] md:h-[36rem] bg-brand-green" id="map-container">
 </div>
 
-<script is:inline src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+<script is:inline src='https://www.bing.com/api/maps/mapcontrol?callback=mapIt' async defer></script>
 <script is:inline define:vars={{ key, content }}>
-mapkit.init({
-  authorizationCallback: function(done) {
-    done(key);
-  },
-  // language: '{{ site:short_locale }}'
-})
+function mapIt() {
+  console.log('bing maps loaded')
+  const map = new Microsoft.Maps.Map('#map-container', {
+    credentials: key,
+    center: new Microsoft.Maps.Location(20, -5),
+    zoom: 2,
+    showLocateMeButton: false,
+    showTrafficButton: false,
+    showMapTypeSelector: false,
+    showDashboard: false,
+  });
 
-const map = new mapkit.Map('map-container', {
-  region: new mapkit.CoordinateRegion(
-    new mapkit.Coordinate(content.center.latitude, content.center.longitude),
-    new mapkit.CoordinateSpan(content.latitudeDelta || 4.5, content.longitudeDelta || 4.5)
-  ),
-  annotations: content.pins.map(pin => {
-    return new mapkit.MarkerAnnotation(
-      new mapkit.Coordinate(pin.coordinates.latitude, pin.coordinates.longitude),
+  content.pins.each(pin => {
+    map.entities.push(new Microsoft.Maps.Pushpin(
+      new Microsoft.Maps.Location(pin.coordinates.latitude, pin.coordinates.longitude),
       {
         color: pin.pinColor ? pin.pinColor.hex : '#E30613',
-        title: pin.showTitle ? pin.title : ''
+        title: pin.showTitle && pin.title ? pin.title : ''
       }
-    )
+    ))
   })
-})
+}
 </script>
