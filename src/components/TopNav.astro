@@ -41,7 +41,7 @@ const timezoneList = [
             <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
             <a
               class={`text-sm font-medium flex w-full items-center space-x-1.5 pl-4 rtl:pr-4 ${children.length > 0 && !isActive(item) ? 'text-gray-500 group-hover:text-black transition' : (item.inactive ? 'text-gray-500' : 'text-black')}`}
-              href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')))}
+              href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')) || '/')}
               target={item.externalUrl ? '_blank' : '_self'}
             >
               <span>{item.label}</span>
@@ -77,7 +77,7 @@ const timezoneList = [
               <div class={`absolute transition-all w-full top-0 ${isActive(item) ? 'bg-black h-[10px]' : 'group-hover:bg-gray-300 h-0 group-hover:h-[10px]'}`}></div>
               <a
                 class={`text-sm font-medium whitespace-nowrap flex w-full items-center space-x-2 pl-4 rtl:pr-4 pr-8 rtl:pl-8 ${item.inactive ? 'text-gray-500' : 'text-black'}`}
-                href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')))}
+                href={item.inactive ? '#' : (item.externalUrl || slugBuilder(get(item, 'page.slug')) || '/')}
               >
                 <span>{item.label}</span>
                 {item.externalUrl && <ExternalLinkIcon class="h-3 w-3 text-gray-500" />}
