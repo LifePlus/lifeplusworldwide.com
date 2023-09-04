@@ -1,6 +1,5 @@
-const axios = require('axios')
 const { validateEmail, validateLength } = require("./validations")
-const nodemailer = require('nodemailer')
+const postmark = require('postmark')
 
 const autoReply = `<p>Greetings,</p>
 <p>Thank you for your interest in LifePlus. We have received your inquiry and we will be in touch with you soon.</p>
@@ -39,65 +38,33 @@ exports.handler = (event, context, callback) => {
     })
   }
 
-  // Create reusable transporter object using the default SMTP transport
-  transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    secure: false,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASSWORD
-    }
-  })
+  const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_KEY)
 
   const addressses = {
-    'Career opportunities': 'justin.flint@ldius.org',
-    'Partner with LifePlus': 'brittany.west@ldius.org,rachel.scroggins@ldi.global',
-    // 'US Employment': 'justin.flint@ldius.org',
-    'Making a donation': 'giving@ldius.org'
+    'Career opportunities': 'justin.flint@lifeplusworldwide.com',
+    'Partner with LifePlus': 'brittany.west@lifeplusworldwide.com,rachel.scroggins@lifeplusworldwide.com',
+    // 'US Employment': 'justin.flint@lifeplusworldwide.com',
+    'Making a donation': 'giving@lifeplusworldwide.com'
   }
 
   try {
     Promise.all([
-      axios.post(process.env.CONTACT_RC_ROOM, {
-        attachments: [{
-          fields: [
-            {
-              title: 'Name',
-              value: body.name,
-              short: true
-            },
-            {
-              title: 'Email',
-              value: body.email,
-              short: true
-            },
-            {
-              title: 'Phone',
-              value: body.phone,
-              short: true
-            },
-            {
-              title: 'Question',
-              value: body.question,
-              short: true
-            }
-          ]
-        }]
-      }),
-      transporter.sendMail({
-        from: process.env.EMAIL_FROM,
-        to: addressses[body.question] || 'justin.flint@ldius.org',
+      // There was a post to RC here, but it's retired now
+
+      postmarkClient.sendEmail({
+        from: 'notifications@lifeplusworldwide.com',
+        to: addressses[body.question] || 'justin.flint@lifeplusworldwide.com',
         subject: `[LifePlus] Contact Form Submission`,
-        html: `<p><strong>Name:</strong><br>${body.name}</p>
+        htmlBody: `<p><strong>Name:</strong><br>${body.name}</p>
           <p><strong>Question:</strong><br>${body.question}</p>
           <p><strong>Email:</strong><br>${body.email}</p>
           <p><strong>Phone:</strong><br>${body.phone || 'None provided'}</p>`
       }),
-      transporter.sendMail({
+      postmarkClient.sendEmail({
+        from: 'notifications@lifeplusworldwide.com',
         to: body.email,
         subject: `Thanks for your interest in LifePlus!`,
-        html: autoReply
+        htmlBody: autoReply
       })
     ]).then(() => {
       callback(null, {
@@ -106,15 +73,9 @@ exports.handler = (event, context, callback) => {
       })
     })
   } catch (e) {
-    axios.post(process.env.CONTACT_RC_ROOM, {
-      text: `Sending email failed: ${e.message}`
-    }).then(() => {
-      // Still be successful since RC is ok
-      callback(null, {
-        statusCode: 200,
-        body: ''
-      })
+    callback(null, {
+      statusCode: 200,
+      body: ''
     })
-
   }
 }
