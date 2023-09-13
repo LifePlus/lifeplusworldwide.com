@@ -41,7 +41,7 @@ exports.handler = (event, context, callback) => {
   const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_KEY)
 
   const addressses = {
-    'Career opportunities': 'justin.flint@lifeplusworldwide.com',
+    'Career opportunities': 'brittany.west@lifeplusworldwide.com,justin.flint@lifeplusworldwide.com',
     'Partner with LifePlus': 'brittany.west@lifeplusworldwide.com,rachel.scroggins@lifeplusworldwide.com',
     // 'US Employment': 'justin.flint@lifeplusworldwide.com',
     'Making a donation': 'giving@lifeplusworldwide.com'
