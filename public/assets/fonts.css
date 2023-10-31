@@ -1,20 +1,20 @@
 @font-face {
   font-family: "LifePlus Orleans Web";
-  src: url("/fonts/LifePlusOrleans-Roman-Web.woff2") format("woff2"), url("/fonts/LifePlusOrleans-Roman-Web.woff") format("woff");
+  src: url("https://fonts-cdn.lifepluslearning.com/LifePlusOrleans-Roman-Web.woff2") format("woff2"), url("https://fonts-cdn.lifepluslearning.com/LifePlusOrleans-Roman-Web.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "LifePlus Orleans Web";
-  src: url("/fonts/LifePlusOrleans-Bold-Web.woff2") format("woff2"), url("/fonts/LifePlusOrleans-Bold-Web.woff") format("woff");
+  src: url("https://fonts-cdn.lifepluslearning.com/LifePlusOrleans-Bold-Web.woff2") format("woff2"), url("https://fonts-cdn.lifepluslearning.com/LifePlusOrleans-Bold-Web.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Graphik Web';
-  src: url('https://lifeplusworldwide.com/fonts/Graphik-Medium-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Medium-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/Graphik-Medium-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/Graphik-Medium-Web.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-stretch: normal;
@@ -22,7 +22,7 @@
 
 @font-face {
   font-family: 'Graphik Web';
-  src: url('https://lifeplusworldwide.com/fonts/Graphik-BoldItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-BoldItalic-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/Graphik-BoldItalic-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/Graphik-BoldItalic-Web.woff') format('woff');
   font-weight: 700;
   font-style: italic;
   font-stretch: normal;
@@ -30,7 +30,7 @@
 
 @font-face {
   font-family: 'Graphik Web';
-  src: url('https://lifeplusworldwide.com/fonts/Graphik-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Bold-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/Graphik-Bold-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/Graphik-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -38,7 +38,7 @@
 
 @font-face {
   font-family: 'Graphik Web';
-  src: url('https://lifeplusworldwide.com/fonts/Graphik-RegularItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-RegularItalic-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/Graphik-RegularItalic-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/Graphik-RegularItalic-Web.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-stretch: normal;
@@ -46,7 +46,7 @@
 
 @font-face {
   font-family: 'Graphik Web';
-  src: url('https://lifeplusworldwide.com/fonts/Graphik-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/Graphik-Regular-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/Graphik-Regular-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/Graphik-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -54,7 +54,7 @@
 
 @font-face {
   font-family: 'Graphik Arabic Web';
-  src: url('https://lifeplusworldwide.com/fonts/GraphikArabic-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/GraphikArabic-Bold-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/GraphikArabic-Bold-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/GraphikArabic-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -62,7 +62,7 @@
 
 @font-face {
   font-family: 'Graphik Arabic Web';
-  src: url('https://lifeplusworldwide.com/fonts/GraphikArabic-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/GraphikArabic-Regular-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/GraphikArabic-Regular-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/GraphikArabic-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -70,7 +70,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-BoldItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-BoldItalic-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-BoldItalic-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-BoldItalic-Web.woff') format('woff');
   font-weight: 700;
   font-style: italic;
   font-stretch: normal;
@@ -78,7 +78,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-Bold-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-Bold-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -86,7 +86,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-MediumItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-MediumItalic-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-MediumItalic-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-MediumItalic-Web.woff') format('woff');
   font-weight: 600;
   font-style: italic;
   font-stretch: normal;
@@ -94,7 +94,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-Medium-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-Medium-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-Medium-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-Medium-Web.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
@@ -102,7 +102,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-RegularItalic-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-RegularItalic-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-RegularItalic-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-RegularItalic-Web.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-stretch: normal;
@@ -110,7 +110,7 @@
 
 @font-face {
   font-family: 'Canela Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/CanelaText-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/CanelaText-Regular-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/CanelaText-Regular-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/CanelaText-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -118,7 +118,7 @@
 
 @font-face {
   font-family: 'Lyon Arabic Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/LyonArabicText-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/LyonArabicText-Bold-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/LyonArabicText-Bold-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/LyonArabicText-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-stretch: normal;
@@ -126,7 +126,7 @@
 
 @font-face {
   font-family: 'Lyon Arabic Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/LyonArabicText-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/LyonArabicText-Regular-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/LyonArabicText-Regular-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/LyonArabicText-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-stretch: normal;
@@ -134,7 +134,7 @@
 
 @font-face {
   font-family: 'Lyon Arabic Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/LyonArabicSlantedText-Bold-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/LyonArabicSlantedText-Bold-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/LyonArabicSlantedText-Bold-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/LyonArabicSlantedText-Bold-Web.woff') format('woff');
   font-weight: 700;
   font-style: italic;
   font-stretch: normal;
@@ -142,7 +142,7 @@
 
 @font-face {
   font-family: 'Lyon Arabic Text Web';
-  src: url('https://lifeplusworldwide.com/fonts/LyonArabicSlantedText-Regular-Web.woff2') format('woff2'), url('https://lifeplusworldwide.com/fonts/LyonArabicSlantedText-Regular-Web.woff') format('woff');
+  src: url('https://fonts-cdn.lifepluslearning.com/LyonArabicSlantedText-Regular-Web.woff2') format('woff2'), url('https://fonts-cdn.lifepluslearning.com/LyonArabicSlantedText-Regular-Web.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-stretch: normal;
