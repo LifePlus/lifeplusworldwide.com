@@ -13,6 +13,7 @@ import FreeformColumn from './blocks/FreeformColumn.astro'
 import ContactForm from './blocks/ContactForm.astro'
 import ReferralForm from './blocks/ReferralForm.astro'
 import Map from './blocks/Map.astro'
+import VacancyBlock from './blocks/VacancyBlock.astro'
 
 const components = {
   Masthead,
@@ -27,6 +28,7 @@ const components = {
   ContactForm,
   ReferralForm,
   Map,
+  VacancyBlock,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')

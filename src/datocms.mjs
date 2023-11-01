@@ -545,6 +545,16 @@ const pagesQuery = locale => `query PagesQuery {
           }
         }
       }
+      ... on VacancyBlockRecord {
+        id
+        _modelApiKey
+        title
+        titleColor {
+          hex
+        }
+        content
+        addShadow
+      }
     }
     _seoMetaTags {
       attributes
