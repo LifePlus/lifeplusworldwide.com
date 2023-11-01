@@ -2,11 +2,45 @@
 import Container from '../Container.vue'
 import BlockTitle from '../BlockTitle.astro'
 const { content } = Astro.props
+let vacancies = await fetch(`${import.meta.env.VMS_URL || process.env.VMS_URL}/api/vacancies`, {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${import.meta.env.VMS_TOKEN || process.env.VMS_TOKEN}`,
+    },
+    body: JSON.stringify({
+      visibility: 'public',
+      candidates: 'none',
+    })
+  }).then(res => res.json())
 ---
 
-<div class="pt-12 pb-20">
-  <Container>
-    <BlockTitle content={content} />
-    Stuff
-  </Container>
-</div>
+{vacancies.length > 0 ?
+  <div class="pt-12 pb-20" id="listing">
+    <Container>
+      <BlockTitle content={content} />
+      {content.content && <div set:html={content.content} class={`prose lg:prose-lg mx-auto max-w-none md:w-3/4 mb-6 lg:mb-10`}></div>}
+
+      <ul class="relative z-10 grid lg:grid-cols-2 lg:gap-8">
+        {vacancies.map((vacancy, index) => (
+          <li class={`py-5 border-t border-gray-300 first-of-type:border-t-0 ${index === 1 ? 'lg:border-t-0' : ''}`}>
+            <div class="text-sm">{vacancy.entity?.name}{vacancy.entity?.country ? `, ${vacancy.entity.country}` : ''}</div>
+            <div>
+              <button class="text-2xl font-bold text-brand-primary hover:underline text-left" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity.short_name} click');`}>{vacancy.display}</a>
+            </div>
+            <div class="text-sm">Added on {vacancy.added}</div>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  </div>
+  : <>
+    <script is:inline src="https://vacancies.lifepluslearning.com/vendor/embed/script.js"></script>
+    <script is:inline>
+      initInterestForm('interest_form')
+    </script>
+    {content.content && <div set:html={content.content} class={`prose lg:prose-lg mx-auto max-w-md md:w-3/4 mb-6 pt-12`}></div>}
+    <iframe src="https://vacancies.lifepluslearning.com/interest?embed=1&recruitment_source_id=1" frameborder="0" class="border-none w-full min-h-[800px]" id="interest_form"></iframe>
+  </>
+}
