@@ -34,8 +34,8 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['"Graphik Web"', '"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
-        serif: ['"Canela Text Web"', '"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
+        sans: ['"Graphik Web"', 'source-han-sans-simplified-c', 'source-han-sans-korean', '"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
+        serif: ['"Canela Text Web"', 'source-han-serif-sc', 'source-han-serif-korean', 'source-han-serif-korean', '"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
         orleans: ['"LifePlus Orleans Web"', ...defaultTheme.fontFamily.serif],
         'arabic-sans': ['"Graphik Arabic Web"', ...defaultTheme.fontFamily.sans],
         'arabic-serif': ['"Lyon Arabic Text Web"', ...defaultTheme.fontFamily.serif],
@@ -50,7 +50,7 @@ module.exports = {
             '--tw-prose-counters': theme('colors.brand.primary'),
             color: theme('colors.black'),
             fontFamily: theme('fontFamily.serif').join(','),
-            lineHeight: '1.6875rem',
+            lineHeight: '1.4',
             a: {
               'transition-property': 'color, text-decoration-color',
               'transition-timing-function': 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -67,12 +67,37 @@ module.exports = {
               marginTop: 0,
               marginBottom: '1.6875rem',
             },
+            ul: {
+              listStylePosition: 'inside',
+              paddingLeft: 0,
+              '> li': {
+                paddingLeft: 0,
+                'p:first-child': {
+                  display: 'inline',
+                },
+              },
+            },
+            li: {
+              marginTop: 0,
+              marginBottom: 0,
+              paddingLeft: 0,
+              p: {
+                marginBottom: 0,
+              }
+            },
             img: {
               marginTop: 0,
               marginBottom: '1.7rem',
             },
             strong: {
               fontWeight: theme('fontWeight.bold'),
+              color: 'inherit',
+            },
+            'h2:first-child': {
+              marginTop: 0,
+            },
+            h2: {
+              fontFamily: theme('fontFamily.sans').join(','),
             },
             h3: {
               fontWeight: theme('fontWeight.bold'),
@@ -82,29 +107,54 @@ module.exports = {
             },
           }
         },
+        sm: {
+          css: {
+            lineHeight: '1.4',
+          }
+        },
         lg: {
           css: {
             fontFamily: theme('fontFamily.serif').join(','),
-            lineHeight: '1.7rem',
+            lineHeight: '1.4',
             p: {
               marginTop: 0,
-              marginBottom: '1.7rem',
+              marginBottom: '1.5rem',
             },
             img: {
               marginTop: 0,
               marginBottom: 0,
             },
+            ul: {
+              paddingLeft: 0,
+              '> li': {
+                paddingLeft: 0,
+              }
+            },
+            li: {
+              marginTop: 0,
+              marginBottom: 0,
+              paddingLeft: 0,
+            },
+            'h2:first-child': {
+              marginTop: 0,
+            },
           }
         },
         xl: {
           css: {
-            lineHeight: '1.75rem',
-          }
+            lineHeight: '1.4',
+          },
+          'h2:first-child': {
+            marginTop: 0,
+          },
         },
         '2xl': {
           css: {
-            lineHeight: '1.875rem',
-          }
+            lineHeight: '1.4',
+            'h2:first-child': {
+              marginTop: 0,
+            },
+          },
         },
       })
     },
