@@ -1,5 +1,6 @@
 <template>
-  <button
+  <component
+    :is="is"
     class="w-16 h-16 mx-auto flex items-center justify-center rounded-full border border-brand-primary transition"
     :class="{
       'bg-brand-base hover:bg-brand-primary hover:text-brand-base': !solid,
@@ -8,15 +9,16 @@
     :id="id"
   >
     <slot />
-  </button>
+  </component>
 </template>
 
-<script>
-export default {
-  props: {
-    solid: Boolean,
-    id: String,
+<script setup>
+defineProps({
+  solid: Boolean,
+  id: String,
+  is: {
+    type: String,
+    default: 'button',
   },
-  setup () {}
-}
+})
 </script>

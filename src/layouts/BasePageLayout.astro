@@ -10,7 +10,8 @@ const { pageId, locales, locale } = Astro.props
   <Fragment slot="head">
     <slot name="head" />
   </Fragment>
-  <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
+  <div id="menu-container"></div>
+  <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between" data-page-id={pageId}>
     <TopNav currentId={pageId} locale={locale} />
     <main class="flex-1 relative z-0">
       <slot />
@@ -18,5 +19,4 @@ const { pageId, locales, locale } = Astro.props
     <Footer />
     <Progress />
   </div>
-  <div id="menu-container"></div>
 </BaseLayout>

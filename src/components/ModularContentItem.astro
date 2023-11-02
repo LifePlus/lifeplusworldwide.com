@@ -38,6 +38,6 @@ const Block = components[component] || 'Fragment'
 
 {blockExists &&
 <BlockWrapper {...props}>
-  <Block content={props.content} />
+  <Block content={props.content} locale={props.locale} />
 </BlockWrapper>
 }

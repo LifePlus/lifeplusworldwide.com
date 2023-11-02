@@ -1,3 +1,5 @@
+import { slugBuilder } from "./datocms.mjs";
+
 export async function fetchVacancies() {
   return fetch(`${import.meta.env.VMS_URL || process.env.VMS_URL}/api/vacancies`, {
     method: 'post',
@@ -11,4 +13,16 @@ export async function fetchVacancies() {
       candidates: 'none',
     })
   }).then(res => res.json())
+}
+
+export function createSlug(str) {
+  return str
+    .toLowerCase() // Convert to lowercase
+    .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters with hyphens
+    .replace(/-+/g, '-') // Replace multiple consecutive hyphens with a single hyphen
+    .replace(/^-|-$/g, ''); // Remove leading and trailing hyphens
+}
+
+export function buildVacancySlug(vacancy, locale) {
+  return createSlug(`${vacancy.slug} ${locale}`)
 }
