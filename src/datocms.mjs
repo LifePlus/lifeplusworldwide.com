@@ -554,6 +554,8 @@ const pagesQuery = locale => `query PagesQuery {
         }
         content
         addShadow
+        alwaysShowInterestForm
+        formContent
       }
     }
     _seoMetaTags {
