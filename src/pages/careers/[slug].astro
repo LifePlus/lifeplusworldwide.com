@@ -66,12 +66,23 @@ const randomOpenings = countryOpenings.length === 0
   : countryOpenings
 
 const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))])}`
+const nameCountry = vacancy.display + `${vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''}`
+const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity.name}.`
 ---
 
 <BaseLayout locale={locale}>
   <Fragment slot="head">
-    <title>{vacancy.display} | Careers | LifePlus®</title>
-    <meta name="description" content="Some description goes here." />
+    <title>{nameCountry} | Careers | LifePlus®</title>
+    <meta name="description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={nameCountry} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:title" content={nameCountry} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.request.url} />
   </Fragment>
   <Fragment slog="footer">
     <script type="module" src="https://unpkg.com/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
@@ -88,7 +99,13 @@ const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.to
           <div class="grid lg:grid-cols-3" id="section-1">
             <div class="pt-10">
               <div class="w-1/2">
-                <img src={logo} alt={vacancy.entity?.name}>
+                {vacancy.entity?.website ?
+                  <a href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`} target="_blank">
+                    <img src={logo} alt={vacancy.entity?.name}>
+                    <span class="sr-only">{vacancy.entity.name} website</span>
+                  </a>
+                  : <img src={logo} alt={vacancy.entity?.name}>
+                }
               </div>
 
               <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mb-4 lg:mb-0">
