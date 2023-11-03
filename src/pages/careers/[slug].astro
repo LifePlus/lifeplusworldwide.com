@@ -101,7 +101,7 @@ const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.to
                 </a>
 
                 <div class="lg:border-t border-gray-300">
-                  <p class="font-medium text-sm py-2">Other openings in {vacancy.entity?.country}</p>
+                  <p class="font-medium text-sm py-2">Other openings{`${countryOpenings.length > 0 ? ` in ${vacancy.entity?.country}`: ''}`}</p>
                   <ul>
                     {randomOpenings.map(related => (
                       <li class="mb-5">
