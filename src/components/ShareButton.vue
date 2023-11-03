@@ -19,7 +19,7 @@
         </teleport>
       </div>
     </transition>
-    <RoundButton @click.prevent="show = !show" :solid="show">
+    <RoundButton @click.prevent="onButtonClick" :solid="show">
       <ShareIcon class="w-6 h-6 fill-current" />
     </RoundButton>
   </div>
@@ -64,6 +64,10 @@ export default {
 
   setup (props) {
     const show = ref(false)
+    const onButtonClick = () => {
+      window.fathom?.trackEvent(`share button clicked`)
+      show.value = !show.value
+    }
 
     return {
       platforms: platforms.map(platform => ({
@@ -71,6 +75,7 @@ export default {
         url: platform.url.replace('{url}', encodeURIComponent(props.url)) + `&utm_source=${platform.label}`
       })),
       show,
+      onButtonClick,
     }
   },
 }
