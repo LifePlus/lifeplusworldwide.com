@@ -59,9 +59,11 @@ const utmContent = `${vacancy.slug || ''} ${locale}`
   .toLowerCase() // Convert to lowercase
   .replace(/[^a-z0-9]+/g, '+') // Replace non-alphanumeric characters with +
 
-const countryOpenings = shuffle(vacancies).filter(v => v.entity?.country === vacancy.entity?.country)
+const countryOpenings = shuffle(vacancies).filter(v => v.entity?.country === vacancy.entity?.country && v.id !== vacancy.id)
   .splice(0, 3)
-const randomOpenings = countryOpenings.length === 0 ? shuffle(vacancies).splice(0, 3) : countryOpenings
+const randomOpenings = countryOpenings.length === 0
+  ? shuffle(vacancies.filter(v => v.id !== vacancy.id)).splice(0, 3)
+  : countryOpenings
 
 const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))])}`
 ---
