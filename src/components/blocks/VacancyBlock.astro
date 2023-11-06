@@ -34,7 +34,9 @@ let vacancies = await fetchVacancies()
 
 {(content.alwaysShowInterestForm || vacancies.length === 0) &&
 <>
-  {content.formContent && <div set:html={content.formContent} class={`prose lg:prose-lg mx-auto max-w-md md:w-3/4 mb-6 pt-12 px-4`}></div>}
+  <Container>
+    {content.formContent && <div set:html={content.formContent} class={`prose lg:prose-lg mx-auto max-w-md md:w-3/4 mb-6 pt-12`}></div>}
+  </Container>
   <iframe src="https://vacancies.lifepluslearning.com/interest?embed=1&recruitment_source_id=1" frameborder="0" class="border-none w-full min-h-[800px]" id="interest_form"></iframe>
 </>
 }
