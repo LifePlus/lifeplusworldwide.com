@@ -93,8 +93,8 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
   <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
     <TopNav currentId="tVaLASf5Qo6giokT7yeu8g" locale={locale} />
 
-    <main class="flex-1 relative z-0">
-      <div class="pb-10 bg-white shadow z-10 relative">
+    <main class="flex-1 relative">
+      <div class="pb-10 bg-white shadow">
         <Container>
           <div class="grid lg:grid-cols-3" id="section-1">
             <div class="pt-10">
@@ -117,7 +117,7 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
                   <span class="text-sm ms-4 font-medium">Back to careers</span>
                 </a>
 
-                <div class="lg:border-t border-gray-300">
+                <div class="lg:border-y border-gray-300">
                   <p class="font-medium text-sm py-2">Other openings{`${countryOpenings.length > 0 ? ` in ${vacancy.entity?.country}`: ''}`}</p>
                   <ul>
                     {randomOpenings.map(related => (
@@ -133,14 +133,7 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
                   </ul>
                 </div>
 
-                <div class="lg:border-t border-gray-300 text-end">
-                  <a href={`https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus+corporate&utm_content=${utmContent}+sidebar&source_event_id=1`} target="_blank" class="group inline-flex items-center text-brand-primary group mt-4">
-                    <span class="text-sm me-4 font-medium">Apply now</span>
-                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition group-hover:scale-110">
-                      <ion-icon class="w-4 h-4 text-white" name="open-outline"></ion-icon>
-                    </span>
-                  </a>
-                </div>
+
               </div>
             </div>
 
@@ -148,19 +141,19 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
               <img src={featured} alt={vacancy.entity?.name} class="block w-full">
 
               <div class="mt-6">
-                <h1 class="border-t font-bold border-gray-300 py-1.5 text-3xl md:text-4xl">
-                  {vacancy.display}
-                </h1>
-                <p class="border-y border-gray-300 pt-1.5 pb-5 text-3xl md:text-4xl">
+                <p class="border-t font-bold border-gray-300 py-1.5 text-3xl md:text-4xl">
                   {vacancy.entity?.name}{vacancy.entity?.country ? `, ${vacancy.entity?.country}` : ''}
                 </p>
+                <h1 class="border-y border-gray-300 pt-1.5 pb-5 text-3xl md:text-4xl">
+                  {vacancy.display}
+                </h1>
               </div>
 
               <div class="pt-12 pb-12 md:pb-24 relative">
                 <div class="prose prose-lg max-w-none" set:html={vacancy.job_code?.job_summary || '<p><strong>We are LifePlus, a company of world-class educators.</strong> We inspire learners of all ages to go and make a life-changing difference for the common good. As a global community, we are deeply committed to the people and cultures we serve as we deliver holistic educational services that grow servant leaders of outstanding character, competence and calling—for generations to come.</p>'}></div>
 
                 <div class="hidden lg:block absolute right-0 bottom-0">
-                  <div class="px-4 text-brand-primary text-sm font-medium text-center">
+                  <div class="text-brand-primary text-sm font-medium text-center">
                     <div class="mb-2">Share</div>
                     <ShareButton client:idle url={`${Astro.request.url}?utm_content=footer+share&utm_medium=desktop`} />
                   </div>
@@ -170,18 +163,6 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
               <section class="block-link_columns relative pb-12 text-black">
                 <h2 class="text-sm font-medium pb-10">Your next step</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
-                  <div class="border-b border-gray-300">
-                    <a href={`${vacancy.entity?.website || '/schools'}?utm_source=lifeplus+careers&utm_content=learn+more+footer`} target="_blank" class="flex justify-between items-center group border-y border-gray-300">
-                      <h4 class="text-2xl md:text-4xl leading-[2.5rem] md:leading-[3rem] text-brand-primary">Learn more</h4>
-                      <span>
-                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
-                        </div>
-                      </span>
-                    </a>
-                    <div class="text-lg md:text-2xl pt-1 pb-4 md:pb-6">Learn more about {vacancy.entity?.name}.</div>
-                  </div>
                   <div class="border-b border-gray-300">
                     <a href={`https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${utmContent}+footer&source_event_id=1`} target="_blank" class="flex justify-between items-center group border-y border-gray-300">
                       <h4 class="text-2xl md:text-4xl leading-[2.5rem] md:leading-[3rem] text-brand-primary">Apply</h4>
@@ -193,6 +174,18 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
                       </span>
                     </a>
                     <div class="text-lg md:text-2xl pt-1 pb-4 md:pb-6">Start your application today.</div>
+                  </div>
+                  <div class="border-b border-gray-300">
+                    <a href={`${vacancy.entity?.website || '/schools'}?utm_source=lifeplus+careers&utm_content=learn+more+footer`} target="_blank" class="flex justify-between items-center group border-y border-gray-300">
+                      <h4 class="text-2xl md:text-4xl leading-[2.5rem] md:leading-[3rem] text-brand-primary">Learn more</h4>
+                      <span>
+                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                        </div>
+                      </span>
+                    </a>
+                    <div class="text-lg md:text-2xl pt-1 pb-4 md:pb-6">Learn more about {vacancy.entity?.name}.</div>
                   </div>
                 </div>
               </section>
