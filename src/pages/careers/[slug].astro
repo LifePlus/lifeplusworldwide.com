@@ -67,7 +67,7 @@ const randomOpenings = countryOpenings.length === 0
 
 const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))])}`
 const nameCountry = vacancy.display + `${vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''}`
-const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity.name}.`
+const description = `Work as a ${nameCountry} with ${vacancy.entity.name} and LifePlus.`
 ---
 
 <BaseLayout locale={locale}>
@@ -94,7 +94,7 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
     <TopNav currentId="tVaLASf5Qo6giokT7yeu8g" locale={locale} />
 
     <main class="flex-1 relative">
-      <div class="pb-10 bg-white shadow">
+      <div class="bg-white shadow">
         <Container>
           <div class="grid lg:grid-cols-3" id="section-1">
             <div class="pt-10">
@@ -164,7 +164,7 @@ const description = `Work as a ${nameCountry} with LifePlus and ${vacancy.entity
                 <h2 class="text-sm font-medium pb-10">Your next step</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
                   <div class="border-b border-gray-300">
-                    <a href={`https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${utmContent}+footer&source_event_id=1`} target="_blank" class="flex justify-between items-center group border-y border-gray-300">
+                    <a href={`https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${utmContent}+footer&source_event_id=1`} onclick="fathom.trackEvent('apply clicked');" target="_blank" class="flex justify-between items-center group border-y border-gray-300">
                       <h4 class="text-2xl md:text-4xl leading-[2.5rem] md:leading-[3rem] text-brand-primary">Apply</h4>
                       <span>
                         <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
