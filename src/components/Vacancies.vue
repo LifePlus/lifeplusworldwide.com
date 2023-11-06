@@ -21,7 +21,7 @@ export default {
 
   setup (props) {
     const vacancies = ref([])
-    axios.get(`https://vacancies.lifepluslearning.com/api/public-vacancies?entity${props.id}`).then(res => {
+    axios.get(`https://vacancies.lifepluslearning.com/api/public-vacancies?entity=${props.id}`).then(res => {
       vacancies.value = res.data
     })
 
