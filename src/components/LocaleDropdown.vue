@@ -19,6 +19,7 @@
                 'border-white hover:border-black hover:text-brand-primary': locale !== currentLocale,
               }"
             >
+              {{ getLabel(locale) }}
             </a>
           </li>
         </ul>

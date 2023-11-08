@@ -1,5 +1,3 @@
-import { slugBuilder } from "./datocms.mjs";
-
 export async function fetchVacancies(body = {
   visibility: 'public',
   candidates: 'none',
@@ -24,5 +22,6 @@ export function createSlug(str) {
 }
 
 export function buildVacancySlug(vacancy, locale) {
-  return createSlug(`${vacancy.slug} ${locale}`)
+  const prefix = locale === 'en' ? '' : `/${locale}`
+  return prefix + '/careers/' + vacancy.slug
 }

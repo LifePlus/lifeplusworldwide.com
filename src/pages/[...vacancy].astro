@@ -1,34 +1,37 @@
 ---
 import shuffle from 'just-shuffle'
-import { fetchVacancies, buildVacancySlug } from '../../vacancies.mjs'
-import { fetchLocales, setCurrentLocale } from '../../datocms.mjs'
+import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs'
+import { fetchLocales, setCurrentLocale } from '../datocms.mjs'
 import random from 'just-random'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import TopNav from '../../components/TopNav.astro'
-import Footer from '../../components/Footer.astro'
-import Progress from '../../components/Progress.astro'
-import Container from '../../components/Container.vue'
-import ShareButton from '../../components/ShareButton.vue'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import TopNav from '../components/TopNav.astro'
+import Footer from '../components/Footer.astro'
+import Progress from '../components/Progress.astro'
+import Container from '../components/Container.vue'
+import ShareButton from '../components/ShareButton.vue'
+const locales = await fetchLocales()
 
 export async function getStaticPaths() {
   const locales = await fetchLocales()
-  const vacancies = await fetchVacancies()
+  const publicVacancies = await fetchVacancies()
+  const externalVacancies = await fetchVacancies({ visibility: 'external' })
+  const vacancyMapper = (vacancy, locale = '') => ({
+    params: {
+      vacancy: buildVacancySlug(vacancy, locale),
+    },
+    props: {
+      vacancy,
+      locale: locale || 'en',
+      vacancies: publicVacancies,
+    },
+  })
 
   return locales.reduce((pages, locale) => {
     return [
       ...pages,
-      ...vacancies.map(vacancy => ({
-        params: {
-          slug: buildVacancySlug(vacancy, locale),
-        },
-        props: {
-          vacancy,
-          locale,
-          vacancies,
-        },
-      })),
+      ...publicVacancies.map(v => vacancyMapper(v, locale)),
     ]
-  }, [])
+  }, externalVacancies.map(v => vacancyMapper(v)))
 }
 
 const { vacancy, locale, vacancies } = Astro.props
