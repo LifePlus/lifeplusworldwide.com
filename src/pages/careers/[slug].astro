@@ -10,7 +10,6 @@ import Progress from '../../components/Progress.astro'
 import Container from '../../components/Container.vue'
 import ShareButton from '../../components/ShareButton.vue'
 
-
 export async function getStaticPaths() {
   const locales = await fetchLocales()
   const vacancies = await fetchVacancies()

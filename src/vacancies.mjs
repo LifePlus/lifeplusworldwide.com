@@ -1,6 +1,9 @@
 import { slugBuilder } from "./datocms.mjs";
 
-export async function fetchVacancies() {
+export async function fetchVacancies(body = {
+  visibility: 'public',
+  candidates: 'none',
+}) {
   return fetch(`${import.meta.env.VMS_URL || process.env.VMS_URL}/api/vacancies`, {
     method: 'post',
     headers: {
@@ -8,10 +11,7 @@ export async function fetchVacancies() {
       'Accept': 'application/json',
       'Authorization': `Bearer ${import.meta.env.VMS_TOKEN || process.env.VMS_TOKEN}`,
     },
-    body: JSON.stringify({
-      visibility: 'public',
-      candidates: 'none',
-    })
+    body: JSON.stringify(body)
   }).then(res => res.json())
 }
 
