@@ -4,4 +4,4 @@ Disallow: /academy-raising-boys/
 User-agent: *
 Allow: /
 
-Sitemap: https://lifeplusworldwide.com/sitemap.xml
+Sitemap: https://lifeplusworldwide.com/sitemap-index.xml
