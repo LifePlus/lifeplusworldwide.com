@@ -1,0 +1,21 @@
+---
+import Container from '../Container.vue'
+import Faq from '../Faq.vue'
+import Image from '../Image.vue'
+import BlockTitle from '../BlockTitle.astro'
+const { content } = Astro.props
+---
+
+<div class="pt-12 pb-20">
+  <Container>
+    <BlockTitle content={content} />
+
+    <Faq client:idle questions={content.questions}>
+      {content.illustration &&
+        <div class="flex justify-end pt-20">
+          <Image client:load data={content.illustration.responsiveImage} />
+        </div>
+      }
+    </Faq>
+  </Container>
+</div>

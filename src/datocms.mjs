@@ -557,6 +557,49 @@ const pagesQuery = locale => `query PagesQuery {
         alwaysShowInterestForm
         formContent
       }
+      ... on FaqRecord {
+        id
+        _modelApiKey
+        title
+        titleColor {
+          hex
+        }
+        content
+        addShadow
+        questions {
+          id
+          question
+          answer
+        }
+        illustration {
+          alt
+          basename
+          blurUpThumb
+          blurhash
+          title
+          url
+          width
+          height
+          responsiveImage (
+            imgixParams: {
+              fm: png
+              w: 600
+            }
+          ) {
+            alt
+            aspectRatio
+            base64
+            height
+            width
+            sizes
+            srcSet
+            src
+            webpSrcSet
+            bgColor
+            title
+          }
+        }
+      }
     }
     _seoMetaTags {
       attributes
