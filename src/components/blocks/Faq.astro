@@ -10,6 +10,8 @@ const { content } = Astro.props
   <Container>
     <BlockTitle content={content} />
 
+    {content.content && <div class="prose lg:prose-lg max-w-none mb-8 lg:mb-12" set:html={content.content}></div>}
+
     <Faq client:idle questions={content.questions}>
       {content.illustration &&
         <div class="flex justify-end pt-20">
