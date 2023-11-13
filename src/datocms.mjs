@@ -90,6 +90,7 @@ const pagesQuery = locale => `query PagesQuery {
           content
           vacancyId
           contentSize
+          customLink
           readMoreLink {
             id
             title

@@ -2,6 +2,7 @@
 import { slugBuilder } from '../datocms.mjs'
 import ArrowRightIcon from './icons/ArrowRightIcon.vue'
 import ArrowLeftIcon from './icons/ArrowLeftIcon.vue'
+import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
 import Image from './Image.vue'
 import Vacancies from './Vacancies.vue'
 const { content, pad } = Astro.props
@@ -44,15 +45,21 @@ const sizes = {
         </div>
       }
 
-      {content.readMoreLink && !content.vacancyId &&
+      {(content.customLink || content.readMoreLink) && !content.vacancyId &&
         <div class="text-right">
-          <a href={slugBuilder(content.readMoreLink.slug)} class="group inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
+          <a href={content.customLink || slugBuilder(content.readMoreLink.slug)} target={content.customLink?.startsWith('http') ? '_blank' : '_self'} class="group inline-flex items-center text-sm font-medium space-x-2 text-brand-primary">
             <span>Learn more...</span>
 
-            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
-              <ArrowRightIcon class="w-4 h-4 rtl:hidden" />
-              <ArrowLeftIcon class="w-4 h-4 hidden rtl:block" />
-            </div>
+            {content.customLink?.startsWith('http') ?
+              <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:scale-110 duration-200">
+                <ExternalLinkIcon class="w-4 h-4" />
+              </div>
+              :
+              <div class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                <ArrowRightIcon class="w-4 h-4 rtl:hidden" />
+                <ArrowLeftIcon class="w-4 h-4 hidden rtl:block" />
+              </div>
+            }
           </a>
         </div>
       }
