@@ -12,11 +12,18 @@ const bgImage = content.backgroundImage
   ? `background-image: url("${content.backgroundImage.url}");`
   : ''
 const { locale } = Astro.params
+const sectionId = content.title
+  ? content.title
+    .toLowerCase() // Convert to lowercase
+    .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters with hyphens
+    .replace(/-+/g, '-') // Replace multiple consecutive hyphens with a single hyphen
+    .replace(/^-|-$/g, '') // Remove leading and trailing hyphens
+  : ``
 ---
 
 <section id={`section-${section}`} class={`relative ${content.addShadow ? 'shadow-md' : ''} ${content.backgroundImage ? 'text-white' : 'text-black'} bg-no-repeat bg-cover bg-center`} style={`z-index: ${index}; ${bgImage}`}>
   <div class="absolute inset-0 z-[1]" style={`background-color: rgba(${rgba.red}, ${rgba.green}, ${rgba.blue}, ${rgba.alpha})`}></div>
-  <div class="relative z-10">
+  <div id={sectionId} class="relative z-10">
     <slot />
   </div>
 </section>
