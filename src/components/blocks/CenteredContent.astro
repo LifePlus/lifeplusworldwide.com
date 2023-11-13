@@ -1,6 +1,8 @@
 ---
 import Container from '../Container.vue'
 import ExternalLinkIcon from '../icons/ExternalLinkIcon.vue'
+import ArrowRightIcon from '../icons/ArrowRightIcon.vue'
+import ArrowLeftIcon from '../icons/ArrowLeftIcon.vue'
 import BlockTitle from '../BlockTitle.astro'
 const { content } = Astro.props
 const textSize = {
@@ -8,6 +10,7 @@ const textSize = {
   normal: 'text-xl lg:text-2xl',
   large: 'text-2xl lg:text-4xl lg:leading-[48px] text-brand-base',
 }
+const externalLink = content.actionUrl?.startsWith('http')
 // w-1/2
 // mb-4
 ---
@@ -24,10 +27,15 @@ const textSize = {
     <div class="max-w-[34rem] mx-auto py-12 lg:py-20">
       <div set:html={content.content} class={`${textSize[content.contentTextSize]} centered-content mb-12`}></div>
       {content.callToAction &&
-        <a target="_blank" href={content.actionUrl} class={`group inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
+        <a target={externalLink ? '_blank' : '_self'} href={content.actionUrl} class={`group inline-flex items-center space-x-4 lg:space-x-8 text-2xl lg:text-4xl font-bold`}>
           <span>{content.callToAction}</span>
-          <div class="flex-1 h-12 w-12 lg:w-16 lg:h-16 mx-auto flex items-center justify-center rounded-full bg-white text-brand-primary transition-transform group-hover:scale-110 duration-200">
-            <ExternalLinkIcon class="w-5 h-5 fill-current" />
+          <div class={`flex-1 h-12 w-12 lg:w-16 lg:h-16 mx-auto flex items-center justify-center rounded-full bg-white text-brand-primary transition-transform ${externalLink ? 'group-hover:scale-110' : 'group-hover:translate-x-2 rtl:group-hover:-translate-x-2'} duration-200`}>
+            {externalLink ?
+              <ExternalLinkIcon class="w-5 h-5 fill-current" />
+              :
+              <ArrowRightIcon class="w-5 h-5 rtl:hidden" />
+              <ArrowLeftIcon class="w-5 h-5 hidden rtl:block" />
+            }
           </div>
         </a>
       }
