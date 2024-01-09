@@ -1,6 +1,6 @@
 export async function fetchVacancies(body = {
   visibility: 'public',
-  candidates: ['none', 'unapproved'],
+  unfilled: true,
 }) {
   return fetch(`${import.meta.env.VMS_URL || process.env.VMS_URL}/api/vacancies`, {
     method: 'post',
