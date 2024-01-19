@@ -26,18 +26,39 @@ const year = (new Date()).getFullYear()
     <div class="flex justify-between">
       <div class="pt-6 pb-10 pr-4 flex flex-col justify-between">
         <div class="text-sm">
-          <p class="mb-2">LifePlus is a registered trademark and trading name of Management Technologies International &copy; {year}. All rights reserved.</p>
+          <p class="mb-2"><a href="/?utm_source=footer&utm_content=footer+trademark" class="font-medium focus:outline-none text-brand-primary hover:underline">LifePlus</a> is a registered trademark and trading name of Management Technologies International &copy; {year}. All rights reserved. US registered office: 37 Calumet Parkway, <span class="whitespace-nowrap">Suite F-103,</span> Newnan, Georgia 30263, USA</p>
           <div class="space-y-2 md:space-y-0 md:flex md:space-x-4 font-medium">
-            <div><a href="/privacy" class="text-brand-primary hover:underline">Privacy and cookies</a></div>
+            <div><a href="/careers?utm_source=footer" class="text-brand-primary hover:underline">Careers</a></div>
+            <div><a href="/privacy?utm_source=footer" class="text-brand-primary hover:underline">Privacy + cookies</a></div>
+          </div>
+          <div class="gap-x-2 flex items-center mt-3">
+            <a href="https://www.facebook.com/lifeplusworldwide" class="block text-brand-primary" target="_blank" rel="noopener">
+              <span class="sr-only">LifePlus Facebook page</span>
+              <ion-icon class="w-5 h-5" name="logo-facebook"></ion-icon>
+            </a>
+            <a href="https://www.instagram.com/lifeplusworldwide" class="block text-brand-primary" target="_blank" rel="noopener">
+              <span class="sr-only">LifePlus Instagram page</span>
+              <ion-icon class="w-5 h-5" name="logo-instagram"></ion-icon>
+            </a>
+            <a href="https://www.linkedin.com/company/lifeplusworldwide/" class="block text-brand-primary" target="_blank" rel="noopener">
+              <span class="sr-only">LifePlus LinkedIn page</span>
+              <ion-icon class="w-5 h-5" name="logo-linkedin"></ion-icon>
+            </a>
           </div>
         </div>
-        <div class="flex flex-col w-32 items-start md:hidden">
-          <img class="w-16 mb-2" src="/assets/cognia.png" alt="Cognia logo" />
+        <div class="flex flex-col w-32 mt-4 items-start md:hidden">
+          <a href="https://www.cognia.org/" target="_blank" rel="noopener">
+            <span class="sr-only">Cognia website</span>
+            <img class="w-16 mb-2" src="/assets/cognia.png" alt="Cognia logo" />
+          </a>
         </div>
       </div>
       <div class="flex relative">
         <div class="hidden md:flex md:flex-col pt-6 pb-10 pr-8 w-24 items-start">
-          <img class="w-full" src="/assets/cognia.png" alt="Cognia logo" />
+          <a href="https://www.cognia.org/" target="_blank" rel="noopener">
+            <span class="sr-only">Cognia website</span>
+            <img class="w-full" src="/assets/cognia.png" alt="Cognia logo" />
+          </a>
         </div>
         <div class="flex border-x border-gray-500 divide-x divide-gray-500">
           <div class="px-4 pt-6 pb-10 space-y-2 w-[6rem]">
