@@ -122,7 +122,7 @@ const description = `Work as a ${nameCountry} with ${vacancy.entity.name} and Li
                       <li class="mb-5">
                         <p class="text-sm">{related.entity?.name}</p>
                         <p class="text-lg font-medium">{related.display}</p>
-                        <a href={`/careers/${buildVacancySlug(related, locale)}`} class="group text-sm text-brand-primary font-medium inline-flex items-center">
+                        <a href={`${buildVacancySlug(related, locale)}?utm_content=other+openings`} class="group text-sm text-brand-primary font-medium inline-flex items-center">
                           <span>View</span>
                           <ion-icon class="w-4 h-4 ms-1.5 transition ltr:group-hover:translate-x-1 rtl:group-hover:-translate-x-1" name="arrow-forward-circle"></ion-icon>
                         </a>
