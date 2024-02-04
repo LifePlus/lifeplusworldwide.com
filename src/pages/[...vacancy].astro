@@ -69,7 +69,9 @@ const randomOpenings = countryOpenings.length === 0
 
 const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))])}`
 const nameCountry = vacancy.display + `${vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''}`
-const description = `Work as a ${nameCountry} with ${vacancy.entity.name} and LifePlus.`
+const description = vacancy.entity?.name
+  ? `Work as a ${nameCountry} with ${vacancy.entity?.name} and LifePlus.`
+  : `Work as a ${nameCountry} with LifePlus.`
 ---
 
 <BaseLayout locale={locale}>
