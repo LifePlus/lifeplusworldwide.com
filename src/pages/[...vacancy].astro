@@ -14,6 +14,7 @@ const locales = await fetchLocales()
 export async function getStaticPaths() {
   const locales = await fetchLocales()
   const publicVacancies = await fetchVacancies()
+  // External vacancies have pages to view, but aren't listed publicly
   const externalVacancies = await fetchVacancies({ visibility: 'external' })
   const vacancyMapper = (vacancy, locale = '') => ({
     params: {
