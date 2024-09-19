@@ -59,7 +59,9 @@ exports.handler = (event, context, callback) => {
           <p><strong>Question:</strong><br>${body.question}</p>
           <p><strong>Email:</strong><br>${body.email}</p>
           <p><strong>Phone:</strong><br>${body.phone || 'None provided'}</p>
-          <p><strong>Message:</strong><br>${body.message || 'None provided'}</p>`
+          <p><strong>Message:</strong><br>${body.message || 'None provided'}</p>
+          ${body.question === 'Student records request' ? `<p><strong>School:</strong> ${body.school || 'None provided'}</p>` : ''}
+          ${body.question === 'Student records request' ? `<p><strong>Years Attended:</strong> ${body.years || 'None provided'}</p>` : ''}`
       }),
       postmarkClient.sendEmail({
         from: 'notifications@lifeplusworldwide.com',

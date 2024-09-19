@@ -56,7 +56,7 @@
         <label class="font-medium" for="school">School Attended? <span class="text-red-600">*</span></label>
       </div>
       <div>
-        <select v-model="data.school" id="school" required class="border-gray-300 rounded w-full">
+        <select v-model="data.school" id="school" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
           <option disabled value="">Select a school</option>
           <option value="TIS">Tianjin International School</option>
           <option value="ISQ">International School of Qingdao</option>
@@ -72,7 +72,7 @@
         <label class="font-medium" for="years">Years Attended? <span class="text-red-600">*</span></label>
       </div>
       <div>
-        <select v-model="data.years" id="years" required class="border-gray-300 rounded w-full">
+        <select v-model="data.years" id="years" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
           <option disabled value="">Select how many years</option>
           <option value="1">1</option>
           <option value="2">2</option>
