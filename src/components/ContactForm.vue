@@ -51,6 +51,44 @@
         <AppInput v-model="data.name" id="name" placeholder="Jane Smith" required />
       </div>
     </div>
+    <div v-if="data.question === 'Student records request'">
+      <div class="mb-1">
+        <label class="font-medium" for="school">School Attended? <span class="text-red-600">*</span></label>
+      </div>
+      <div>
+        <select v-model="data.school" id="school" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
+          <option disabled value="">Select a school</option>
+          <option value="TIS">Tianjin International School</option>
+          <option value="ISQ">International School of Qingdao</option>
+          <option value="WYIS">Wuhan Yangtze International School</option>
+          <option value="CDIS">Chengdu International School</option>
+          <option value="YHIS">Yantai Huasheng International School</option>
+          <option value="TWS-RAK">The Wellspring Private School</option>
+        </select>
+      </div>
+    </div>
+    <div v-if="data.question === 'Student records request'">
+      <div class="mb-1">
+        <label class="font-medium" for="years">Years Attended? <span class="text-red-600">*</span></label>
+      </div>
+      <div>
+        <select v-model="data.years" id="years" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
+          <option disabled value="">Select how many years</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12+">12+</option>
+        </select>
+      </div>
+    </div>
     <div>
       <div class="mb-1">
         <label class="font-medium" for="email">Your email? <span class="text-red-600">*</span></label>
@@ -116,6 +154,8 @@ export default {
       email: '',
       phone: '',
       message: '',
+      school: '',
+      years: '',
     })
     const error = ref(false)
     const success = ref(false)
@@ -132,6 +172,8 @@ export default {
         data.name = ''
         data.email = ''
         data.phone = ''
+        data.school = ''
+        data.years = ''
       } catch (e) {
         error.value = true
       }
