@@ -15,29 +15,29 @@ const { content } = Astro.props
 <div class="w-full h-[24rem] md:h-[36rem] bg-brand-green" id="map-container">
 </div>
 
-<script is:inline src='https://www.bing.com/api/maps/mapcontrol?callback=mapIt' async defer></script>
+<script is:inline src='https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.js'></script>
+<link href="https://atlas.microsoft.com/sdk/javascript/mapcontrol/3/atlas.min.css" rel="stylesheet" />
 <script is:inline define:vars={{ key, content }}>
-window.mapIt = () => {
-  console.log('bing maps loaded')
-  const map = new Microsoft.Maps.Map('#map-container', {
-    credentials: key,
-    center: new Microsoft.Maps.Location(20, -5),
+  const map = new atlas.Map('map-container', {
+    authOptions: {
+      authType: 'subscriptionKey',
+      subscriptionKey: '1X4GubbJ5kSbrDyVia0aKKSqSpGzzn4veDwj00iVjxLSzVfZLpIqJQQJ99AIACYeBjFnB9SUAAAgAZMPnYzT',
+    },
+    center: [12, 20],
     zoom: 2,
-    showLocateMeButton: false,
-    showTrafficButton: false,
-    showMapTypeSelector: false,
-    showDashboard: false,
-    disableScrollWheelZoom: true,
-  });
-
-  content.pins.forEach(pin => {
-    map.entities.push(new Microsoft.Maps.Pushpin(
-      new Microsoft.Maps.Location(pin.coordinates.latitude, pin.coordinates.longitude),
-      {
-        color: pin.pinColor ? pin.pinColor.hex : '#E30613',
-        title: pin.showTitle && pin.title ? pin.title : ''
-      }
-    ))
+    scrollZoomInteraction: false,
   })
-}
+
+  map.events.add('ready', function () {
+    map.controls.add(new atlas.control.ZoomControl(), {
+      position: 'top-right'
+    })
+
+    content.pins.forEach(pin => {
+      map.markers.add(new atlas.HtmlMarker({
+        position: [pin.coordinates.longitude, pin.coordinates.latitude],
+        color: pin.pinColor ? pin.pinColor.hex : '#E30613',
+      }))
+    })
+  })
 </script>
