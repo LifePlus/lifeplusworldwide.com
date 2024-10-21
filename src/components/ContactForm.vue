@@ -53,12 +53,13 @@
     </div>
     <div v-if="data.question === 'Student records request'">
       <div class="mb-1">
-        <label class="font-medium" for="school">School Attended? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="school">School attended? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <select v-model="data.school" id="school" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
           <option disabled value="">Select a school</option>
           <option value="TIS">Tianjin International School</option>
+          <option value="ISW">International School of Wuxi</option>
           <option value="ISQ">International School of Qingdao</option>
           <option value="WYIS">Wuhan Yangtze International School</option>
           <option value="CDIS">Chengdu International School</option>
@@ -69,7 +70,7 @@
     </div>
     <div v-if="data.question === 'Student records request'">
       <div class="mb-1">
-        <label class="font-medium" for="years">Years Attended? <span class="text-red-600">*</span></label>
+        <label class="font-medium" for="years">Years attended? <span class="text-red-600">*</span></label>
       </div>
       <div>
         <select v-model="data.years" id="years" required class="border-gray-300 focus:ring-brand-turquoise focus:border-brand-turquoise focus:outline-none rounded-md text-lg w-full">
