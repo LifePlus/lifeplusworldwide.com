@@ -1,6 +1,6 @@
 ---
 import shuffle from 'just-shuffle'
-import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs'
+import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../vacancies.mjs'
 import { fetchLocales, setCurrentLocale } from '../datocms.mjs'
 import random from 'just-random'
 import BaseLayout from '../layouts/BaseLayout.astro'
@@ -10,6 +10,7 @@ import Progress from '../components/Progress.astro'
 import Container from '../components/Container.vue'
 import ShareButton from '../components/ShareButton.vue'
 const locales = await fetchLocales()
+import * as fs from 'fs';
 
 export async function getStaticPaths() {
   const locales = await fetchLocales()
@@ -35,8 +36,15 @@ export async function getStaticPaths() {
   }, externalVacancies.map(v => vacancyMapper(v)))
 }
 
+function logToFile(data, label = '') {
+  const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
+  fs.appendFileSync('./debug-log.txt', logData, 'utf-8');
+}
+
 const { vacancy, locale, vacancies } = Astro.props
+logToFile({ locale }, 'Initial Locale on Page Load for [...vacancy].astro');
 setCurrentLocale(locale)
+logToFile({ locale }, 'Locale After setCurrentLocale Call for [...vacancy].astro');
 const logos = {
   academy: 'academy.svg',
   cdis: 'cdis.svg',
@@ -61,6 +69,8 @@ const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] |
 const utmContent = `${vacancy.slug || ''} ${locale}`
   .toLowerCase() // Convert to lowercase
   .replace(/[^a-z0-9]+/g, '+') // Replace non-alphanumeric characters with +
+
+logToFile({utmContent});
 
 const countryOpenings = shuffle(vacancies).filter(v => v.entity?.country === vacancy.entity?.country && v.id !== vacancy.id)
   .splice(0, 3)
@@ -169,7 +179,7 @@ const description = vacancy.entity?.name
                 <h2 class="text-sm font-medium pb-10">Your next step</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2  gap-8">
                   <div class="border-b border-gray-300">
-                    <a href={`https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${utmContent}+footer&s=1&v=${vacancy.id}`} onclick="fathom.trackEvent('apply clicked');" target="_blank" class="flex justify-between items-center group border-y border-gray-300">
+                    <a href={buildApplyUrl(vacancy.id, locale, utmContent)} onclick="fathom.trackEvent('apply clicked');" target="_blank" class="flex justify-between items-center group border-y border-gray-300">
                       <h4 class="text-2xl md:text-4xl leading-[2.5rem] md:leading-[3rem] text-brand-primary">Apply</h4>
                       <span>
                         <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">

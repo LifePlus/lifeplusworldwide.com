@@ -26,3 +26,8 @@ export function buildVacancySlug(vacancy, locale) {
   const prefix = locale === 'en' ? '' : `/${locale}`
   return prefix + '/careers/' + vacancy.slug
 }
+
+export function buildApplyUrl(vacancyId, locale, utmContent) {
+  const prefix = locale === 'en' ? '' : `/${locale}`;
+  return `${prefix}/apply/${vacancyId}?utm_content=${encodeURIComponent(utmContent)}`;
+}

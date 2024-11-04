@@ -1,0 +1,209 @@
+---
+import random from 'just-random';
+import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../../vacancies.mjs';
+import { fetchLocales, setCurrentLocale } from '../../datocms.mjs';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TopNav from '../../components/TopNav.astro';
+import Footer from '../../components/Footer.astro';
+import Progress from '../../components/Progress.astro';
+import Container from '../../components/Container.vue';
+import * as fs from 'fs';
+
+function logToFile(data, label = '') {
+  const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
+  fs.appendFileSync('./debug-log.txt', logData, 'utf-8');
+}
+
+let { vacancy } = Astro.props;
+let locale = Astro.props.locale;
+logToFile({ locale }, 'Initial Locale on Page Load');
+setCurrentLocale(locale);
+logToFile({ locale }, 'Locale After setCurrentLocale Call');
+
+export async function getStaticPaths() {
+  const locales = await fetchLocales();
+  const publicVacancies = await fetchVacancies();
+  const externalVacancies = await fetchVacancies({ visibility: 'external' });
+
+  function logToFile(data, label = '') {
+    const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
+    fs.appendFileSync('./debug-log.txt', logData, 'utf-8');
+  }
+
+  const vacancyMapper = (vacancy, locale = 'en') => ({
+    params: {
+      ...(locale !== 'en' ? { locale } : {}),
+      vacancyId: vacancy.id.toString(),
+    },
+    props: {
+      vacancy,
+      locale: locale || 'en',
+    },
+  });
+
+  const paths = locales.flatMap((locale) => {
+    const mappedPublicVacancies = publicVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
+    const mappedExternalVacancies = externalVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
+    return [...mappedPublicVacancies, ...mappedExternalVacancies];
+  });
+
+  return paths;
+}
+
+const logos = {
+  academy: 'academy.svg',
+  cdis: 'cdis.svg',
+  isw: 'cdis.svg',
+  isq: 'isq.svg',
+  tis: 'tis.svg',
+  tws: 'tws.svg',
+  wyis: 'wyis.svg',
+  yhis: 'yhis.svg',
+};
+
+const photos = {
+  academy: ['lpoa-1.jpg', 'lpoa-2.jpg', 'lpoa-3.jpg'],
+  cdis: ['cdis-1.jpg', 'cdis-2.jpg', 'cdis-3.jpg'],
+  isw: ['isw-1.jpg', 'isw-2.jpg', 'isw-3.jpg'],
+  isq: ['isq-1.jpg', 'isq-2.jpg', 'isq-3.jpg'],
+  tis: ['tis-1.jpg', 'tis-2.jpg', 'tis-3.jpg'],
+  tws: ['tws-1.jpg', 'tws-2.jpg', 'tws-3.jpg'],
+  wyis: ['wyis-1.jpg', 'wyis-2.jpg', 'wyis-3.jpg'],
+  yhis: ['yhis-1.jpg', 'yhis-2.jpg', 'yhis-3.jpg'],
+};
+
+const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] || 'lpwl.svg'}`;
+const utmContent = `${vacancy.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
+const featured = `/assets/schools/${random(
+  photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))]
+)}`;
+const nameCountry = vacancy.display + (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : '');
+const description = vacancy.entity?.name
+  ? `Apply for ${nameCountry} at ${vacancy.entity?.name} and LifePlus.`
+  : `Apply for ${nameCountry} at LifePlus.`;
+
+const applicationUrlAmerican = `https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
+  utmContent
+)}&s=1&v=${vacancy.id}`;
+const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
+  utmContent
+)}&s=1&v=${vacancy.id}`;
+
+---
+
+<BaseLayout locale={locale}>
+  <Fragment slot="head">
+    <title>Apply for {nameCountry} | LifePlus® Careers</title>
+    <meta name="description" content="Select your passport nationality to proceed with your application." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`Apply for ${nameCountry}`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:title" content={`Apply for ${nameCountry}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.request.url} />
+    <link
+      sizes="16x16"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=16&amp;w=16"
+    />
+    <link
+      sizes="32x32"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=32&amp;w=32"
+    />
+    <link
+      sizes="96x96"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=96&amp;w=96"
+    />
+    <link
+      sizes="192x192"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=192&amp;w=192"
+    />
+  </Fragment>
+
+  <div id="menu-container"></div>
+  <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
+    <TopNav currentId="tVaLASf5Qo6giokT7yeu8k" locale={locale} />
+    <p> {locale} </p>
+    <p>URL: {buildApplyUrl(vacancy.id, locale, utmContent)}</p>
+
+    <main class="flex-1 relative">
+      <div class="bg-white shadow">
+        <Container>
+          <div class="grid lg:grid-cols-3" id="section-1">
+            <!-- Sidebar -->
+            <div class="pt-10">
+              <div class="w-1/2">
+                {vacancy.entity?.website ? (
+                  <a
+                    href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
+                    target="_blank"
+                  >
+                    <img src={logo} alt={vacancy.entity?.name} />
+                    <span class="sr-only">{vacancy.entity.name} website</span>
+                  </a>
+                ) : (
+                  <img src={logo} alt={vacancy.entity?.name} />
+                )}
+              </div>
+
+              <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mb-4 lg:mb-0">
+                <a
+                  href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
+                  class="group inline-flex items-center text-brand-primary group mb-4"
+                >
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                  </span>
+                  <span class="text-sm ms-4 font-medium">Back to vacancy</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
+
+              <div class="pt-12 pb-12 md:pb-24 relative">
+                <p class="mb-6">
+                  Please select your passport nationality to proceed with your application:
+                </p>
+                <div class="space-y-4 flex flex-col">
+                  <div class="mb-6">
+                    <a
+                      href={applicationUrlAmerican}
+                      target="_blank"
+                      class="px-6 py-3 bg-white border border-gray-300 text-black font-medium rounded-md hover:bg-brand-primary hover:text-white transition"
+                    >
+                      I have an American Passport
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      href={applicationUrlChinese}
+                      target="_blank"
+                      class="px-6 py-3 bg-white border border-gray-300 text-black font-medium rounded-md hover:bg-brand-primary hover:text-white transition""
+                    >
+                      I have a Chinese Passport
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
+    </main>
+    <Footer />
+    <Progress />
+  </div>
+</BaseLayout>
