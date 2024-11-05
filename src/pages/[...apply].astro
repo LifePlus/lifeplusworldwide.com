@@ -1,45 +1,36 @@
 ---
 import random from 'just-random';
-import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../../vacancies.mjs';
-import { fetchLocales, setCurrentLocale } from '../../datocms.mjs';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import TopNav from '../../components/TopNav.astro';
-import Footer from '../../components/Footer.astro';
-import Progress from '../../components/Progress.astro';
-import Container from '../../components/Container.vue';
-import * as fs from 'fs';
-
-function logToFile(data, label = '') {
-  const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
-  fs.appendFileSync('./debug-log.txt', logData, 'utf-8');
-}
+import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../vacancies.mjs';
+import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+import Progress from '../components/Progress.astro';
+import Container from '../components/Container.vue';
 
 let { vacancy } = Astro.props;
 let locale = Astro.props.locale;
-logToFile({ locale }, 'Initial Locale on Page Load');
 setCurrentLocale(locale);
-logToFile({ locale }, 'Locale After setCurrentLocale Call');
 
 export async function getStaticPaths() {
   const locales = await fetchLocales();
   const publicVacancies = await fetchVacancies();
   const externalVacancies = await fetchVacancies({ visibility: 'external' });
 
-  function logToFile(data, label = '') {
-    const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
-    fs.appendFileSync('./debug-log.txt', logData, 'utf-8');
-  }
+  const vacancyMapper = (vacancy, locale = '') => {
+    const prefix = locale === 'en' ? '' : `/${locale}`;
+    const applyUrl = `${prefix}/apply/${vacancy.id}`;
 
-  const vacancyMapper = (vacancy, locale = 'en') => ({
-    params: {
-      ...(locale !== 'en' ? { locale } : {}),
-      vacancyId: vacancy.id.toString(),
-    },
-    props: {
-      vacancy,
-      locale: locale || 'en',
-    },
-  });
+    return {
+      params: {
+        apply: applyUrl,
+      },
+      props: {
+        vacancy,
+        locale: locale || 'en',
+      },
+    };
+  };
 
   const paths = locales.flatMap((locale) => {
     const mappedPublicVacancies = publicVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
@@ -133,8 +124,6 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
   <div id="menu-container"></div>
   <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
     <TopNav currentId="tVaLASf5Qo6giokT7yeu8k" locale={locale} />
-    <p> {locale} </p>
-    <p>URL: {buildApplyUrl(vacancy.id, locale, utmContent)}</p>
 
     <main class="flex-1 relative">
       <div class="bg-white shadow">
