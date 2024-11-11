@@ -35,14 +35,8 @@ export async function getStaticPaths() {
   }, externalVacancies.map(v => vacancyMapper(v)))
 }
 
-function logToFile(data, label = '') {
-  const logData = `${label}: ${JSON.stringify(data, null, 2)}\n\n`;
-}
-
 const { vacancy, locale, vacancies } = Astro.props
-logToFile({ locale }, 'Initial Locale on Page Load for [...vacancy].astro');
 setCurrentLocale(locale)
-logToFile({ locale }, 'Locale After setCurrentLocale Call for [...vacancy].astro');
 const logos = {
   academy: 'academy.svg',
   cdis: 'cdis.svg',
@@ -67,8 +61,6 @@ const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] |
 const utmContent = `${vacancy.slug || ''} ${locale}`
   .toLowerCase() // Convert to lowercase
   .replace(/[^a-z0-9]+/g, '+') // Replace non-alphanumeric characters with +
-
-logToFile({utmContent});
 
 const countryOpenings = shuffle(vacancies).filter(v => v.entity?.country === vacancy.entity?.country && v.id !== vacancy.id)
   .splice(0, 3)
