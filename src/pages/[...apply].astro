@@ -1,4 +1,12 @@
---- import random from 'just-random'; import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs'; import { fetchLocales, setCurrentLocale } from '../datocms.mjs'; import BaseLayout from '../layouts/BaseLayout.astro'; import TopNav from '../components/TopNav.astro'; import Footer from '../components/Footer.astro'; import Progress from '../components/Progress.astro'; import Container from '../components/Container.vue';
+---
+import random from 'just-random';
+import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs';
+import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+import Progress from '../components/Progress.astro';
+import Container from '../components/Container.vue';
 
 let { vacancy } = Astro.props;
 let locale = Astro.props.locale;
