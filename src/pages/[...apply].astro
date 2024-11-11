@@ -1,6 +1,6 @@
 ---
 import random from 'just-random';
-import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../vacancies.mjs';
+import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs';
 import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TopNav from '../components/TopNav.astro';
@@ -32,13 +32,18 @@ export async function getStaticPaths() {
     };
   };
 
-  const paths = locales.flatMap((locale) => {
+  const vacancyPaths = locales.flatMap((locale) => {
     const mappedPublicVacancies = publicVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
     const mappedExternalVacancies = externalVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
     return [...mappedPublicVacancies, ...mappedExternalVacancies];
   });
 
-  return paths;
+  const applyPaths = locales.map((locale, vacancy) => ({
+    params: { apply: locale === 'en' ? '/apply' : `/${locale}/apply` },
+    props: { vacancy, locale },
+  }));
+
+  return [...applyPaths, ...vacancyPaths];
 }
 
 const logos = {
@@ -123,10 +128,10 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
 
   <div id="menu-container"></div>
   <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
-    <TopNav currentId="tVaLASf5Qo6giokT7yeu8k" locale={locale} />
+    <TopNav currentId="tVaLASf5Qo6giokT7yeu8g" locale={locale} />
 
-    <main class="flex-1 relative">
-      <div class="bg-white shadow">
+    <main class="flex-2 relative">
+      <div class="bg-white">
         <Container>
           <div class="grid lg:grid-cols-3" id="section-1">
             <!-- Sidebar -->
@@ -146,16 +151,29 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
               </div>
 
               <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mb-4 lg:mb-0">
+                {vacancy.entity?.website ? (
+                  <a
+                    href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
+                    class="group inline-flex items-center text-brand-primary group mb-4"
+                  >
+                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                      <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                      <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                    </span>
+                    <span class="text-sm ms-4 font-medium">Back to vacancy</span>
+                  </a>
+                ) : (
                 <a
-                  href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
-                  class="group inline-flex items-center text-brand-primary group mb-4"
-                >
-                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
-                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
-                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
-                  </span>
-                  <span class="text-sm ms-4 font-medium">Back to vacancy</span>
-                </a>
+                    href={`careers`}
+                    class="group inline-flex items-center text-brand-primary group mb-4"
+                  >
+                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                      <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                      <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                    </span>
+                    <span class="text-sm ms-4 font-medium">Back to vacancies</span>
+                  </a>
+                )}
               </div>
             </div>
 
@@ -163,26 +181,53 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
             <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
 
               <div class="pt-12 pb-12 md:pb-24 relative">
-                <p class="mb-6">
+                <p class="mb-8 text-lg md:text-2xl">
                   Please select your passport nationality to proceed with your application:
                 </p>
-                <div class="space-y-4 flex flex-col">
-                  <div class="mb-6">
+                <div class="space-y-8 flex flex-col">
+                  <div>
                     <a
                       href={applicationUrlAmerican}
                       target="_blank"
-                      class="px-6 py-3 bg-white border border-gray-300 text-black font-medium rounded-md hover:bg-brand-primary hover:text-white transition"
+                      class="flex items-center group text-brand-primary"
                     >
-                      I have an American Passport
+                      <p class="mr-4 text-sm font-medium">I have an American Passport</p>
+                      <span>
+                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                        </div>
+                      </span>
                     </a>
                   </div>
                   <div>
                     <a
                       href={applicationUrlChinese}
                       target="_blank"
-                      class="px-6 py-3 bg-white border border-gray-300 text-black font-medium rounded-md hover:bg-brand-primary hover:text-white transition""
+                      class="flex items-center group text-brand-primary"
                     >
-                      I have a Chinese Passport
+                      <p class="mr-4 text-sm font-medium">I have a Chinese Passport</p>
+                      <span>
+                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                        </div>
+                      </span>
+                    </a>
+                  </div>
+                  <div>
+                    <a
+                      href={applicationUrlAmerican}
+                      target="_blank"
+                      class="flex items-center group text-brand-primary"
+                    >
+                      <p class="mr-4 text-sm font-medium">Other Passport</p>
+                      <span>
+                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                        </div>
+                      </span>
                     </a>
                   </div>
                 </div>
