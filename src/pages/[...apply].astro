@@ -1,12 +1,4 @@
----
-import random from 'just-random';
-import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs';
-import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import TopNav from '../components/TopNav.astro';
-import Footer from '../components/Footer.astro';
-import Progress from '../components/Progress.astro';
-import Container from '../components/Container.vue';
+--- import random from 'just-random'; import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs'; import { fetchLocales, setCurrentLocale } from '../datocms.mjs'; import BaseLayout from '../layouts/BaseLayout.astro'; import TopNav from '../components/TopNav.astro'; import Footer from '../components/Footer.astro'; import Progress from '../components/Progress.astro'; import Container from '../components/Container.vue';
 
 let { vacancy } = Astro.props;
 let locale = Astro.props.locale;
@@ -130,112 +122,110 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
   <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
     <TopNav currentId="tVaLASf5Qo6giokT7yeu8g" locale={locale} />
 
-    <main class="flex-2 relative">
-      <div class="bg-white">
-        <Container>
-          <div class="grid lg:grid-cols-3" id="section-1">
-            <!-- Sidebar -->
-            <div class="pt-10">
-              <div class="w-1/2">
-                {vacancy.entity?.website ? (
-                  <a
-                    href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
-                    target="_blank"
-                  >
-                    <img src={logo} alt={vacancy.entity?.name} />
-                    <span class="sr-only">{vacancy.entity.name} website</span>
-                  </a>
-                ) : (
-                  <img src={logo} alt={vacancy.entity?.name} />
-                )}
-              </div>
-
-              <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mb-4 lg:mb-0">
-                {vacancy.entity?.website ? (
-                  <a
-                    href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
-                    class="group inline-flex items-center text-brand-primary group mb-4"
-                  >
-                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
-                      <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
-                      <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
-                    </span>
-                    <span class="text-sm ms-4 font-medium">Back to vacancy</span>
-                  </a>
-                ) : (
+    <main class="flex-1 relative bg-white flex">
+      <Container class="flex">
+        <div class="grid lg:grid-cols-3" id="section-1">
+          <!-- Sidebar -->
+          <div class="pt-10">
+            <div class="w-1/2">
+              {vacancy.entity?.website ? (
                 <a
-                    href={`careers`}
-                    class="group inline-flex items-center text-brand-primary group mb-4"
-                  >
-                    <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
-                      <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
-                      <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
-                    </span>
-                    <span class="text-sm ms-4 font-medium">Back to vacancies</span>
-                  </a>
-                )}
-              </div>
+                  href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
+                  target="_blank"
+                >
+                  <img src={logo} alt={vacancy.entity?.name} />
+                  <span class="sr-only">{vacancy.entity.name} website</span>
+                </a>
+              ) : (
+                <img src={logo} alt={vacancy.entity?.name} />
+              )}
             </div>
 
-            <!-- Main Content -->
-            <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
+            <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mt-4 mb-4 lg:mb-0">
+              {vacancy.entity?.website ? (
+                <a
+                  href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
+                  class="group inline-flex items-center text-brand-primary group mb-4"
+                >
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                  </span>
+                  <span class="text-sm ms-4 font-medium">Back to vacancy</span>
+                </a>
+              ) : (
+              <a
+                  href={`careers`}
+                  class="group inline-flex items-center text-brand-primary group mb-4"
+                >
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                  </span>
+                  <span class="text-sm ms-4 font-medium">Back to vacancies</span>
+                </a>
+              )}
+            </div>
+          </div>
 
-              <div class="pt-12 pb-12 md:pb-24 relative">
-                <p class="mb-8 text-lg md:text-2xl">
-                  Please select your passport nationality to proceed with your application:
-                </p>
-                <div class="space-y-8 flex flex-col">
-                  <div>
-                    <a
-                      href={applicationUrlAmerican}
-                      target="_blank"
-                      class="flex items-center group text-brand-primary"
-                    >
-                      <p class="mr-4 text-sm font-medium">I have an American Passport</p>
-                      <span>
-                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
-                        </div>
-                      </span>
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      href={applicationUrlChinese}
-                      target="_blank"
-                      class="flex items-center group text-brand-primary"
-                    >
-                      <p class="mr-4 text-sm font-medium">I have a Chinese Passport</p>
-                      <span>
-                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
-                        </div>
-                      </span>
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      href={applicationUrlAmerican}
-                      target="_blank"
-                      class="flex items-center group text-brand-primary"
-                    >
-                      <p class="mr-4 text-sm font-medium">Other Passport</p>
-                      <span>
-                        <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
-                          <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
-                        </div>
-                      </span>
-                    </a>
-                  </div>
+          <!-- Main Content -->
+          <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
+
+            <div class="pt-12 pb-12 md:pb-24 relative">
+              <p class="mb-8 text-lg md:text-2xl">
+                Please select your passport nationality to proceed with your application:
+              </p>
+              <div class="space-y-8 flex flex-col">
+                <div>
+                  <a
+                    href={applicationUrlAmerican}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">I have an American Passport</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href={applicationUrlChinese}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">I have a Chinese Passport</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href={applicationUrlAmerican}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">Other Passport</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </Container>
     </main>
     <Footer />
     <Progress />
