@@ -15,6 +15,7 @@ import ReferralForm from './blocks/ReferralForm.astro'
 import Map from './blocks/Map.astro'
 import VacancyBlock from './blocks/VacancyBlock.astro'
 import Faq from './blocks/Faq.astro'
+import FullWidthVideoEmbed from './blocks/FullWidthVideoEmbed.astro'
 
 const components = {
   Masthead,
@@ -31,6 +32,7 @@ const components = {
   Map,
   VacancyBlock,
   Faq,
+  FullWidthVideoEmbed,
 }
 const props = Astro.props
 const component = pascalCase(props.content._modelApiKey || '')

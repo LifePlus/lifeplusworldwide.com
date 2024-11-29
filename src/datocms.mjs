@@ -593,6 +593,11 @@ const pagesQuery = locale => `query PagesQuery {
           }
         }
       }
+      ... on FullWidthVideoEmbedRecord {
+        id
+        _modelApiKey
+        videoEmbed
+      }
     }
     _seoMetaTags {
       attributes
