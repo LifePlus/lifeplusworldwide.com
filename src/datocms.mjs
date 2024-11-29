@@ -1,5 +1,14 @@
 const pagesQuery = locale => `query PagesQuery {
-  allPages(locale: ${locale}, fallbackLocales: [en]) {
+  _site {
+    faviconMetaTags {
+      tag
+      attributes
+    }
+  }
+  allPages(
+    locale: ${locale}
+    fallbackLocales: [en]
+  ) {
     id
     slug
     title
@@ -31,12 +40,7 @@ const pagesQuery = locale => `query PagesQuery {
           blurhash
           title
           url
-          responsiveImage (
-            imgixParams: {
-              fm: png
-              w: 600
-            }
-          ) {
+          responsiveImage(imgixParams: {fm: png, w: 600}) {
             alt
             aspectRatio
             base64
@@ -70,6 +74,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -105,14 +110,7 @@ const pagesQuery = locale => `query PagesQuery {
             url
             width
             height
-            responsiveImage (
-              imgixParams: {
-                fit: crop
-                crop: focalpoint
-                h: 414
-                w: 736
-              }
-            ) {
+            responsiveImage(imgixParams: {fit: crop, crop: focalpoint, h: 414, w: 736}) {
               alt
               aspectRatio
               base64
@@ -133,11 +131,7 @@ const pagesQuery = locale => `query PagesQuery {
             blurhash
             title
             url
-            responsiveImage (
-              imgixParams: {
-                w: 300
-              }
-            ) {
+            responsiveImage(imgixParams: {w: 300}) {
               alt
               aspectRatio
               base64
@@ -175,6 +169,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -189,6 +184,13 @@ const pagesQuery = locale => `query PagesQuery {
             webpSrcSet
             bgColor
             title
+          }
+          video {
+            streamingUrl
+            mp4Url
+            blurhash
+            blurUpThumb
+            thumbnailUrl(format: jpg)
           }
         }
       }
@@ -213,9 +215,7 @@ const pagesQuery = locale => `query PagesQuery {
           url
           width
           height
-          responsiveImage (imgixParams: {
-            w: 220
-          }) {
+          responsiveImage(imgixParams: {w: 220}) {
             alt
             aspectRatio
             base64
@@ -299,7 +299,7 @@ const pagesQuery = locale => `query PagesQuery {
           url
           width
           height
-          responsiveImage (imgixParams: { h: 260 }) {
+          responsiveImage(imgixParams: {h: 260}) {
             alt
             aspectRatio
             base64
@@ -343,14 +343,7 @@ const pagesQuery = locale => `query PagesQuery {
             url
             width
             height
-            responsiveImage (
-              imgixParams: {
-                fit: crop
-                crop: focalpoint
-                h: 230
-                w: 263
-              }
-            ) {
+            responsiveImage(imgixParams: {fit: crop, crop: focalpoint, h: 230, w: 263}) {
               alt
               aspectRatio
               base64
@@ -377,6 +370,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -417,6 +411,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -457,6 +452,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -498,6 +494,7 @@ const pagesQuery = locale => `query PagesQuery {
         backgroundImage {
           alt
           basename
+          mimeType
           blurUpThumb
           blurhash
           title
@@ -525,7 +522,7 @@ const pagesQuery = locale => `query PagesQuery {
           green
           blue
         }
-        center{
+        center {
           latitude
           longitude
         }
@@ -581,12 +578,7 @@ const pagesQuery = locale => `query PagesQuery {
           url
           width
           height
-          responsiveImage (
-            imgixParams: {
-              fm: png
-              w: 600
-            }
-          ) {
+          responsiveImage(imgixParams: {fm: png, w: 600}) {
             alt
             aspectRatio
             base64
@@ -606,12 +598,6 @@ const pagesQuery = locale => `query PagesQuery {
       attributes
       content
       tag
-    }
-  }
-  _site {
-    faviconMetaTags {
-      tag
-      attributes
     }
   }
 }`
@@ -694,12 +680,12 @@ const makeRequest = async query => {
   }).then(res => res.json())
 }
 
-export function fetchPages (locale = 'en') {
+export function fetchPages(locale = 'en') {
   return makeRequest(pagesQuery(locale))
 }
 
 let menuCache = {}
-export async function fetchMenu (locale) {
+export async function fetchMenu(locale) {
   if (menuCache[locale]) {
     return menuCache[locale]
   }
@@ -708,7 +694,7 @@ export async function fetchMenu (locale) {
 }
 
 let menuItemsCache = {}
-export async function fetchMenuItems (locale) {
+export async function fetchMenuItems(locale) {
   if (menuItemsCache[locale]) {
     return menuItemsCache[locale]
   }
@@ -717,7 +703,7 @@ export async function fetchMenuItems (locale) {
 }
 
 export let locales = []
-export async function fetchLocales () {
+export async function fetchLocales() {
   if (locales.length) {
     return locales
   }
@@ -733,11 +719,11 @@ export async function fetchLocales () {
 }
 
 export let currentLocale = null
-export function setCurrentLocale (locale) {
+export function setCurrentLocale(locale) {
   currentLocale = locale
 }
 
-export function slugBuilder (slug, locale) {
+export function slugBuilder(slug, locale) {
   locale = locale ?? currentLocale
   const prefix = locale === 'en' ? '' : `/${locale}`
   const path = prefix + '/' + (slug === 'home' ? '' : slug)
