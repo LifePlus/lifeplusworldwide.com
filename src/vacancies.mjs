@@ -13,6 +13,21 @@ export async function fetchVacancies(body = {
   }).then(res => res.json())
 }
 
+export async function fetchPublicVacancies(body = {
+  visibility: ['public'],
+  unfilled: true,
+}) {
+  return fetch(`${import.meta.env.VMS_URL || process.env.VMS_URL}/api/vacancies`, {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': `Bearer ${import.meta.env.VMS_TOKEN || process.env.VMS_TOKEN}`,
+    },
+    body: JSON.stringify(body)
+  }).then(res => res.json())
+}
+
 export function createSlug(str) {
   return str
     .toLowerCase() // Convert to lowercase

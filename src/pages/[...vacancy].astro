@@ -1,6 +1,6 @@
 ---
 import shuffle from 'just-shuffle'
-import { fetchVacancies, buildVacancySlug, buildApplyUrl } from '../vacancies.mjs'
+import { fetchPublicVacancies, buildVacancySlug, buildApplyUrl } from '../vacancies.mjs'
 import { fetchLocales, setCurrentLocale } from '../datocms.mjs'
 import random from 'just-random'
 import BaseLayout from '../layouts/BaseLayout.astro'
@@ -13,9 +13,9 @@ const locales = await fetchLocales()
 
 export async function getStaticPaths() {
   const locales = await fetchLocales()
-  const publicVacancies = await fetchVacancies()
+  const publicVacancies = await fetchPublicVacancies()
   // External vacancies have pages to view, but aren't listed publicly
-  const externalVacancies = await fetchVacancies({ visibility: 'external' })
+  const externalVacancies = await fetchPublicVacancies({ visibility: 'external' })
   const vacancyMapper = (vacancy, locale = '') => ({
     params: {
       vacancy: buildVacancySlug(vacancy, locale),
