@@ -1,6 +1,6 @@
 ---
 import random from 'just-random';
-import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs';
+import { fetchPublicVacancies, buildVacancySlug } from '../vacancies.mjs';
 import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TopNav from '../components/TopNav.astro';
@@ -14,8 +14,8 @@ setCurrentLocale(locale);
 
 export async function getStaticPaths() {
   const locales = await fetchLocales();
-  const publicVacancies = await fetchVacancies();
-  const externalVacancies = await fetchVacancies({ visibility: 'external' });
+  const publicVacancies = await fetchPublicVacancies();
+  const externalVacancies = await fetchPublicVacancies({ visibility: 'external' });
 
   const vacancyMapper = (vacancy, locale = '') => {
     const prefix = locale === 'en' ? '' : `/${locale}`;
