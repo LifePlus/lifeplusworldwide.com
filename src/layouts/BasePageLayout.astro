@@ -1,18 +1,10 @@
 ---
-import { fetchMenuItems } from '../datocms.mjs'
-import get from 'just-safe-get'
 import BaseLayout from './BaseLayout.astro'
 import TopNav from '../components/TopNav.astro'
 import Footer from '../components/Footer.astro'
 import Progress from '../components/Progress.astro'
 const { pageId, locales, locale } = Astro.props
 
-const menuItemData = await fetchMenuItems(locale)
-const allMenuItems = get(menuItemData, 'data.allMenuItems', [])
-const slugFromId = (id) => {
-  const menuItem = allMenuItems.find(item => item.page?.id === id);
-  return menuItem?.label || '';
-};
 
 ---
 
@@ -23,11 +15,6 @@ const slugFromId = (id) => {
   <div id="menu-container"></div>
   <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between" data-page-id={pageId}>
     <TopNav currentId={pageId} locale={locale} />
-    <div class="bg-brand-primary text-white">
-      {slugFromId(pageId) === 'Contact' && (
-        <h1 class="m-5 font-medium text-center">Our LifePlus schools and offices will be closed from December 21 to January 5. We’ll read and respond to all messages from January 6. In the meantime, Merry Christmas and Happy New Year!</h1>
-      )}
-    </div>
     <main class="flex-1 relative z-0">
       <slot />
     </main>
