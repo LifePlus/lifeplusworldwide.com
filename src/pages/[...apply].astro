@@ -16,11 +16,11 @@ setCurrentLocale(locale);
 export async function getStaticPaths() {
   const locales = await fetchLocales();
   const publicVacancies = await fetchPublicVacancies();
-  const externalVacancies = await fetchPublicVacancies({ visibility: 'external' });
+  const externalVacancies = await fetchPublicVacancies({ visibility: 'external', unfilled: true })
 
   const vacancyMapper = (vacancy, locale = '') => {
     const prefix = locale === 'en' ? '' : `/${locale}`;
-    const applyUrl = `${prefix}/apply/${vacancy.id}`;
+    const applyUrl = `${prefix}/apply/${vacancy.slug}`;
 
     return {
       params: {
