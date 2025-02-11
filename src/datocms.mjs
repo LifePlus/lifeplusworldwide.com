@@ -677,7 +677,7 @@ const itemsQuery = locale => `query AllMenuQuery {
 
 const uploadsQuery = `query UploadsQuery {
   allUploads(
-    filter: {tags: {anyIn: ["academy", "cdis", "isq", "tis", "tws", "wyis", "yhis", "corp"]}}
+    filter: {tags: {anyIn: ["academy", "cdis", "isq", "tis", "twps", "wyis", "yhis", "corp"]}}
   ) {
     id
     tags
