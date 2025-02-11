@@ -1,15 +1,15 @@
 ---
 import shuffle from 'just-shuffle'
 import { fetchVacancies, buildVacancySlug } from '../vacancies.mjs'
-import { fetchLocales, setCurrentLocale } from '../datocms.mjs'
-import random from 'just-random'
+import { fetchLocales, setCurrentLocale, fetchUploads, getRandomImage } from '../datocms.mjs'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import TopNav from '../components/TopNav.astro'
 import Footer from '../components/Footer.astro'
 import Progress from '../components/Progress.astro'
 import Container from '../components/Container.vue'
 import ShareButton from '../components/ShareButton.vue'
-const locales = await fetchLocales()
+import Image from '../components/Image.vue'
+await fetchUploads()
 
 export async function getStaticPaths() {
   const locales = await fetchLocales()
@@ -47,16 +47,7 @@ const logos = {
   wyis: 'wyis.svg',
   yhis: 'yhis.svg',
 }
-const photos = {
-  academy: ['lpoa-1.jpg', 'lpoa-2.jpg', 'lpoa-3.jpg'],
-  cdis: ['cdis-1.jpg', 'cdis-2.jpg', 'cdis-3.jpg'],
-  isw: ['isw-1.jpg', 'isw-2.jpg', 'isw-3.jpg'],
-  isq: ['isq-1.jpg', 'isq-2.jpg', 'isq-3.jpg'],
-  tis: ['tis-1.jpg', 'tis-2.jpg', 'tis-3.jpg'],
-  tws: ['tws-1.jpg', 'tws-2.jpg', 'tws-3.jpg'],
-  wyis: ['wyis-1.jpg', 'wyis-2.jpg', 'wyis-3.jpg'],
-  yhis: ['yhis-1.jpg', 'yhis-2.jpg', 'yhis-3.jpg'],
-}
+
 const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] || 'lpwl.svg'}`
 const utmContent = `${vacancy.slug || ''} ${locale}`
   .toLowerCase() // Convert to lowercase
@@ -68,7 +59,7 @@ const randomOpenings = countryOpenings.length === 0
   ? shuffle(vacancies.filter(v => v.id !== vacancy.id)).splice(0, 3)
   : countryOpenings
 
-const featured = `/assets/schools/${random(photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))])}`
+const featured = getRandomImage(vacancy.entity?.short_name?.toLowerCase())
 const nameCountry = vacancy.display + `${vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''}`
 const description = vacancy.entity?.name
   ? `Work as a ${nameCountry} with ${vacancy.entity?.name} and LifePlus.`
@@ -82,8 +73,8 @@ const description = vacancy.entity?.name
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={nameCountry} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={Astro.site + featured.substring(1)} />
-    <meta property="og:image" content={Astro.site + featured.substring(1)} />
+    <meta name="twitter:image" content={featured.responsiveImage.src} />
+    <meta property="og:image" content={featured.responsiveImage.src} />
     <meta property="og:title" content={nameCountry} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -143,7 +134,7 @@ const description = vacancy.entity?.name
             </div>
 
             <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
-              <img src={featured} alt={vacancy.entity?.name} class="block w-full">
+              <Image client:load data={featured.responsiveImage} />
 
               <div class="mt-6">
                 <p class="border-t font-bold border-gray-300 py-1.5 text-3xl md:text-4xl">

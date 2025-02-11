@@ -1,3 +1,5 @@
+import random from 'just-random'
+
 const pagesQuery = locale => `query PagesQuery {
   _site {
     faviconMetaTags {
@@ -673,6 +675,28 @@ const itemsQuery = locale => `query AllMenuQuery {
   }
 }`
 
+const uploadsQuery = `query UploadsQuery {
+  allUploads(
+    filter: {tags: {anyIn: ["academy", "cdis", "isw", "isq", "tis", "tws", "wyis", "yhis"]}}
+  ) {
+    id
+    tags
+    responsiveImage(imgixParams: {fm: webp, w: "900"}) {
+      alt
+      aspectRatio
+      base64
+      height
+      width
+      sizes
+      srcSet
+      src
+      webpSrcSet
+      bgColor
+      title
+    }
+  }
+}`
+
 const makeRequest = async query => {
   return await fetch('https://graphql.datocms.com', {
     method: 'post',
@@ -721,6 +745,37 @@ export async function fetchLocales() {
   }`)
   locales = _site.locales
   return locales
+}
+
+export let uploads = {}
+export async function fetchUploads() {
+  if (uploads.length === 0) {
+    return uploads
+  }
+
+  const { data: { allUploads } } = await makeRequest(uploadsQuery)
+  uploads = allUploads.reduce((carry, upload) => {
+    for (const t of upload.tags) {
+      const tag = t.toLowerCase()
+
+      if (!carry[tag]) {
+        carry[tag] = []
+      }
+
+      carry[tag].push(upload)
+    }
+
+    return carry
+  }, uploads)
+}
+export function getRandomImage(school) {
+  const upload = random(uploads[school] || [])
+
+  if (!upload) {
+    return getRandomImage(random(Object.keys(uploads)))
+  }
+
+  return upload
 }
 
 export let currentLocale = null
