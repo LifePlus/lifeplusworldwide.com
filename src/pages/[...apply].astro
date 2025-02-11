@@ -1,0 +1,256 @@
+---
+import random from 'just-random';
+import { fetchPublicVacancies, buildVacancySlug } from '../vacancies.mjs';
+import { fetchLocales, setCurrentLocale } from '../datocms.mjs';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+import Progress from '../components/Progress.astro';
+import Container from '../components/Container.vue';
+
+let { vacancy } = Astro.props;
+let locale = Astro.props.locale;
+setCurrentLocale(locale);
+
+export async function getStaticPaths() {
+  const locales = await fetchLocales();
+  const publicVacancies = await fetchPublicVacancies();
+  const externalVacancies = await fetchPublicVacancies({ visibility: 'external' });
+
+  const vacancyMapper = (vacancy, locale = '') => {
+    const prefix = locale === 'en' ? '' : `/${locale}`;
+    const applyUrl = `${prefix}/apply/${vacancy.id}`;
+
+    return {
+      params: {
+        apply: applyUrl,
+      },
+      props: {
+        vacancy,
+        locale: locale || 'en',
+      },
+    };
+  };
+
+  const vacancyPaths = locales.flatMap((locale) => {
+    const mappedPublicVacancies = publicVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
+    const mappedExternalVacancies = externalVacancies.map((vacancy) => vacancyMapper(vacancy, locale));
+    return [...mappedPublicVacancies, ...mappedExternalVacancies];
+  });
+
+  const applyPaths = locales.map((locale, vacancy) => ({
+    params: { apply: locale === 'en' ? '/apply' : `/${locale}/apply` },
+    props: { vacancy, locale },
+  }));
+
+  return [...applyPaths, ...vacancyPaths];
+}
+
+const logos = {
+  academy: 'academy.svg',
+  cdis: 'cdis.svg',
+  isw: 'cdis.svg',
+  isq: 'isq.svg',
+  tis: 'tis.svg',
+  tws: 'tws.svg',
+  wyis: 'wyis.svg',
+  yhis: 'yhis.svg',
+};
+
+const photos = {
+  academy: ['lpoa-1.jpg', 'lpoa-2.jpg', 'lpoa-3.jpg'],
+  cdis: ['cdis-1.jpg', 'cdis-2.jpg', 'cdis-3.jpg'],
+  isw: ['isw-1.jpg', 'isw-2.jpg', 'isw-3.jpg'],
+  isq: ['isq-1.jpg', 'isq-2.jpg', 'isq-3.jpg'],
+  tis: ['tis-1.jpg', 'tis-2.jpg', 'tis-3.jpg'],
+  tws: ['tws-1.jpg', 'tws-2.jpg', 'tws-3.jpg'],
+  wyis: ['wyis-1.jpg', 'wyis-2.jpg', 'wyis-3.jpg'],
+  yhis: ['yhis-1.jpg', 'yhis-2.jpg', 'yhis-3.jpg'],
+};
+
+const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] || 'lpwl.svg'}`;
+const utmContent = `${vacancy.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
+const featured = `/assets/schools/${random(
+  photos[vacancy.entity?.short_name?.toLowerCase()] || photos[random(Object.keys(photos))]
+)}`;
+const nameCountry = vacancy.display + (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : '');
+const description = vacancy.entity?.name
+  ? `Apply for ${nameCountry} at ${vacancy.entity?.name} and LifePlus.`
+  : `Apply for ${nameCountry} at LifePlus.`;
+
+const applicationUrlAmerican = `https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
+  utmContent
+)}&s=1&v=${vacancy.id}`;
+const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
+  utmContent
+)}&s=1&v=${vacancy.id}`;
+
+---
+
+<BaseLayout locale={locale}>
+  <Fragment slot="head">
+    <title>Apply for {nameCountry} | LifePlus® Careers</title>
+    <meta name="description" content="Select your passport nationality to proceed with your application." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`Apply for ${nameCountry}`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:image" content={Astro.site + featured.substring(1)} />
+    <meta property="og:title" content={`Apply for ${nameCountry}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.request.url} />
+    <link
+      sizes="16x16"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=16&amp;w=16"
+    />
+    <link
+      sizes="32x32"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=32&amp;w=32"
+    />
+    <link
+      sizes="96x96"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=96&amp;w=96"
+    />
+    <link
+      sizes="192x192"
+      type="image/png"
+      rel="icon"
+      href="https://www.datocms-assets.com/65472/1650904266-favicon.png?auto=format&amp;h=192&amp;w=192"
+    />
+  </Fragment>
+
+  <div id="menu-container"></div>
+  <div id="wrapper" class="bg-white text-black font-sans antialiased min-h-screen flex flex-col justify-between">
+    <TopNav currentId="tVaLASf5Qo6giokT7yeu8g" locale={locale} />
+
+    <main class="flex-1 relative bg-white flex">
+      <Container class="flex">
+        <div class="grid lg:grid-cols-3" id="section-1">
+          <!-- Sidebar -->
+          <div class="pt-10">
+            <div class="w-1/2">
+              {vacancy.entity?.website ? (
+                <a
+                  href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
+                  target="_blank"
+                >
+                  <img src={logo} alt={vacancy.entity?.name} />
+                  <span class="sr-only">{vacancy.entity.name} website</span>
+                </a>
+              ) : (
+                <img src={logo} alt={vacancy.entity?.name} />
+              )}
+            </div>
+
+            <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mt-4 mb-4 lg:mb-0">
+              {vacancy.entity?.website ? (
+                <a
+                  href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
+                  class="group inline-flex items-center text-brand-primary group mb-4"
+                >
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                  </span>
+                  <span class="text-sm ms-4 font-medium">Back to vacancy</span>
+                </a>
+              ) : (
+              <a
+                  href={`careers`}
+                  class="group inline-flex items-center text-brand-primary group mb-4"
+                >
+                  <span class="w-8 h-8 flex items-center justify-center rounded-full bg-brand-primary transition ltr:group-hover:-translate-x-2 rtl:group-hover:translate-x-2">
+                    <ion-icon class="rtl:hidden w-4 h-4 text-white" name="arrow-back-outline"></ion-icon>
+                    <ion-icon class="ltr:hidden w-4 h-4 text-white" name="arrow-forward-outline"></ion-icon>
+                  </span>
+                  <span class="text-sm ms-4 font-medium">Back to vacancies</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="lg:col-span-2 lg:ps-4 lg:border-s border-gray-300">
+
+            <div class="pt-12 pb-12 md:pb-24 relative">
+              <p class="mb-8 text-lg md:text-2xl">
+                In order to ensure that Chinese citizens are hired within the framework of Chinese employment laws, any applicant holding a Chinese ID/passport applying to our schools in China will need to go through a separate hiring channel.
+              </p>
+              <div class="space-y-8 flex flex-col">
+                <div>
+                  <a
+                    href={applicationUrlChinese}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">I have a Chinese Passport/ID, and I am applying for a position in China.</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href={applicationUrlAmerican}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">I have a Chinese Passport/ID, and I am applying for a position outside of China.</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href={applicationUrlAmerican}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">I have a Chinese Passport/ID, and I am applying as a non-working spouse.</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <a
+                    href={applicationUrlAmerican}
+                    target="_blank"
+                    class="flex items-center group text-brand-primary"
+                  >
+                    <p class="mr-4 text-sm font-medium">Other Passport</p>
+                    <span>
+                      <div class="h-6 w-6 md:w-8 md:h-8 flex items-center justify-center rounded-full bg-brand-primary text-white transition-transform group-hover:translate-x-2 rtl:group-hover:-translate-x-2 duration-200">
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 rtl:hidden md flip-rtl hydrated" role="img" name="arrow-forward-outline"></ion-icon>
+                        <ion-icon class="w-4 md:w-5 h-4 md:h-5 hidden rtl:block md flip-rtl hydrated" role="img" name="arrow-back-outline"></ion-icon>
+                      </div>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </main>
+    <Footer />
+    <Progress />
+  </div>
+</BaseLayout>
