@@ -38,7 +38,7 @@ export function createSlug(str) {
 
 export function buildVacancySlug(vacancy, locale) {
   const prefix = locale === 'en' ? '' : `/${locale}`
-  return prefix + '/careers/' + vacancy.slug
+  return (prefix + '/careers/' + vacancy.slug).replace(/\/+/g, '/')
 }
 
 export function buildApplyUrl(vacancyId, locale, utmContent) {
