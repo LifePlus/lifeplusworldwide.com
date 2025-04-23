@@ -60,6 +60,7 @@ exports.handler = (event, context, callback) => {
       postmarkClient.sendEmail({
         from: 'notifications@lifeplusworldwide.com',
         to: 'brittany.west@lifeplusworldwide.com',
+        cc: 'jennifer.bowden@lifeplusworldwide.com',
         subject: `[Employee Referral] Referral Form Submission`,
         htmlBody: `<p><strong>Employee Name:</strong><br>${body.emp_name}</p>
         <p><strong>Employee Email:</strong><br>${body.emp_email}</p>
