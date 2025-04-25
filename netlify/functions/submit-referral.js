@@ -27,7 +27,7 @@ exports.handler = (event, context, callback) => {
   try {
     // send mail with defined transport object
     Promise.all([
-      axios.post(process.env.TEAMS_REFERRAL_WEBHOOK, {
+/*       axios.post(process.env.TEAMS_REFERRAL_WEBHOOK, {
         '@type': 'MessageCard',
         '@context': 'http://schema.org/extensions',
         themeColor: 'E30613',
@@ -56,7 +56,7 @@ exports.handler = (event, context, callback) => {
             ]
           },
         ]
-      }),
+      }), */
       postmarkClient.sendEmail({
         from: 'notifications@lifeplusworldwide.com',
         to: 'brittany.west@lifeplusworldwide.com',
