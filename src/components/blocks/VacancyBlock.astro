@@ -19,7 +19,7 @@ let vacancies = await fetchVacancies()
       <ul class="relative z-10 grid lg:grid-cols-2 lg:gap-8">
         {vacancies.map((vacancy, index) => (
           <li class={`py-5 border-t border-gray-300 first-of-type:border-t-0 ${index === 1 ? 'lg:border-t-0' : ''}`}>
-            <div class="text-sm">{vacancy.entity?.name}{vacancy.entity?.country ? `, ${vacancy.entity.country}` : ''}</div>
+            <div class="text-sm"> {vacancy.location || (vacancy.entity?.name && (vacancy.entity.name + (vacancy.entity?.country ? `, ${vacancy.entity.country}` : '')))}</div>
             <div>
               <a href={`${buildVacancySlug(vacancy, locale)}?utm_source=lifeplus&utm_content=careers+page`} class="text-2xl font-bold text-brand-primary hover:underline text-left" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity?.short_name} click');`}>{vacancy.display}</a>
             </div>

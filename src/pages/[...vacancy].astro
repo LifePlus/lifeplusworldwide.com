@@ -60,7 +60,7 @@ const randomOpenings = countryOpenings.length === 0
   : countryOpenings
 
 const featured = getRandomImage(vacancy.entity?.short_name?.toLowerCase())
-const nameCountry = vacancy.display + `${vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''}`
+const nameCountry = vacancy.display + (vacancy.location ? ` ${vacancy.location}` : (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''));
 const description = vacancy.entity?.name
   ? `Work as a ${nameCountry} with ${vacancy.entity?.name} and LifePlus.`
   : `Work as a ${nameCountry} with LifePlus.`
@@ -138,7 +138,7 @@ const description = vacancy.entity?.name
 
               <div class="mt-6">
                 <p class="border-t font-bold border-gray-300 py-1.5 text-3xl md:text-4xl">
-                  {vacancy.entity?.name}{vacancy.entity?.country ? `, ${vacancy.entity?.country}` : ''}
+                  {vacancy.location ? vacancy.location : (vacancy.entity?.name && (vacancy.entity.name + (vacancy.entity?.country ? `, ${vacancy.entity.country}` : '')))}
                 </p>
                 <h1 class="border-y border-gray-300 pt-1.5 pb-5 text-3xl md:text-4xl">
                   {vacancy.display}

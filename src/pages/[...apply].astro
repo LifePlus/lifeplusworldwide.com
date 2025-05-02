@@ -61,7 +61,7 @@ const logos = {
 const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] || 'lpwl.svg'}`;
 const utmContent = `${vacancy.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
 const featured = getRandomImage(vacancy.entity?.short_name?.toLowerCase())
-const nameCountry = vacancy.display + (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : '');
+const nameCountry = vacancy.display + (vacancy.location ? ` ${vacancy.location}` : (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''));
 const description = vacancy.entity?.name
   ? `Apply for ${nameCountry} at ${vacancy.entity?.name} and LifePlus.`
   : `Apply for ${nameCountry} at LifePlus.`;
