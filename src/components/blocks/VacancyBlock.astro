@@ -4,6 +4,16 @@ import BlockTitle from '../BlockTitle.astro'
 import { fetchVacancies, buildVacancySlug } from '../../vacancies.mjs'
 const { content, locale } = Astro.props
 let vacancies = await fetchVacancies()
+
+// Sort vacancies to put remote positions at the top
+vacancies.sort((a, b) => {
+  const aIsRemote = a.location && a.location.toLowerCase().includes('remote')
+  const bIsRemote = b.location && b.location.toLowerCase().includes('remote')
+  
+  if (aIsRemote && !bIsRemote) return -1
+  if (!aIsRemote && bIsRemote) return 1
+  return 0
+})
 ---
 
 <script is:inline src="https://vacancies.lifepluslearning.com/vendor/embed/script.js"></script>
