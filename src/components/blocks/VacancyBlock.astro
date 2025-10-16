@@ -33,7 +33,7 @@ vacancies.sort((a, b) => {
             <div>
               <a href={`${buildVacancySlug(vacancy, locale)}?utm_source=lifeplus&utm_content=careers+page`} class="text-2xl font-bold text-brand-primary hover:underline text-left" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity?.short_name} click');`}>{vacancy.display}</a>
             </div>
-            <div class="text-sm">Needed by {vacancy.needed_by}</div>
+            <div class="text-sm">{vacancy.needed_by}</div>
           </li>
         ))}
         <li class="lg:col-start-2 mt-6 lg:mt-6">

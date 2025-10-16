@@ -6,7 +6,7 @@
       <div>
         <a class="text-2xl font-bold text-brand-primary hover:underline" :href="`${vacancy.page_url}?utm_source=lifeplus&utm_content=vacancy+list`" target="_blank">{{ vacancy.display }}</a>
       </div>
-      <div class="text-sm">Needed by {{ vacancy.needed_by }}</div>
+      <div class="text-sm">{{ vacancy.needed_by }}</div>
     </li>
   </ul>
 </template>
