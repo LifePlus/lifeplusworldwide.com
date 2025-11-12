@@ -39,9 +39,9 @@ export async function getStaticPaths() {
     return [...mappedPublicVacancies, ...mappedExternalVacancies];
   });
 
-  const applyPaths = locales.map((locale, vacancy) => ({
+  const applyPaths = locales.map((locale) => ({
     params: { apply: locale === 'en' ? '/apply' : `/${locale}/apply` },
-    props: { vacancy, locale },
+    props: { vacancy: undefined, locale },
   }));
 
   return [...applyPaths, ...vacancyPaths];
@@ -58,20 +58,22 @@ const logos = {
   yhis: 'yhis.svg',
 };
 
-const logo = `/assets/logos/${logos[vacancy.entity?.short_name?.toLowerCase()] || 'lpwl.svg'}`;
-const utmContent = `${vacancy.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
-const featured = getRandomImage(vacancy.entity?.short_name?.toLowerCase())
-const nameCountry = vacancy.display + (vacancy.location ? ` ${vacancy.location}` : (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''));
-const description = vacancy.entity?.name
-  ? `Apply for ${nameCountry} at ${vacancy.entity?.name} and LifePlus.`
-  : `Apply for ${nameCountry} at LifePlus.`;
+const logo = `/assets/logos/${vacancy?.entity?.short_name ? logos[vacancy.entity.short_name.toLowerCase()] || 'lpwl.svg' : 'lpwl.svg'}`;
+const utmContent = `${vacancy?.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
+const featured = getRandomImage(vacancy?.entity?.short_name?.toLowerCase())
+const nameCountry = vacancy ? (vacancy.display + (vacancy.location ? ` ${vacancy.location}` : (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''))) : 'LifePlus careers';
+const description = vacancy
+  ? (vacancy.entity?.name
+      ? `Apply for ${nameCountry} at ${vacancy.entity?.name} and LifePlus.`
+      : `Apply for ${nameCountry} at LifePlus.`)
+  : 'Join the LifePlus team and make a difference in international education.';
 
-const applicationUrlAmerican = `https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
-  utmContent
-)}&s=1&v=${vacancy.id}`;
-const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(
-  utmContent
-)}&s=1&v=${vacancy.id}`;
+const applicationUrlAmerican = vacancy
+  ? `https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(utmContent)}&s=1&v=${vacancy.id}`
+  : `https://apply.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(utmContent)}&s=1`;
+const applicationUrlChinese = vacancy
+  ? `https://applycn.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(utmContent)}&s=1&v=${vacancy.id}`
+  : `https://applycn.lifeplusworldwide.com/a/interest?utm_source=lifeplus&utm_content=${encodeURIComponent(utmContent)}&s=1`;
 
 ---
 
@@ -124,21 +126,29 @@ const applicationUrlChinese = `https://applycn.lifeplusworldwide.com/a/interest?
           <!-- Sidebar -->
           <div class="pt-10">
             <div class="w-1/2">
-              {vacancy.entity?.website ? (
+              {vacancy?.entity?.website ? (
                 <a
-                  href={`${vacancy.entity?.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
+                  href={`${vacancy.entity.website}?utm_source=lifeplus+careers&utm_content=school+logo`}
                   target="_blank"
                 >
-                  <img src={logo} alt={vacancy.entity?.name} />
-                  <span class="sr-only">{vacancy.entity.name} website</span>
+                  {vacancy ? (
+                    <img src={logo} alt={vacancy.entity?.name} />
+                  ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450.01 110.38" fill="#e30613"><path class="prefix__cls-1" d="M0 0h450.01v2.4H0zM0 98.38h450.01v12H0zM119.74 50.15c.08-.56.16-1.44.16-2.08.08-9.36-5.84-13.6-14.4-13.6-3.44 0-7.12 1.36-10.24 3.36-4.72 3.12-9.12 9.28-9.12 18.48 0 11.84 8.08 18.88 17.76 18.88 7.52 0 12-2.16 14.72-5.28.24-.88 1.04-4.4 1.12-5.12-1.76 1.68-6.4 3.68-12.16 3.68-8.16 0-13.04-5.28-13.04-14.64 0-1.28.08-2.56.16-3.68h25.04zm-16-14c5.92.08 8.16 3.2 8.16 11.36l-17.04 1.12c1.28-8.64 5.68-12.32 8.88-12.48zM148.86 48.55l.24 1.2c12.24-.88 24.48-7.28 24.48-18.8 0-10.8-9.76-16.56-24.88-16.56h-19.04v59.99h15.44V16.96c1.44.08 3.12.24 4.4.64 5.92 1.6 8.56 6 8.56 13.2 0 8.64-2.16 15.12-9.2 17.76zM87.35 14.88c-2.16 0-3.92 1.52-3.92 3.76s1.76 3.84 3.92 3.84 4-1.52 4-3.84-1.84-3.76-4-3.76z"/><path class="prefix__cls-1" d="M68.15 25.76v9.44h-4.88v3.6h4.88v35.59h8.32v-35.6h8.32v-3.6h-8.32V21.83c0-6.08 3.68-8.16 7.52-8.64v-.72c-8.64.72-15.84 3.84-15.84 13.28zM5.76 14.4v59.99h37.27l.4-5.84-28.15 3.12V14.4H5.76zM53.59 19.68c-2.8 0-4.96 2-4.96 4.56s2.08 4.48 4.96 4.48 4.88-2 4.88-4.56-2-4.48-4.88-4.48zM49.43 74.39h8.32V34.63l-8.32 1.12v38.64zM178.45 14.24v60.15h13.28V12.32l-13.28 1.92zM287.15 17.12c-4 0-7.28 3.04-7.28 7.2s3.28 7.28 7.28 7.28 7.28-3.04 7.28-7.28-3.28-7.2-7.28-7.2zm0 13.76c-3.6 0-6.4-2.88-6.4-6.56s2.8-6.48 6.4-6.48 6.32 2.88 6.32 6.48-2.72 6.56-6.32 6.56zM310.27 70.15c0-3.12-2.24-5.04-5.04-5.04s-5.04 2-5.04 5.12 2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04zM327.79 70.15c0-3.12-2.24-5.04-5.04-5.04s-5.04 2-5.04 5.12 2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04zM288.67 65.11c-2.8 0-5.04 2-5.04 5.12s2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04-2.24-5.04-5.04-5.04zM201.33 34.39v28.88c0 7.92 4.48 11.92 11.44 11.92 4.48 0 6.72-1.44 8.88-3.28 1.84-1.44 3.36-3.12 5.04-5.68v8.72l13.28-2V32.47l-13.36 1.92v30.55c-1.92 1.36-3.68 1.92-5.52 1.92-4.4 0-6.4-1.68-6.4-6.48V32.46l-13.36 1.92z"/><path class="prefix__cls-1" d="M289.79 22.24c0-1.36-1.36-2.08-3.12-2.08h-2.24v8h1.6v-7.6c.24 0 .72.08.88.16 1.04.24 1.36.8 1.36 1.52 0 .96-.56 1.52-1.12 1.84l-.56.32 2.32 3.76h1.76l-2.56-3.84c.88-.4 1.68-1.12 1.68-2.08zM262.12 73.11c-2.16 0-9.52-6.16-14.24-9.68l-1.28 9.52c4.16 1.28 10 2.24 14.4 2.24 4.8 0 8.24-1.68 10.96-3.6 2.88-2.16 5.52-6.72 5.52-10.56 0-8.48-4.08-10.16-11.52-14.08-5.04-2.72-8-4.08-8-7.92 0-2.88 2.4-4.64 4.88-4.8 1.68 0 7.2 5.2 11.36 8.8l1.92-8.96c-2.88-.88-7.12-1.92-11.92-1.92-4.4 0-7.68 1.28-10.48 2.88-3.04 1.68-6.64 5.04-6.64 10.72 0 7.92 4.72 10.08 11.28 13.68 6.24 3.44 8.48 4.8 8.48 8.64 0 2.96-2.24 4.8-4.72 5.04z"/></svg>
+                  )}
+                  <span class="sr-only">{vacancy?.entity?.name || 'LifePlus'} website</span>
                 </a>
               ) : (
-                <img src={logo} alt={vacancy.entity?.name} />
+                vacancy ? (
+                  <img src={logo} alt={vacancy.entity?.name || 'LifePlus'} />
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450.01 110.38" fill="#e30613"><path class="prefix__cls-1" d="M0 0h450.01v2.4H0zM0 98.38h450.01v12H0zM119.74 50.15c.08-.56.16-1.44.16-2.08.08-9.36-5.84-13.6-14.4-13.6-3.44 0-7.12 1.36-10.24 3.36-4.72 3.12-9.12 9.28-9.12 18.48 0 11.84 8.08 18.88 17.76 18.88 7.52 0 12-2.16 14.72-5.28.24-.88 1.04-4.4 1.12-5.12-1.76 1.68-6.4 3.68-12.16 3.68-8.16 0-13.04-5.28-13.04-14.64 0-1.28.08-2.56.16-3.68h25.04zm-16-14c5.92.08 8.16 3.2 8.16 11.36l-17.04 1.12c1.28-8.64 5.68-12.32 8.88-12.48zM148.86 48.55l.24 1.2c12.24-.88 24.48-7.28 24.48-18.8 0-10.8-9.76-16.56-24.88-16.56h-19.04v59.99h15.44V16.96c1.44.08 3.12.24 4.4.64 5.92 1.6 8.56 6 8.56 13.2 0 8.64-2.16 15.12-9.2 17.76zM87.35 14.88c-2.16 0-3.92 1.52-3.92 3.76s1.76 3.84 3.92 3.84 4-1.52 4-3.84-1.84-3.76-4-3.76z"/><path class="prefix__cls-1" d="M68.15 25.76v9.44h-4.88v3.6h4.88v35.59h8.32v-35.6h8.32v-3.6h-8.32V21.83c0-6.08 3.68-8.16 7.52-8.64v-.72c-8.64.72-15.84 3.84-15.84 13.28zM5.76 14.4v59.99h37.27l.4-5.84-28.15 3.12V14.4H5.76zM53.59 19.68c-2.8 0-4.96 2-4.96 4.56s2.08 4.48 4.96 4.48 4.88-2 4.88-4.56-2-4.48-4.88-4.48zM49.43 74.39h8.32V34.63l-8.32 1.12v38.64zM178.45 14.24v60.15h13.28V12.32l-13.28 1.92zM287.15 17.12c-4 0-7.28 3.04-7.28 7.2s3.28 7.28 7.28 7.28 7.28-3.04 7.28-7.28-3.28-7.2-7.28-7.2zm0 13.76c-3.6 0-6.4-2.88-6.4-6.56s2.8-6.48 6.4-6.48 6.32 2.88 6.32 6.48-2.72 6.56-6.32 6.56zM310.27 70.15c0-3.12-2.24-5.04-5.04-5.04s-5.04 2-5.04 5.12 2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04zM327.79 70.15c0-3.12-2.24-5.04-5.04-5.04s-5.04 2-5.04 5.12 2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04zM288.67 65.11c-2.8 0-5.04 2-5.04 5.12s2.24 4.96 5.04 4.96 5.04-1.92 5.04-5.04-2.24-5.04-5.04-5.04zM201.33 34.39v28.88c0 7.92 4.48 11.92 11.44 11.92 4.48 0 6.72-1.44 8.88-3.28 1.84-1.44 3.36-3.12 5.04-5.68v8.72l13.28-2V32.47l-13.36 1.92v30.55c-1.92 1.36-3.68 1.92-5.52 1.92-4.4 0-6.4-1.68-6.4-6.48V32.46l-13.36 1.92z"/><path class="prefix__cls-1" d="M289.79 22.24c0-1.36-1.36-2.08-3.12-2.08h-2.24v8h1.6v-7.6c.24 0 .72.08.88.16 1.04.24 1.36.8 1.36 1.52 0 .96-.56 1.52-1.12 1.84l-.56.32 2.32 3.76h1.76l-2.56-3.84c.88-.4 1.68-1.12 1.68-2.08zM262.12 73.11c-2.16 0-9.52-6.16-14.24-9.68l-1.28 9.52c4.16 1.28 10 2.24 14.4 2.24 4.8 0 8.24-1.68 10.96-3.6 2.88-2.16 5.52-6.72 5.52-10.56 0-8.48-4.08-10.16-11.52-14.08-5.04-2.72-8-4.08-8-7.92 0-2.88 2.4-4.64 4.88-4.8 1.68 0 7.2 5.2 11.36 8.8l1.92-8.96c-2.88-.88-7.12-1.92-11.92-1.92-4.4 0-7.68 1.28-10.48 2.88-3.04 1.68-6.64 5.04-6.64 10.72 0 7.92 4.72 10.08 11.28 13.68 6.24 3.44 8.48 4.8 8.48 8.64 0 2.96-2.24 4.8-4.72 5.04z"/></svg>
+                )
               )}
             </div>
 
             <div class="lg:w-3/4 lg:pe-4 lg:mt-12 mt-4 mb-4 lg:mb-0">
-              {vacancy.entity?.website ? (
+              {vacancy?.entity?.website ? (
                 <a
                   href={`${buildVacancySlug(vacancy, locale)}?utm_source=career+listing&utm_content=aside+back`}
                   class="group inline-flex items-center text-brand-primary group mb-4"
