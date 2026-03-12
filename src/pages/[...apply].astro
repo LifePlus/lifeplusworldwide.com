@@ -60,7 +60,7 @@ const logos = {
 
 const logo = `/assets/logos/${vacancy?.entity?.short_name ? logos[vacancy.entity.short_name.toLowerCase()] || 'lpwl.svg' : 'lpwl.svg'}`;
 const utmContent = `${vacancy?.slug || ''} ${locale}`.toLowerCase().replace(/[^a-z0-9]+/g, '+');
-const featured = getRandomImage(vacancy?.entity?.short_name?.toLowerCase())
+const featured = getRandomImage(vacancy?.entity?.short_name?.toLowerCase(), vacancy?.id)
 const nameCountry = vacancy ? (vacancy.display + (vacancy.location ? ` ${vacancy.location}` : (vacancy.entity?.country ? ` in ${vacancy.entity.country}` : ''))) : 'LifePlus careers';
 const description = vacancy
   ? (vacancy.entity?.name

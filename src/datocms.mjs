@@ -677,6 +677,7 @@ const itemsQuery = locale => `query AllMenuQuery {
 
 const uploadsQuery = `query UploadsQuery {
   allUploads(
+    first: 100
     filter: {tags: {anyIn: ["academy", "cdis", "isq", "tis", "twps", "wyis", "yhis", "corp"]}}
   ) {
     id
@@ -754,6 +755,7 @@ export async function fetchUploads() {
   }
 
   const { data: { allUploads } } = await makeRequest(uploadsQuery)
+  console.log('[fetchUploads] Total uploads from DatoCMS:', allUploads.length)
   uploads = allUploads.reduce((carry, upload) => {
     for (const t of upload.tags) {
       const tag = t.toLowerCase()
@@ -767,15 +769,23 @@ export async function fetchUploads() {
 
     return carry
   }, uploads)
+  console.log('[fetchUploads] Tags found:', Object.keys(uploads))
+  console.log('[fetchUploads] Images per tag:', Object.fromEntries(Object.entries(uploads).map(([k, v]) => [k, v.length])))
 }
-export function getRandomImage(school) {
-  const upload = random(uploads[school] || [])
+export function getRandomImage(school, vacancyId = null) {
+  const images = uploads[school] || []
 
-  if (!upload) {
-    return getRandomImage(random(Object.keys(uploads)))
+  if (images.length === 0) {
+    const fallbackSchool = random(Object.keys(uploads))
+    return getRandomImage(fallbackSchool)
   }
 
-  return upload
+  // If a vacancy ID is provided, pick deterministically so the same vacancy always gets the same image
+  if (vacancyId !== null) {
+    return images[vacancyId % images.length]
+  }
+
+  return random(images)
 }
 
 export let currentLocale = null

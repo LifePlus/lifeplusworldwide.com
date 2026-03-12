@@ -2,6 +2,8 @@
 import Container from '../Container.vue'
 import BlockTitle from '../BlockTitle.astro'
 import { fetchVacancies, buildVacancySlug } from '../../vacancies.mjs'
+import { fetchUploads, uploads } from '../../datocms.mjs'
+await fetchUploads()
 const { content, locale } = Astro.props
 let vacancies = await fetchVacancies()
 
@@ -9,11 +11,19 @@ let vacancies = await fetchVacancies()
 vacancies.sort((a, b) => {
   const aIsRemote = a.location && a.location.toLowerCase().includes('remote')
   const bIsRemote = b.location && b.location.toLowerCase().includes('remote')
-  
+
   if (aIsRemote && !bIsRemote) return -1
   if (!aIsRemote && bIsRemote) return 1
   return 0
 })
+
+// Pick a deterministic image for a vacancy based on its ID so it stays consistent across page loads
+function getVacancyImage(vacancy) {
+  const shortName = vacancy.entity?.short_name?.toLowerCase()
+  const images = uploads[shortName]
+  if (!images || images.length === 0) return null
+  return images[vacancy.id % images.length]
+}
 ---
 
 <script is:inline src="https://vacancies.lifepluslearning.com/vendor/embed/script.js"></script>
@@ -27,15 +37,21 @@ vacancies.sort((a, b) => {
       <BlockTitle content={content} />
 
       <ul class="relative z-10 grid lg:grid-cols-2 lg:gap-8">
-        {vacancies.map((vacancy, index) => (
+        {vacancies.map((vacancy, index) => {
+          const image = getVacancyImage(vacancy)
+          return (
           <li class={`py-5 border-t border-gray-300 first-of-type:border-t-0 ${index === 1 ? 'lg:border-t-0' : ''}`}>
-            <div class="text-sm"> {vacancy.location || (vacancy.entity?.name && (vacancy.entity.name + (vacancy.entity?.country ? `, ${vacancy.entity.country}` : '')))}</div>
-            <div>
-              <a href={`${buildVacancySlug(vacancy, locale)}?utm_source=lifeplus&utm_content=careers+page`} class="text-2xl font-bold text-brand-primary hover:underline text-left" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity?.short_name} click');`}>{vacancy.display}</a>
-            </div>
-            <div class="text-sm">{vacancy.needed_by}</div>
+            <a href={`${buildVacancySlug(vacancy, locale)}?utm_source=lifeplus&utm_content=careers+page`} class="flex gap-4 items-start group" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity?.short_name} click');`}>
+              {image && <img src={image.responsiveImage.src} alt={image.responsiveImage.alt || vacancy.entity?.name || ''} class="w-20 h-20 object-cover rounded-md flex-shrink-0 mt-1" loading="lazy" />}
+              <div>
+                <div class="text-sm">{vacancy.location || (vacancy.entity?.name && (vacancy.entity.name + (vacancy.entity?.country ? `, ${vacancy.entity.country}` : '')))}</div>
+                <div class="text-2xl font-bold text-brand-primary group-hover:underline text-left">{vacancy.display}</div>
+                <div class="text-sm">{vacancy.needed_by}</div>
+              </div>
+            </a>
           </li>
-        ))}
+          )
+        })}
         <li class="lg:col-start-2 mt-6 lg:mt-6">
           {content.content && <div set:html={content.content} class={`prose lg:prose-lg mb-6 lg:mb-10`}></div>}
           <div>
