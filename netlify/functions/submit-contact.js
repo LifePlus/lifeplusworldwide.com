@@ -6,6 +6,28 @@ const autoReply = `<p>Greetings,</p>
 <p>Warm regards,<br>
 LifePlus</p>`
 
+const validateDateOfBirth = (ctx, str) => {
+  validateLength(ctx, str, 10, 10)
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(str)) {
+    throw TypeError(`${ctx} must be a valid date`)
+  }
+
+  const [year, month, day] = str.split('-').map(value => parseInt(value, 10))
+  const date = new Date(Date.UTC(year, month - 1, day))
+
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) {
+    throw TypeError(`${ctx} must be a valid date`)
+  }
+
+  const now = new Date()
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
+
+  if (date.getTime() > today) {
+    throw TypeError(`${ctx} cannot be in the future`)
+  }
+}
+
 exports.handler = (event, context, callback) => {
   const body = JSON.parse(event.body)
 
@@ -37,6 +59,17 @@ exports.handler = (event, context, callback) => {
     })
   }
 
+  if (body.question === 'Student records request') {
+    try {
+      validateDateOfBirth(`Date of Birth`, body.dob)
+    } catch (e) {
+      return callback(null, {
+        statusCode: 403,
+        body: e.message
+      })
+    }
+  }
+
   const postmarkClient = new postmark.ServerClient(process.env.POSTMARK_KEY)
 
   const addressses = {
@@ -61,7 +94,8 @@ exports.handler = (event, context, callback) => {
           <p><strong>Phone:</strong><br>${body.phone || 'None provided'}</p>
           <p><strong>Message:</strong><br>${body.message || 'None provided'}</p>
           ${body.question === 'Student records request' ? `<p><strong>School:</strong> ${body.school || 'None provided'}</p>` : ''}
-          ${body.question === 'Student records request' ? `<p><strong>Years Attended:</strong> ${body.years || 'None provided'}</p>` : ''}`
+          ${body.question === 'Student records request' ? `<p><strong>Years Attended:</strong> ${body.years || 'None provided'}</p>` : ''}
+          ${body.question === 'Student records request' ? `<p><strong>Date of Birth:</strong> ${body.dob || 'None provided'}</p>` : ''}`
       }),
       postmarkClient.sendEmail({
         from: 'notifications@lifeplusworldwide.com',

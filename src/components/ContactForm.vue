@@ -90,6 +90,14 @@
         </select>
       </div>
     </div>
+    <div v-if="data.question === 'Student records request'">
+      <div class="mb-1">
+        <label class="font-medium" for="dob">Date of birth? <span class="text-red-600">*</span></label>
+      </div>
+      <div>
+        <AppInput v-model="data.dob" type="date" id="dob" :max="today || undefined" required />
+      </div>
+    </div>
     <div>
       <div class="mb-1">
         <label class="font-medium" for="email">Your email? <span class="text-red-600">*</span></label>
@@ -134,7 +142,7 @@
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import axios from 'axios'
 import AppInput from '../components/forms/AppInput.vue'
 import AppTextarea from '../components/forms/AppTextarea.vue'
@@ -157,10 +165,15 @@ export default {
       message: '',
       school: '',
       years: '',
+      dob: '',
     })
     const error = ref(false)
     const success = ref(false)
     const buttonText = ref('Send enquiry...')
+    const today = ref('')
+    onMounted(() => {
+      today.value = new Date().toISOString().slice(0, 10)
+    })
     const send = async () => {
       error.value = false
       success.value = false
@@ -175,6 +188,7 @@ export default {
         data.phone = ''
         data.school = ''
         data.years = ''
+        data.dob = ''
       } catch (e) {
         error.value = true
       }
@@ -190,6 +204,7 @@ export default {
       error,
       success,
       buttonText,
+      today,
     }
   },
 }
