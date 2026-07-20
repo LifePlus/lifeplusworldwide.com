@@ -20,7 +20,8 @@ vacancies.sort((a, b) => {
 // Pick a deterministic image for a vacancy based on its ID so it stays consistent across page loads
 function getVacancyImage(vacancy) {
   const shortName = vacancy.entity?.short_name?.toLowerCase()
-  const images = uploads[shortName]
+  const schoolImages = uploads[shortName]
+  const images = schoolImages?.length ? schoolImages : uploads.vacancies
   if (!images || images.length === 0) return null
   return images[vacancy.id % images.length]
 }
@@ -42,7 +43,7 @@ function getVacancyImage(vacancy) {
           return (
           <li class={`py-5 border-t border-gray-300 first-of-type:border-t-0 ${index === 1 ? 'lg:border-t-0' : ''}`}>
             <a href={`${buildVacancySlug(vacancy, locale)}?utm_source=lifeplus&utm_content=careers+page`} class="flex gap-4 items-start group" onclick={`fathom.trackEvent('${vacancy.display} ${vacancy.entity?.short_name} click');`}>
-              {image && <img src={image.responsiveImage.src} alt={image.responsiveImage.alt || vacancy.entity?.name || ''} class="w-20 h-20 object-cover rounded-md flex-shrink-0 mt-1" loading="lazy" />}
+              {image && <img src={image.responsiveImage.src} alt={image.responsiveImage.alt || vacancy.entity?.name || 'LifePlus'} class="w-20 h-20 object-cover rounded-md flex-shrink-0 mt-1" loading="lazy" />}
               <div>
                 <div class="text-sm">{vacancy.location || (vacancy.entity?.name && (vacancy.entity.name + (vacancy.entity?.country ? `, ${vacancy.entity.country}` : '')))}</div>
                 <div class="text-2xl font-bold text-brand-primary group-hover:underline text-left">{vacancy.display}</div>
